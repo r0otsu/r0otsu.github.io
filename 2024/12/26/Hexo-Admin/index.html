@@ -19,16 +19,16 @@
   <meta name="author" content="r0otsu">
   <meta name="keywords" content="">
   
-    <meta name="description" content="有关Hexo Admin插件的问题首先是原来之前搭的时候已经配过了，完全忘记密码了，还去搜了一下Hexo Admin忘记密码了怎么办。。。这个倒是小问题，一搜就可以解决  另外一个问题是，在搭建好后使用Hexo Admin点击Deploy会报错： 1Error: spawn EINVAL  完整的报错信息如下： 1234567891011121314151617181920212223242526">
+    <meta name="description" content="有关Hexo Admin插件的问题">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Hexo-Admin">
 <meta property="og:url" content="https://r0otsu.github.io/2024/12/26/Hexo-Admin/index.html">
 <meta property="og:site_name" content="r0otsu Blog">
-<meta property="og:description" content="有关Hexo Admin插件的问题首先是原来之前搭的时候已经配过了，完全忘记密码了，还去搜了一下Hexo Admin忘记密码了怎么办。。。这个倒是小问题，一搜就可以解决  另外一个问题是，在搭建好后使用Hexo Admin点击Deploy会报错： 1Error: spawn EINVAL  完整的报错信息如下： 1234567891011121314151617181920212223242526">
+<meta property="og:description" content="有关Hexo Admin插件的问题">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://gitee.com/r0otsu/images/raw/master/image-20241226125930434.png">
 <meta property="article:published_time" content="2024-12-26T18:18:00.000Z">
-<meta property="article:modified_time" content="2024-12-26T18:20:40.454Z">
+<meta property="article:modified_time" content="2024-12-26T18:23:11.118Z">
 <meta property="article:author" content="r0otsu">
 <meta property="article:tag" content="Hexo-Admin">
 <meta name="twitter:card" content="summary_large_image">
@@ -229,7 +229,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          551 字
+          545 字
         
       </span>
     
@@ -282,7 +282,7 @@
             
               <div class="markdown-body">
                 
-                <h3 id="有关Hexo-Admin插件的问题"><a href="#有关Hexo-Admin插件的问题" class="headerlink" title="有关Hexo Admin插件的问题"></a>有关Hexo Admin插件的问题</h3><p>首先是原来之前搭的时候已经配过了，完全忘记密码了，还去搜了一下Hexo Admin忘记密码了怎么办。。。这个倒是小问题，一搜就可以解决</p>
+                <h1 id="有关Hexo-Admin插件的问题"><a href="#有关Hexo-Admin插件的问题" class="headerlink" title="有关Hexo Admin插件的问题"></a>有关Hexo Admin插件的问题</h1><p>首先是原来之前搭的时候已经配过了，完全忘记密码了，还去搜了一下Hexo Admin忘记密码了怎么办。。。这个倒是小问题，一搜就可以解决</p>
 <hr>
 <p>另外一个问题是，在搭建好后使用Hexo Admin点击<code>Deploy</code>会报错：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">Error: spawn EINVAL<br></code></pre></td></tr></table></figure>
@@ -299,10 +299,10 @@
 <p>其中<code>hexo-deploy.bat</code>文件与<code>_config.yml</code>文件都在hexo的根目录下。</p>
 <hr>
 <p>kimi了一下发现好像是bat文件没有传入进<code>spawn</code>函数中去：</p>
-<p><img src="https://gitee.com/r0otsu/images/raw/master/image-20241226125930434.png" srcset="/img/loading.gif" lazyload alt="image-20241226125930434"></p>
+<p><img src="https://gitee.com/r0otsu/images/raw/master/image-20241226125930434.png" srcset="/img/loading.gif" lazyload></p>
 <p>具体来说，是<code>hexo-admin</code>的<code>deploy.js</code>第14行，<code>spawn</code>函数调用失败</p>
 <hr>
-<p>搜到了一个[问答]:<a target="_blank" rel="noopener" href="https://www.soinside.com/question/kGNdMTXjw9GnnYojay6CpW">https://www.soinside.com/question/kGNdMTXjw9GnnYojay6CpW</a> ，说由于Node.js的安全更新，在win下，如果需要调用<code>spawn</code>引用<code>.bat</code>或<code>.cmd</code>文件，需要声明：</p>
+<p>搜到了一个问答，说由于Node.js的安全更新，在win下，如果需要调用<code>spawn</code>引用<code>.bat</code>或<code>.cmd</code>文件，需要声明：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs js">&#123; <span class="hljs-attr">shell</span>: <span class="hljs-literal">true</span> &#125;<br></code></pre></td></tr></table></figure>
 
 <p>将此作为选项传递，以防止发生 EINVAL 错误。</p>
