@@ -4,6 +4,31 @@
   
   
   <entry>
+    <title>WaterMark</title>
+    <link href="/2024/12/26/watermark/"/>
+    <url>/2024/12/26/watermark/</url>
+    
+    <content type="html"><![CDATA[<p>研究了一晚上有关水印的问题。</p><p>本来是想要给上传至博客中的图片添加水印，搜了很久只找到了对hexo的静态图片添加水印的插件，而且也没有尝试成功。</p><p>想了一下似乎可以对图床中的图片添加水印，然后发现之前用的picgo似乎已经太老套了。</p><p>现在比较新的是使用piclist，并且piclist可以对picgo图床相册进行一键导入，还可以根据时间戳对图片进行重命名（就不用担心重复使用照片会报错了）。</p><hr><p>尝试使用piclist进行文字水印，失败；</p><p>尝试图片水印很快就成功了，透明底的话和文字也差不多效果。</p><p><strong>成功解决水印问题！</strong></p>]]></content>
+    
+    
+    <categories>
+      
+      <category>study-else</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>水印</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>finally</title>
     <link href="/2024/12/25/finally/"/>
     <url>/2024/12/25/finally/</url>
