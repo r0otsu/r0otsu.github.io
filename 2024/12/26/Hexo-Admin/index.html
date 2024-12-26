@@ -27,7 +27,7 @@
 <meta property="og:description" content="有关Hexo Admin插件的问题">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2024-12-26T18:18:00.000Z">
-<meta property="article:modified_time" content="2024-12-26T18:49:38.725Z">
+<meta property="article:modified_time" content="2024-12-26T18:50:35.022Z">
 <meta property="article:author" content="r0otsu">
 <meta property="article:tag" content="Hexo-Admin">
 <meta name="twitter:card" content="summary_large_image">
@@ -307,7 +307,7 @@
 <p>kimi了一下发现好像是bat文件没有传入进<code>spawn</code>函数中去：</p>
 <figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs markdown">spawn EINVAL 是一个错误信息，它通常出现在Unix和Linux系统中，当你尝试执行一个命令或者程序时，系统无法正确地执行这个操作。spawn 是一个函数，用于创建一个新的进程，而 EINVAL 是一个错误码，表示“无效的参数”。<br><br>在这个上下文中，spawn EINVAL 通常意味着以下几种情况之一：<br><br><span class="hljs-bullet">1.</span> 无效的命令：你尝试执行的命令不存在或者命令的路径不正确。<br><span class="hljs-bullet">2.</span> 文件权限问题：你可能没有足够的权限去执行某个文件或者命令。<br><span class="hljs-bullet">3.</span> 路径问题：提供给 spawn 函数的路径可能不正确，或者包含了无效的字符。<br><span class="hljs-bullet">4.</span> 环境问题：环境变量可能没有正确设置，导致 spawn 函数无法找到正确的执行路径。<br></code></pre></td></tr></table></figure>
 
-<p><font color='green'>具体来说，是<code>hexo-admin</code>的<code>deploy.js</code>第14行，<code>spawn</code>函数调用失败</font></p>
+<p><font color='yellow'>具体来说，是<code>hexo-admin</code>的<code>deploy.js</code>第14行，<code>spawn</code>函数调用失败</font></p>
 <hr>
 <p>搜到了一个<a target="_blank" rel="noopener" href="https://www.soinside.com/question/kGNdMTXjw9GnnYojay6CpW">问答</a>，其中说由于Node.js的安全更新，在win下，如果需要调用<code>spawn</code>引用<code>.bat</code>或<code>.cmd</code>文件，需要声明：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs js">&#123; <span class="hljs-attr">shell</span>: <span class="hljs-literal">true</span> &#125;<br></code></pre></td></tr></table></figure>
