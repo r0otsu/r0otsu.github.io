@@ -26,21 +26,21 @@
 <meta property="og:site_name" content="r0otsu Blog">
 <meta property="og:description" content="子域名收集实验">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://gitee.com/r0otsu/images/raw/master/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-09-09%20110515.png">
-<meta property="og:image" content="https://gitee.com/r0otsu/images/raw/master/image-20240914091830339.png">
-<meta property="og:image" content="https://gitee.com/r0otsu/images/raw/master/image-20240914091310472.png">
-<meta property="og:image" content="https://gitee.com/r0otsu/images/raw/master/image-20240914100306716.png">
-<meta property="og:image" content="https://gitee.com/r0otsu/images/raw/master/image-20240914100118899.png">
-<meta property="og:image" content="https://gitee.com/r0otsu/images/raw/master/image-20240914100457788.png">
-<meta property="og:image" content="https://gitee.com/r0otsu/images/raw/master/image-20240914100547542.png">
-<meta property="og:image" content="https://gitee.com/r0otsu/images/raw/master/image-20240914095352728.png">
-<meta property="og:image" content="https://gitee.com/r0otsu/images/raw/master/image-20240914095645494.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20241226090953460.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20241226091005356.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20241226091012033.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20241226091026573.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20241226091035681.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20241226091043604.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20241226091049214.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20241226091054518.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20241226091059794.png">
 <meta property="article:published_time" content="2024-12-25T19:50:10.000Z">
-<meta property="article:modified_time" content="2024-12-26T09:19:05.070Z">
+<meta property="article:modified_time" content="2024-12-26T16:38:35.383Z">
 <meta property="article:author" content="r0otsu">
 <meta property="article:tag" content="攻防实验">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://gitee.com/r0otsu/images/raw/master/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-09-09%20110515.png">
+<meta name="twitter:image" content="https://gitee.com/r0otsu/piclist/raw/master/20241226090953460.png">
   
   
   
@@ -306,41 +306,41 @@
 <hr>
 <h3 id="实验步骤"><a href="#实验步骤" class="headerlink" title="实验步骤"></a>实验步骤</h3><h4 id="收集子域名"><a href="#收集子域名" class="headerlink" title="收集子域名"></a>收集子域名</h4><ol>
 <li><p>运行Sub_Domin_Search.py文件，可以在bing搜索时得到qq的子域名；</p>
-<p><img src="https://gitee.com/r0otsu/images/raw/master/%E5%B1%8F%E5%B9%95%E6%88%AA%E5%9B%BE%202024-09-09%20110515.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226090953460.png" srcset="/img/loading.gif" lazyload></p>
 </li>
 <li><p>查看baidu搜索界面的源代码，发现子域名可以在带有result类的div标签下，查找mu标签找到；</p>
 </li>
 <li><p>而子域名的name可以在该div标签下的a标签中，读取a标签中的字符串即可得到子域名的名字；</p>
-<p><img src="https://gitee.com/r0otsu/images/raw/master/image-20240914091830339.png" srcset="/img/loading.gif" lazyload alt="image-20240914091830339"></p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226091005356.png" srcset="/img/loading.gif" lazyload></p>
 </li>
 <li><p>修改代码中的处理方式，读取子域名link与子域名中的name；</p>
-<p><img src="https://gitee.com/r0otsu/images/raw/master/image-20240914091310472.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226091012033.png" srcset="/img/loading.gif" lazyload></p>
 </li>
 <li><p>修改accept和cookie：</p>
-<p><img src="https://gitee.com/r0otsu/images/raw/master/image-20240914100306716.png" srcset="/img/loading.gif" lazyload alt="image-20240914100306716"></p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226091026573.png" srcset="/img/loading.gif" lazyload></p>
 </li>
 <li><p>修改headers中的user-agent:</p>
-<p><img src="https://gitee.com/r0otsu/images/raw/master/image-20240914100118899.png" srcset="/img/loading.gif" lazyload alt="image-20240914100118899"></p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226091035681.png" srcset="/img/loading.gif" lazyload></p>
 </li>
 <li><p>将referer修改为’<a target="_blank" rel="noopener" href="https://wappass.baidu.com/'%EF%BC%9B">https://wappass.baidu.com/&#39;；</a></p>
 </li>
 <li><p>修改请求的url，图上标红的两个皆可（是一样的）：</p>
-<p><img src="https://gitee.com/r0otsu/images/raw/master/image-20240914100457788.png" srcset="/img/loading.gif" lazyload alt="image-20240914100457788"></p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226091043604.png" srcset="/img/loading.gif" lazyload></p>
 </li>
 <li><p>最终修改后的结果为：</p>
-<p><img src="https://gitee.com/r0otsu/images/raw/master/image-20240914100547542.png" srcset="/img/loading.gif" lazyload alt="image-20240914100547542"></p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226091049214.png" srcset="/img/loading.gif" lazyload></p>
 </li>
 </ol>
 <hr>
 <h4 id="扩展内容（添加网址名、状态码和真实子域名）"><a href="#扩展内容（添加网址名、状态码和真实子域名）" class="headerlink" title="扩展内容（添加网址名、状态码和真实子域名）"></a>扩展内容（添加网址名、状态码和真实子域名）</h4><ol>
 <li><p>如果返回的状态码是302，则说明重定向了，就使用requests库，读取该网址headers中的真实网址；</p>
-<p><img src="https://gitee.com/r0otsu/images/raw/master/image-20240914095352728.png" srcset="/img/loading.gif" lazyload alt="image-20240914095352728"></p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226091054518.png" srcset="/img/loading.gif" lazyload></p>
 </li>
 </ol>
 <hr>
 <h4 id="结果"><a href="#结果" class="headerlink" title="结果"></a>结果</h4><ol>
 <li><p>返回结果中有网址名、子域名url（可能重定向）、状态码和真实子域名；</p>
-<p><img src="https://gitee.com/r0otsu/images/raw/master/image-20240914095645494.png" srcset="/img/loading.gif" lazyload alt="image-20240914095645494"></p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226091059794.png" srcset="/img/loading.gif" lazyload></p>
 </li>
 </ol>
 <hr>
