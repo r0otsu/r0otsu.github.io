@@ -1,0 +1,853 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=dark>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/OIP-C.png">
+  <link rel="icon" href="/img/OIP-C.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="r0otsu">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="幽灵攻击实验">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Lab 12">
+<meta property="og:url" content="https://r0otsu.github.io/2024/12/25/lab12/index.html">
+<meta property="og:site_name" content="r0otsu Blog">
+<meta property="og:description" content="幽灵攻击实验">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://gitee.com/r0otsu/images/raw/master/image-20241201213350010.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/images/raw/master/image-20241201212725609.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/images/raw/master/image-20241201212756067.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/images/raw/master/image-20241201214112994.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/images/raw/master/image-20241201214132312.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/images/raw/master/image-20241201214150322.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/images/raw/master/image-20241201214222526.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/images/raw/master/image-20241201214257609.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/images/raw/master/image-20241223010144818.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/images/raw/master/image-20241223003247787.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/images/raw/master/image-20241223011300912.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/images/raw/master/image-20241223003556480.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/images/raw/master/image-20241223011517452.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/images/raw/master/image-20241223011915490.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/images/raw/master/image-20241223012235097.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/images/raw/master/image-20241223012301413.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/images/raw/master/image-20241223012317997.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/images/raw/master/image-20241223012343186.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/images/raw/master/image-20241223012357395.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/images/raw/master/image-20241223012422555.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/images/raw/master/image-20241223004508672.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/images/raw/master/image-20241223012920731.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/images/raw/master/image-20241223012948226.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/images/raw/master/image-20241223004559378.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/images/raw/master/image-20241223013226717.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/images/raw/master/image-20241223013544398.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/images/raw/master/image-20241223013812183.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/images/raw/master/image-20241223013834608.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/images/raw/master/image-20241223014028083.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/images/raw/master/image-20241223014048501.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/images/raw/master/image-20241223014147983.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/images/raw/master/image-20241223014211331.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/images/raw/master/image-20241223014534517.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/images/raw/master/image-20241223015027091.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/images/raw/master/image-20241223015512903.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/images/raw/master/image-20241223015556729.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/images/raw/master/image-20241223015631437.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/images/raw/master/image-20241223015659410.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/images/raw/master/image-20241223015841594.png">
+<meta property="article:published_time" content="2024-12-25T20:47:27.000Z">
+<meta property="article:modified_time" content="2024-12-26T09:48:31.074Z">
+<meta property="article:author" content="r0otsu">
+<meta property="article:tag" content="攻防实验">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://gitee.com/r0otsu/images/raw/master/image-20241201213350010.png">
+  
+  
+  
+  <title>Lab 12 - r0otsu Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/myfont/iconfont.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"r0otsu.github.io","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>r0otsu</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/index.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Lab 12"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-12-26 04:47" pubdate>
+          2024年12月26日 凌晨
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1.3k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          11 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">Lab 12</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <meta name="referrer" content="no-referrer" />
+
+<h1 id="Lab-12-幽灵攻击实验"><a href="#Lab-12-幽灵攻击实验" class="headerlink" title="Lab 12-幽灵攻击实验"></a>Lab 12-幽灵攻击实验</h1><h3 id="实验内容"><a href="#实验内容" class="headerlink" title="实验内容"></a>实验内容</h3><p>幽灵攻击于2017年发现，并于2018年1月公开披露，它利用关键漏洞进行攻击，存在于许多现代处理器中，包括Intel、AMD和ARM处理器。漏洞允许程序突破进程间和进程内的隔离，以便恶意程序可以读取来自无法访问区域的数据。硬件保护不允许这样的访问机制（用于进程间的隔离）或软件保护机制（用于进程内的隔离），但CPU设计中存在漏洞，可能会破坏保护。因为缺陷存在于硬件中，很难从根本上解决问题，除非更换CPU。幽灵和熔断漏洞代表了CPU设计中的一种特殊类型的漏洞，它们还为安全教育提供了宝贵的一课。</p>
+<p>本实验的学习目标是让学生获得幽灵攻击的第一手经验。攻击本身非常复杂，因此我们将其分解为几个小步骤，每个步骤都是易于理解和执行。一旦学生理解了每一步，就不难理解了把所有的东西放在一起进行实际的攻击。本实验涵盖了以下内容：</p>
+<ul>
+<li>幽灵攻击</li>
+<li>侧通道攻击</li>
+<li>CPU缓存</li>
+<li>CPU微体系结构内的无序执行和分支预测</li>
+</ul>
+<hr>
+<h3 id="实验步骤"><a href="#实验步骤" class="headerlink" title="实验步骤"></a>实验步骤</h3><p>崩溃和幽灵攻击都使用CPU缓存作为一个侧通道来窃取一个受保护的秘密，使用的技术为刷新+重加载。</p>
+<p>当CPU获取数据时，通常先访问CPU Cache，CPU Cache中未找到，再访问主存Main Memory。</p>
+<p>因此，当CPU需要获取数据时，首先查看CPU Cache，如果缓存命中，将直接获取；如果未命中，CPU将进入Main Memory获取数据。CPU Cache会比访问Main Memory快很多。</p>
+<h4 id="Task-1-＆-Task-2-Side-Channel-Attacks-via-CPU-Caches"><a href="#Task-1-＆-Task-2-Side-Channel-Attacks-via-CPU-Caches" class="headerlink" title="Task 1 ＆ Task 2: Side Channel Attacks via CPU Caches"></a>Task 1 ＆ Task 2: Side Channel Attacks via CPU Caches</h4><h5 id="Task-1-Reading-from-Cache-versus-from-Memory"><a href="#Task-1-Reading-from-Cache-versus-from-Memory" class="headerlink" title="Task 1: Reading from Cache versus from Memory"></a>Task 1: Reading from Cache versus from Memory</h5><p>编译<code>CacheTime.c</code>并输出，查看CPU获取不同数据的访问时间，用以得到访问CPU Cache和Main Memory的时间：</p>
+<ol>
+<li>第一次：<img src="https://gitee.com/r0otsu/images/raw/master/image-20241201213350010.png" srcset="/img/loading.gif" lazyload alt="image-20241201213350010"></li>
+<li>第二次：<img src="https://gitee.com/r0otsu/images/raw/master/image-20241201212725609.png" srcset="/img/loading.gif" lazyload alt="image-20241201212725609"></li>
+<li>第三次：<img src="https://gitee.com/r0otsu/images/raw/master/image-20241201212756067.png" srcset="/img/loading.gif" lazyload alt="image-20241201212756067"></li>
+</ol>
+<p><strong>可以初步判定，80次CPU访问时间以内的，大概率是访问CPU Cache；</strong></p>
+<p><strong>而次数较大的，大概率是访问主存。</strong></p>
+<hr>
+<h5 id="Task-2-Using-Cache-as-a-Side-Channel"><a href="#Task-2-Using-Cache-as-a-Side-Channel" class="headerlink" title="Task 2: Using Cache as a Side Channel"></a>Task 2: Using Cache as a Side Channel</h5><p>编译20次<code>FlushReload.c</code>并输出，将CPU Cache中缓存的值读取出来，即该值为victim函数调用的值，因为前面已经确认阈值为<code>80</code>了，所以没有更改<code>FlushReload.c</code>中的阈值：</p>
+<p><font color='red'>（这里只截取5次的结果，都是正确输出）</font></p>
+<ol>
+<li><p>一次：</p>
+<p><img src="https://gitee.com/r0otsu/images/raw/master/image-20241201214112994.png" srcset="/img/loading.gif" lazyload alt="image-20241201214112994"></p>
+</li>
+<li><p>二次：</p>
+<p><img src="https://gitee.com/r0otsu/images/raw/master/image-20241201214132312.png" srcset="/img/loading.gif" lazyload alt="image-20241201214132312"></p>
+</li>
+<li><p>三次：</p>
+<p><img src="https://gitee.com/r0otsu/images/raw/master/image-20241201214150322.png" srcset="/img/loading.gif" lazyload alt="image-20241201214150322"></p>
+</li>
+<li><p>四次：</p>
+<p><img src="https://gitee.com/r0otsu/images/raw/master/image-20241201214222526.png" srcset="/img/loading.gif" lazyload alt="image-20241201214222526"></p>
+</li>
+<li><p>五次：</p>
+<p><img src="https://gitee.com/r0otsu/images/raw/master/image-20241201214257609.png" srcset="/img/loading.gif" lazyload alt="image-20241201214257609"></p>
+</li>
+</ol>
+<p><strong>可以看到都是正确输出94，说明CPU Cache中存入的值为94，即得到Secret的值。</strong></p>
+<hr>
+<h4 id="Task-3-Out-of-Order-Execution-and-Branch-Prediction"><a href="#Task-3-Out-of-Order-Execution-and-Branch-Prediction" class="headerlink" title="Task 3: Out-of-Order Execution and Branch Prediction"></a>Task 3: Out-of-Order Execution and Branch Prediction</h4><ol>
+<li><p>直接编译执行<code>SpectreExperiment.c</code>，模拟在侧通道中可能会有噪声的情况时，即CPU缓存了一些额外的东西，能否获取到Secret的值</p>
+<p><img src="https://gitee.com/r0otsu/images/raw/master/image-20241223010144818.png" srcset="/img/loading.gif" lazyload alt="image-20241223010144818"></p>
+<p><strong>可以看到还是能成功获取的。</strong></p>
+</li>
+<li><p>注释掉以下的代码，会导致CPU的分支预测器不会受到干扰，从而使得侧信道攻击无法成功执行</p>
+<p><img src="https://gitee.com/r0otsu/images/raw/master/image-20241223003247787.png" srcset="/img/loading.gif" lazyload alt="image-20241223003247787"></p>
+</li>
+<li><p>但不知道为什么我编译之后还是可以得到Secret，可能是因为CPU缓存预取机制使得能够探测到缓存状态变化（不太明白）</p>
+<p><img src="https://gitee.com/r0otsu/images/raw/master/image-20241223011300912.png" srcset="/img/loading.gif" lazyload alt="image-20241223011300912"></p>
+</li>
+<li><p>取消注释上述行，修改代码中箭头所指的部分，将传入的值修改为20-29</p>
+<p><img src="https://gitee.com/r0otsu/images/raw/master/image-20241223003556480.png" srcset="/img/loading.gif" lazyload alt="image-20241223003556480"></p>
+</li>
+<li><p>编译执行后，可以看到攻击不成功了</p>
+<p><img src="https://gitee.com/r0otsu/images/raw/master/image-20241223011517452.png" srcset="/img/loading.gif" lazyload alt="image-20241223011517452"></p>
+<p>这是因为把传入的值修改为20-29后，分支语句多次执行false，导致训练的结果是CPU会预测执行false语句，所以没有执行分支</p>
+</li>
+</ol>
+<p><strong>task3完成！</strong></p>
+<hr>
+<h4 id="Task-4-The-Spectre-Attack"><a href="#Task-4-The-Spectre-Attack" class="headerlink" title="Task 4: The Spectre Attack"></a>Task 4: The Spectre Attack</h4><ol>
+<li><p>编译执行<code>SpectreAttack.c</code>，利用分支预测获取Secret值</p>
+<p><img src="https://gitee.com/r0otsu/images/raw/master/image-20241223011915490.png" srcset="/img/loading.gif" lazyload alt="image-20241223011915490"></p>
+<p><strong>可以看到都能正确获得秘密值，攻击成功！</strong></p>
+</li>
+</ol>
+<p><strong>task4完成！</strong></p>
+<hr>
+<h4 id="Task-5-Improve-the-Attack-Accuracy"><a href="#Task-5-Improve-the-Attack-Accuracy" class="headerlink" title="Task 5: Improve the Attack Accuracy"></a>Task 5: Improve the Attack Accuracy</h4><ol>
+<li><p>直接编译执行<code>SpectreAttackImprove.c</code>，发现多次并不能返回正确的值</p>
+<p>第一次：</p>
+<p><img src="https://gitee.com/r0otsu/images/raw/master/image-20241223012235097.png" srcset="/img/loading.gif" lazyload alt="image-20241223012235097"></p>
+<p><img src="https://gitee.com/r0otsu/images/raw/master/image-20241223012301413.png" srcset="/img/loading.gif" lazyload alt="image-20241223012301413"></p>
+<p>第二次：</p>
+<p><img src="https://gitee.com/r0otsu/images/raw/master/image-20241223012317997.png" srcset="/img/loading.gif" lazyload alt="image-20241223012317997"></p>
+<p><img src="https://gitee.com/r0otsu/images/raw/master/image-20241223012343186.png" srcset="/img/loading.gif" lazyload alt="image-20241223012343186"></p>
+<p>第三次：</p>
+<p><img src="https://gitee.com/r0otsu/images/raw/master/image-20241223012357395.png" srcset="/img/loading.gif" lazyload alt="image-20241223012357395"></p>
+<p><img src="https://gitee.com/r0otsu/images/raw/master/image-20241223012422555.png" srcset="/img/loading.gif" lazyload alt="image-20241223012422555"></p>
+<p><font color='green'>都没有返回正确的值</font></p>
+</li>
+<li><p>尝试修改<code>SpectreAttackImprove.c</code>文件，只有当 s 不为零时，才会对数组 array 的特定位置进行修改，即确保只对包含敏感信息的内存位置进行修改，会更容易拿到Secret的值</p>
+<p><img src="https://gitee.com/r0otsu/images/raw/master/image-20241223004508672.png" srcset="/img/loading.gif" lazyload alt="image-20241223004508672"></p>
+</li>
+<li><p>再次编译执行</p>
+<p><img src="https://gitee.com/r0otsu/images/raw/master/image-20241223012920731.png" srcset="/img/loading.gif" lazyload alt="image-20241223012920731"></p>
+<p>结果</p>
+<p><img src="https://gitee.com/r0otsu/images/raw/master/image-20241223012948226.png" srcset="/img/loading.gif" lazyload alt="image-20241223012948226"></p>
+<p><strong>果然拿到了！</strong></p>
+</li>
+<li><p>注释掉这一行，hit的值降低，也会拿不到Secret的值</p>
+<p><img src="https://gitee.com/r0otsu/images/raw/master/image-20241223004559378.png" srcset="/img/loading.gif" lazyload alt="image-20241223004559378"></p>
+</li>
+<li><p>重新编译执行</p>
+<p><img src="https://gitee.com/r0otsu/images/raw/master/image-20241223013226717.png" srcset="/img/loading.gif" lazyload alt="image-20241223013226717"></p>
+<p><strong>发现果然hit的值变小，而且无法拿到Secret的值了</strong></p>
+</li>
+<li><p>修改usleep的值，程序的睡眠时间影响攻击的成功率，可能因为时间变长后，判断语句已经返回结果，不需要进行分支预测，也就无法攻击成功了</p>
+<p><img src="https://gitee.com/r0otsu/images/raw/master/image-20241223013544398.png" srcset="/img/loading.gif" lazyload alt="image-20241223013544398"></p>
+</li>
+<li><p>以下为不同usleep值的运行结果</p>
+<ol>
+<li><p>usleep(100)</p>
+<p><img src="https://gitee.com/r0otsu/images/raw/master/image-20241223013812183.png" srcset="/img/loading.gif" lazyload alt="image-20241223013812183"></p>
+<p><img src="https://gitee.com/r0otsu/images/raw/master/image-20241223013834608.png" srcset="/img/loading.gif" lazyload alt="image-20241223013834608"></p>
+<p>攻击成功，可以拿到Secret的值</p>
+</li>
+<li><p>usleep(1000)</p>
+<p><img src="https://gitee.com/r0otsu/images/raw/master/image-20241223014028083.png" srcset="/img/loading.gif" lazyload alt="image-20241223014028083"></p>
+<p><img src="https://gitee.com/r0otsu/images/raw/master/image-20241223014048501.png" srcset="/img/loading.gif" lazyload alt="image-20241223014048501"></p>
+<p>攻击成功，可以拿到Secret的值</p>
+</li>
+<li><p>usleep(10000)</p>
+<p><img src="https://gitee.com/r0otsu/images/raw/master/image-20241223014147983.png" srcset="/img/loading.gif" lazyload alt="image-20241223014147983"></p>
+<p><img src="https://gitee.com/r0otsu/images/raw/master/image-20241223014211331.png" srcset="/img/loading.gif" lazyload alt="image-20241223014211331"></p>
+<p>攻击成功，可以拿到Secret的值</p>
+</li>
+<li><p>usleep(100000)</p>
+<p><img src="https://gitee.com/r0otsu/images/raw/master/image-20241223014534517.png" srcset="/img/loading.gif" lazyload alt="image-20241223014534517"></p>
+<p><strong>终于攻击失败了</strong></p>
+</li>
+</ol>
+</li>
+</ol>
+<p><strong>task5完成！</strong></p>
+<hr>
+<h4 id="Task-6-Steal-the-Entire-Secret-String"><a href="#Task-6-Steal-the-Entire-Secret-String" class="headerlink" title="Task 6: Steal the Entire Secret String"></a>Task 6: Steal the Entire Secret String</h4><ol>
+<li><p>创建<code>task6.c</code>，用于窃取CPU Cache中的所有值（完整代码见源代码）</p>
+<p><img src="https://gitee.com/r0otsu/images/raw/master/image-20241223015027091.png" srcset="/img/loading.gif" lazyload alt="image-20241223015027091"></p>
+</li>
+<li><p>编译后执行</p>
+<p><img src="https://gitee.com/r0otsu/images/raw/master/image-20241223015512903.png" srcset="/img/loading.gif" lazyload alt="image-20241223015512903"></p>
+</li>
+<li><p>以下是执行几次后的结果</p>
+<ol>
+<li><p>第一次</p>
+<p><img src="https://gitee.com/r0otsu/images/raw/master/image-20241223015556729.png" srcset="/img/loading.gif" lazyload alt="image-20241223015556729"></p>
+<p>输出不完整</p>
+</li>
+<li><p>第二次</p>
+<p><img src="https://gitee.com/r0otsu/images/raw/master/image-20241223015631437.png" srcset="/img/loading.gif" lazyload alt="image-20241223015631437"></p>
+<p>输出不完整</p>
+</li>
+<li><p>第三次</p>
+<p><img src="https://gitee.com/r0otsu/images/raw/master/image-20241223015659410.png" srcset="/img/loading.gif" lazyload alt="image-20241223015659410"></p>
+<p>输出不完整</p>
+</li>
+<li><p>中间几次省略，第七次</p>
+<p><img src="https://gitee.com/r0otsu/images/raw/master/image-20241223015841594.png" srcset="/img/loading.gif" lazyload alt="image-20241223015841594"></p>
+<p><strong>除了第一个字符其他都完整输出了</strong></p>
+</li>
+</ol>
+</li>
+</ol>
+<p><strong>task6完成！</strong></p>
+<hr>
+<h3 id="实验总结"><a href="#实验总结" class="headerlink" title="实验总结"></a>实验总结</h3><p><del>删掉啦</del></p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/study/" class="category-chain-item">study</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E6%94%BB%E9%98%B2%E5%AE%9E%E9%AA%8C/" class="print-no-link">#攻防实验</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Lab 12</div>
+      <div>https://r0otsu.github.io/2024/12/25/lab12/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>r0otsu</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2024年12月26日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2024/12/25/lab13/" title="Lab 13">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Lab 13</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/12/25/lab11/" title="Lab 11">
+                        <span class="hidden-mobile">Lab 11</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>&nbsp;&nbsp;Hexo</span></a> <i class="iconfont icon-notebook"></i> <a href="https://r0otsu.github.io" target="_blank" rel="nofollow noopener"><span>r0otsu</span></a> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

