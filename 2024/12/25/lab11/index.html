@@ -96,7 +96,7 @@
 <meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20241226111213603.png">
 <meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20241226111220031.png">
 <meta property="article:published_time" content="2024-12-25T20:39:07.000Z">
-<meta property="article:modified_time" content="2024-12-26T17:27:46.142Z">
+<meta property="article:modified_time" content="2024-12-27T11:55:07.215Z">
 <meta property="article:author" content="r0otsu">
 <meta property="article:tag" content="攻防实验">
 <meta name="twitter:card" content="summary_large_image">
@@ -479,7 +479,7 @@
 <p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226110503703.png" srcset="/img/loading.gif" lazyload></p>
 <p>这里看到并没有欺骗成功</p>
 </li>
-<li><p>尝试了好几次都没有成功，然后我发现在实验手册上有写（**<font color='red'>A potential issue.</font>**），可能是因为user在请求响应时，网络的响应比欺骗包的响应要更快，所以才会欺骗不成功</p>
+<li><p>尝试了好几次都没有成功，然后我发现在实验手册上有写（<font color='red'><strong>A potential issue.</strong></font>），可能是因为user在请求响应时，网络的响应比欺骗包的响应要更快，所以才会欺骗不成功</p>
 </li>
 <li><p>进入router容器，故意减慢向外发送的网络流量</p>
 <p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226110510051.png" srcset="/img/loading.gif" lazyload></p>
@@ -523,7 +523,7 @@
 </li>
 <li><p>在Local DNS Server上拉下缓存，并查找一下</p>
 <p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226110801236.png" srcset="/img/loading.gif" lazyload></p>
-<p>发现确实是已经在DNS缓存上都修改了，已经将<a target="_blank" rel="noopener" href="http://www.example.com指向1.2.3.4了/">www.example.com指向1.2.3.4了</a></p>
+<p>发现确实是已经在DNS缓存上都修改了，已经将 <a target="_blank" rel="noopener" href="http://www.example.com/">www.example.com</a> 指向1.2.3.4了</p>
 </li>
 </ol>
 <p><strong>投毒成功！</strong></p>
@@ -537,7 +537,7 @@
 <li><p>example.com-&gt;1.2.3.4</p>
 <p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226110814447.png" srcset="/img/loading.gif" lazyload></p>
 </li>
-<li><p><a href="http://www.example.com->1.2.3.5">www.example.com-&gt;1.2.3.5</a></p>
+<li><p><a target="_blank" rel="noopener" href="http://www.example.com/">www.example.com</a> -&gt;1.2.3.5</p>
 <p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226110820873.png" srcset="/img/loading.gif" lazyload></p>
 </li>
 <li><p>其他的 比如hello.example.com-&gt;1.2.3.6</p>
@@ -556,7 +556,7 @@
 <li><p>创建<code>task4.py</code>文件，，让ns.attacker32.com被用作 google.com的名称服务器，注意是<code>ns=NSsec2/NSsec1</code></p>
 <p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226110836689.png" srcset="/img/loading.gif" lazyload></p>
 </li>
-<li><p>执行后，user主机访问<a target="_blank" rel="noopener" href="http://www.example.com(记得local/">www.example.com（记得Local</a> DNS Server先rndc flush）</p>
+<li><p>执行后，user主机访问 <a target="_blank" rel="noopener" href="http://www.example.com/">www.example.com</a> （记得Local DNS Server先rndc flush）</p>
 <p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226110846926.png" srcset="/img/loading.gif" lazyload></p>
 <p>返回的是虚假域名1.2.3.4</p>
 </li>
@@ -574,7 +574,7 @@
 <li><p>创建<code>task5.py</code>，添加超出域的附加记录</p>
 <p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226110900133.png" srcset="/img/loading.gif" lazyload></p>
 </li>
-<li><p>运行<code>task5.py</code>，使用user主机访问<a target="_blank" rel="noopener" href="http://www.example.com(记得先在local/">www.example.com（记得先在Local</a> DNS Server上rndc flush）</p>
+<li><p>运行<code>task5.py</code>，使用user主机访问 <a target="_blank" rel="noopener" href="http://www.example.com/">www.example.com</a> （记得先在Local DNS Server上rndc flush）</p>
 <p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226110906725.png" srcset="/img/loading.gif" lazyload></p>
 <p>可以看到已经成功欺骗了，返回域名为1.2.3.5</p>
 </li>
@@ -592,7 +592,7 @@
 <hr>
 <h4 id="The-Kaminsky-Attack-Lab"><a href="#The-Kaminsky-Attack-Lab" class="headerlink" title="The Kaminsky Attack Lab"></a><strong>The Kaminsky Attack Lab</strong></h4><h5 id="Lab-Environment-Setup-Task-1"><a href="#Lab-Environment-Setup-Task-1" class="headerlink" title="Lab Environment Setup (Task 1)"></a>Lab Environment Setup (Task 1)</h5><p>同<strong>Local DNS Attack Lab</strong></p>
 <p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226110934544.png" srcset="/img/loading.gif" lazyload></p>
-<p>欺骗目标变为<a target="_blank" rel="noopener" href="http://www.example.com,该域名真实ip为93.184.216.34,由icann管理/">www.example.com,该域名真实ip为93.184.216.34，由ICANN管理</a></p>
+<p>欺骗目标变为 <a target="_blank" rel="noopener" href="http://www.example.com/">www.example.com</a> ，该域名真实ip为93.184.216.34，由ICANN管理</p>
 <hr>
 <h5 id="How-Kaminsky-attack-works"><a href="#How-Kaminsky-attack-works" class="headerlink" title="How Kaminsky attack works"></a>How Kaminsky attack works</h5><p>Kaminsky攻击是一种利用了DNS中漏洞的网络攻击。</p>
 <p>DNS就像互联网上的电话本，可以把域名（比如<code>example.com</code>）转换成IP地址。Kaminsky攻击让攻击者能够篡改这个电话本，让DNS服务器错误地把一个域名指向攻击者指定的IP地址。</p>
@@ -617,14 +617,14 @@
 <li><p>wireshark中监听到了DNS数据包，这个端口60232可以看出来确实发送了DNS请求</p>
 <p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226111009800.png" srcset="/img/loading.gif" lazyload></p>
 </li>
-<li><p>往下看，发现Local DNS Server确实没有找到本地缓存的<a target="_blank" rel="noopener" href="http://www.example.com域名,所以向别的dns进行请求了/">www.example.com域名，所以向别的DNS进行请求了</a></p>
+<li><p>往下看，发现Local DNS Server确实没有找到本地缓存的 <a target="_blank" rel="noopener" href="http://www.example.com/">www.example.com</a> 域名，所以向别的DNS进行请求了</p>
 <p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226111017863.png" srcset="/img/loading.gif" lazyload></p>
 </li>
 </ol>
 <p><strong>task2完成！</strong></p>
 <hr>
 <h5 id="Task-3-Spoof-DNS-Replies"><a href="#Task-3-Spoof-DNS-Replies" class="headerlink" title="Task 3: Spoof DNS Replies."></a>Task 3: Spoof DNS Replies.</h5><ol>
-<li><p>创建<code>task3.py</code>，伪造Local DNS Server返回<a target="_blank" rel="noopener" href="http://www.example.com的响应/">www.example.com的响应</a></p>
+<li><p>创建<code>task3.py</code>，伪造Local DNS Server返回 <a target="_blank" rel="noopener" href="http://www.example.com/">www.example.com</a> 的响应</p>
 <p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226111025456.png" srcset="/img/loading.gif" lazyload></p>
 </li>
 <li><p>打开wireshark，选择any进行监听</p>
@@ -676,7 +676,7 @@
 <p><strong><del>task4完成！</del></strong></p>
 <hr>
 <h5 id="Task-5-Result-Verification"><a href="#Task-5-Result-Verification" class="headerlink" title="Task 5: Result Verification"></a><del>Task 5: Result Verification</del></h5><ol>
-<li><p>使用user终端请求<a target="_blank" rel="noopener" href="http://www.example.com,验证实验结果/">www.example.com，验证实验结果</a></p>
+<li><p>使用user终端请求 <a target="_blank" rel="noopener" href="http://www.example.com/">www.example.com</a> ，验证实验结果</p>
 </li>
 <li><p>请求时的抓包观察</p>
 </li>
