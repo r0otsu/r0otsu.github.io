@@ -4,11 +4,30 @@
   
   
   <entry>
+    <title>ScreenShot</title>
+    <link href="/2025/01/13/screenshot/"/>
+    <url>/2025/01/13/screenshot/</url>
+    
+    <content type="html"><![CDATA[<p>研究了好几个截屏软件，最后发现都没有扣扣截图好用哈。</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>boring</category>
+      
+    </categories>
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>Bug</title>
     <link href="/2025/01/08/bug/"/>
     <url>/2025/01/08/bug/</url>
     
-    <content type="html"><![CDATA[<p>为什么这个脚本老是卡住，好烦！</p><p>我要重启试试</p>]]></content>
+    <content type="html"><![CDATA[<p>为什么这个脚本老是卡住，好烦！</p><p>我要重启试试</p><p>–</p><p>最后发现pycharm右键可以正常运行，但是终端不行？</p><p>从来没这样过，以前不会配环境的时候到时会反过来。。至今没明白为什么。。。。</p>]]></content>
     
     
     <categories>
