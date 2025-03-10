@@ -1,0 +1,931 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=dark>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/OIP-C.png">
+  <link rel="icon" href="/img/OIP-C.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="r0otsu">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="Sql注入实验">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Lab 8">
+<meta property="og:url" content="https://r0otsu.github.io/2024/12/26/lab8/index.html">
+<meta property="og:site_name" content="r0otsu Blog">
+<meta property="og:description" content="Sql注入实验">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20241226102947615.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20241226102959608.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20241226103006304.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20241226103012719.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20241226103019287.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20241226103025497.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20241226103030132.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20241226103035140.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20241226103040517.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20241226103047078.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20241226103052888.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20241226103058397.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20241226103104432.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20241226103109812.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20241226103115397.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20241226103122258.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20241226103128907.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20241226103136505.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20241226103143966.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20241226103150307.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20241226103156477.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20241226103203674.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20241226103210185.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20241226103217502.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20241226103223550.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20241226103231898.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20241226103237510.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20241226103243834.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20241226103250146.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20241226103256017.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20241226103303037.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20241226103309313.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20241226103314367.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20241226103319227.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20241226103325084.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20241226103331523.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20241226103337254.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20241226103347136.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20241226103353611.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20241226103400305.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20241226103407526.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20241226103413503.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20241226103419668.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20241226103425087.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20241226103431971.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20241226103437741.png">
+<meta property="article:published_time" content="2024-12-25T20:33:48.000Z">
+<meta property="article:modified_time" content="2024-12-29T07:59:06.820Z">
+<meta property="article:author" content="r0otsu">
+<meta property="article:tag" content="SEED-Labs">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://gitee.com/r0otsu/piclist/raw/master/20241226102947615.png">
+  
+  
+  
+  <title>Lab 8 - r0otsu Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/myfont/iconfont.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"r0otsu.github.io","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":"https://cloud.umami.is/script.js","website_id":"76c804ff-36c9-4795-8275-233c7d521ebe","domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>r0otsu</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/index.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Lab 8"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-12-26 04:33" pubdate>
+          2024年12月26日 凌晨
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1.2k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          11 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">Lab 8</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <meta name="referrer" content="no-referrer" />
+
+<h1 id="Lab-8-Sql注入实验"><a href="#Lab-8-Sql注入实验" class="headerlink" title="Lab 8-Sql注入实验"></a>Lab 8-Sql注入实验</h1><h3 id="实验内容"><a href="#实验内容" class="headerlink" title="实验内容"></a>实验内容</h3><p>SQL注入是一种代码注入技术，它利用web应用程序和数据库服务器之间接口中的漏洞。当用户的输入在发送到后端数据库服务器之前未在web应用程序中正确检查时，就会出现此漏洞。许多web应用程序从用户处获取输入，然后使用这些输入构造SQL查询，这样web应用程序就可以从数据库中获取信息。Web应用程序还使用SQL查询在数据库中存储信息。这些是web应用程序开发中的常见做法。如果未仔细构造SQL查询，则可能会出现SQL注入漏洞。SQL注入攻击是对web应用程序最常见的攻击之一。</p>
+<p>在本实验室中，我们创建了一个易受SQL注入攻击的web应用程序。我们的web应用程序包含许多web开发人员所犯的常见错误。学生的目标是找到利用SQL注入漏洞的方法，演示攻击可能造成的损害，并掌握有助于抵御此类攻击的技术。</p>
+<hr>
+<h3 id="实验步骤"><a href="#实验步骤" class="headerlink" title="实验步骤"></a>实验步骤</h3><h4 id="环境部署"><a href="#环境部署" class="headerlink" title="环境部署"></a>环境部署</h4><ol>
+<li><p>修改<code>image_www/apache_sql_injection.conf</code>文件，将<a target="_blank" rel="noopener" href="http://www.seedlabsqlinjection.com的url修改进去/">www.seedlabsqlinjection.com的url修改进去</a></p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226102947615.png" srcset="/img/loading.gif" lazyload></p>
+</li>
+<li><p>创建docker镜像</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226102959608.png" srcset="/img/loading.gif" lazyload></p>
+<p>镜像创建完成</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226103006304.png" srcset="/img/loading.gif" lazyload></p>
+</li>
+<li><p>启动容器</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226103012719.png" srcset="/img/loading.gif" lazyload></p>
+</li>
+<li><p>访问<a target="_blank" rel="noopener" href="http://www.seedlabsqlinjection.com,得到页面/">www.seedlabsqlinjection.com，得到页面</a></p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226103019287.png" srcset="/img/loading.gif" lazyload></p>
+</li>
+</ol>
+<hr>
+<h4 id="Task-1-Get-Familiar-with-SQL-Statements"><a href="#Task-1-Get-Familiar-with-SQL-Statements" class="headerlink" title="Task 1: Get Familiar with SQL Statements"></a>Task 1: Get Familiar with SQL Statements</h4><ol>
+<li><p>作业中给了seedubuntu用户下的User用户表</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226103025497.png" srcset="/img/loading.gif" lazyload></p>
+</li>
+<li><p>进入docker创建的mysql容器当中</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226103030132.png" srcset="/img/loading.gif" lazyload></p>
+</li>
+<li><p>使用root用户，dees密码进入mysql当中</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226103035140.png" srcset="/img/loading.gif" lazyload></p>
+</li>
+<li><p>看一下mysql的数据库</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226103040517.png" srcset="/img/loading.gif" lazyload></p>
+<p>果然有作业中写到的sqllab_users数据库</p>
+</li>
+<li><p>看一下sqllab_users数据库的表</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226103047078.png" srcset="/img/loading.gif" lazyload></p>
+<p>确实得到了作业中所写到的这些字段</p>
+</li>
+<li><p>使用sql语句将Alice的信息筛选出来</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226103052888.png" srcset="/img/loading.gif" lazyload></p>
+<p>连加密的密码都可以得到</p>
+<p>可以尝试解密一下，得到密码为SHA-1加密，原文为’seedalice’</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226103058397.png" srcset="/img/loading.gif" lazyload></p>
+</li>
+</ol>
+<hr>
+<h4 id="Task-2-SQL-Injection-Attack-on-SELECT-Statement"><a href="#Task-2-SQL-Injection-Attack-on-SELECT-Statement" class="headerlink" title="Task 2: SQL Injection Attack on SELECT Statement"></a>Task 2: SQL Injection Attack on SELECT Statement</h4><h5 id="Task-2-1-SQL-Injection-Attack-from-webpage"><a href="#Task-2-1-SQL-Injection-Attack-from-webpage" class="headerlink" title="Task 2.1: SQL Injection Attack from webpage."></a>Task 2.1: SQL Injection Attack from webpage.</h5><ol>
+<li><p>观察<code>image_www/code/unsafe_home.php</code>文件，可以看到home登录时的sql查询语句</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226103104432.png" srcset="/img/loading.gif" lazyload></p>
+<p>可以直接用’将后面password的校验给过滤掉，再使用#传入password</p>
+</li>
+<li><p>所以在前端输入admin’;#</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226103109812.png" srcset="/img/loading.gif" lazyload></p>
+<p>成功登入admin账号</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226103115397.png" srcset="/img/loading.gif" lazyload></p>
+</li>
+</ol>
+<p><strong>sql注入攻击成功！</strong></p>
+<hr>
+<h5 id="Task-2-2-SQL-Injection-Attack-from-command-line"><a href="#Task-2-2-SQL-Injection-Attack-from-command-line" class="headerlink" title="Task 2.2: SQL Injection Attack from command line."></a>Task 2.2: SQL Injection Attack from command line.</h5><ol>
+<li><p>观察登入进去的url</p>
+<p><a target="_blank" rel="noopener" href="http://www.seedlabsqlinjection.com/unsafe_home.php?username=admin%27;%23&Password=">http://www.seedlabsqlinjection.com/unsafe_home.php?username=admin%27%3B%23&amp;Password=</a></p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226103122258.png" srcset="/img/loading.gif" lazyload></p>
+</li>
+<li><p>直接使用<code>curl http://www.seedlabsqlinjection.com/unsafe_home.php?username=admin%27%3B%23&amp;Password=</code>命令，在终端中访问这个url，就能得到页面的内容，其中%27%3B%23即为<code>&#39;;#</code>被URL编码过后的结果（%27、%23也是ASCII编码）</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226103128907.png" srcset="/img/loading.gif" lazyload></p>
+<p>尤其表格中的内容：</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226103136505.png" srcset="/img/loading.gif" lazyload></p>
+</li>
+</ol>
+<p><strong>sql注入攻击成功！</strong></p>
+<hr>
+<h5 id="Task-2-3-Append-a-new-SQL-statement"><a href="#Task-2-3-Append-a-new-SQL-statement" class="headerlink" title="Task 2.3: Append a new SQL statement."></a>Task 2.3: Append a new SQL statement.</h5><ol>
+<li><p>作业中提到想要直接在页面中使用两个sql语句来修改数据库的值</p>
+<p>于是尝试使用admin账号来将Alice的名字改成AAA</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs mysql">admin&#x27;;update credential set Name=&#x27;AAA&#x27; where Name=&#x27;Alice&#x27;;#<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226103143966.png" srcset="/img/loading.gif" lazyload></p>
+</li>
+<li><p>报错了</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226103150307.png" srcset="/img/loading.gif" lazyload></p>
+</li>
+<li><p>是因为<code>unsafe_home.php</code>文件中的<code>query()</code>函数禁用很多语句</p>
+</li>
+</ol>
+<p><strong>sql注入攻击失败！</strong></p>
+<hr>
+<h4 id="Task-3-SQL-Injection-Attack-on-UPDATE-Statement"><a href="#Task-3-SQL-Injection-Attack-on-UPDATE-Statement" class="headerlink" title="Task 3: SQL Injection Attack on UPDATE Statement"></a>Task 3: SQL Injection Attack on UPDATE Statement</h4><h5 id="Task-3-1-Modify-your-own-salary"><a href="#Task-3-1-Modify-your-own-salary" class="headerlink" title="Task 3.1: Modify your own salary."></a>Task 3.1: Modify your own salary.</h5><ol>
+<li><p>alice登录自己的账户</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226103156477.png" srcset="/img/loading.gif" lazyload></p>
+</li>
+<li><p>使用编辑个人信息的方式进行注入，将工资改成999999</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs mysql">&#x27;,Salary=&#x27;999999<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226103203674.png" srcset="/img/loading.gif" lazyload></p>
+</li>
+<li><p>修改成功</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226103210185.png" srcset="/img/loading.gif" lazyload></p>
+</li>
+</ol>
+<p><strong>sql注入攻击成功！</strong></p>
+<hr>
+<h5 id="Task-3-2-Modify-other-people’-salary"><a href="#Task-3-2-Modify-other-people’-salary" class="headerlink" title="Task 3.2: Modify other people’ salary."></a>Task 3.2: Modify other people’ salary.</h5><ol>
+<li><p>输入以下语句进行注入，将Boby的工资设为1</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs mysql">&#x27;, Salary=1 where Name=&#x27;Boby&#x27;;#<br></code></pre></td></tr></table></figure>
+</li>
+<li><p>前端输入</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226103217502.png" srcset="/img/loading.gif" lazyload></p>
+</li>
+<li><p>进入admin，发现确实更改了</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226103223550.png" srcset="/img/loading.gif" lazyload></p>
+</li>
+</ol>
+<p><strong>sql注入攻击成功！</strong></p>
+<hr>
+<h5 id="Task-3-3-Modify-other-people’-password"><a href="#Task-3-3-Modify-other-people’-password" class="headerlink" title="Task 3.3: Modify other people’ password."></a>Task 3.3: Modify other people’ password.</h5><ol>
+<li><p>前面用反查发现加密是用的SHA-1进行加密的，如果想更改Boby密码为自己知道的，比如<code>aliceknows</code>，先去加密一下（得到<code>914a6faa2497ebdd583e0b046c587f87af6561c0</code>）</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226103231898.png" srcset="/img/loading.gif" lazyload></p>
+</li>
+<li><p>然后注入以下语句</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs mysql">&#x27;,Password=&#x27;914a6faa2497ebdd583e0b046c587f87af6561c0&#x27; where Name=&#x27;Boby&#x27;;#<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226103237510.png" srcset="/img/loading.gif" lazyload></p>
+</li>
+<li><p>登录Boby，使用密码<code>aliceknows</code>，成功登录</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226103243834.png" srcset="/img/loading.gif" lazyload></p>
+</li>
+</ol>
+<p><strong>sql注入攻击成功！</strong></p>
+<hr>
+<h4 id="Task-4-Countermeasure-—-Prepared-Statement"><a href="#Task-4-Countermeasure-—-Prepared-Statement" class="headerlink" title="Task 4: Countermeasure — Prepared Statement"></a>Task 4: Countermeasure — Prepared Statement</h4><ol>
+<li><p>这项任务是需要创建出<code>safe_home.php</code>，将sql语句与数据分离，防止SQL注入攻击</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226103250146.png" srcset="/img/loading.gif" lazyload></p>
+</li>
+<li><p>首先复制<code>unsafe_home.php</code>文件，存为<code>safe_home.php</code>文件</p>
+<p>修改上一点中的语句，改为将sql参数与查询分离的语句</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226103256017.png" srcset="/img/loading.gif" lazyload></p>
+</li>
+<li><p>将<code>index.html</code>中指向的<code>unsafe_home.php</code>，改为<code>safe_home.php</code></p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226103303037.png" srcset="/img/loading.gif" lazyload></p>
+</li>
+<li><p>重新启动容器</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226103309313.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226103314367.png" srcset="/img/loading.gif" lazyload></p>
+</li>
+<li><p>再次尝试直接登录admin用户</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226103319227.png" srcset="/img/loading.gif" lazyload></p>
+</li>
+<li><p>首先url中已经指向<code>safe_home.php</code>，然后发现SQL注入失败，说明防护成功了</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226103325084.png" srcset="/img/loading.gif" lazyload></p>
+</li>
+</ol>
+<p><strong>sql注入攻击失败！</strong></p>
+<hr>
+<ol>
+<li><p>修改<code>safe_home.php</code>中的语句，将指向<code>unsafe_home.php</code>的修改为<code>safe_home.php</code>，以及指向<code>unsafe_edit_frontend.php</code>的修改为<code>safe_edit_frontend.php</code></p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226103331523.png" srcset="/img/loading.gif" lazyload></p>
+</li>
+<li><p>复制<code>unsafe_edit_backend.php</code>为<code>safe_edit_backend.php</code>，并将文件中最后指向的<code>unsafe_home.php</code>改为<code>safe_home.php</code></p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226103337254.png" srcset="/img/loading.gif" lazyload></p>
+</li>
+<li><p>复制<code>unsafe_edit_frontend.php</code>为<code>safe_edit_frontend.php</code>，并将文件中指向的<code>unsafe_home.php</code>改为<code>safe_home.php</code>，<code>unsafe_edit_frontend.php</code>改为<code>safe_edit_frontend.php</code></p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226103347136.png" srcset="/img/loading.gif" lazyload></p>
+<p>以及<code>unsafe_edit_backend.php</code>改为<code>safe_edit_backend.php</code></p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226103353611.png" srcset="/img/loading.gif" lazyload></p>
+</li>
+<li><p>以下是<code>safe_edit_backend.php</code>中的查询语句，这个查询将参数与数据的语句嵌在一起了</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226103400305.png" srcset="/img/loading.gif" lazyload></p>
+<p>修改成以下语句，将查询将参数与数据的语句分离</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226103407526.png" srcset="/img/loading.gif" lazyload></p>
+</li>
+<li><p>重新docker-compose build</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226103413503.png" srcset="/img/loading.gif" lazyload></p>
+<p>重新docker-composer up</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226103419668.png" srcset="/img/loading.gif" lazyload></p>
+</li>
+<li><p>重新登录，显示Alice的工资仍然为999999</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226103425087.png" srcset="/img/loading.gif" lazyload></p>
+</li>
+<li><p>修改Alice的个人信息，首先确认指向为<code>safe_edit_frontend.php</code>，然后尝试使用SQL注入将Alice的工资改为39999</p>
+<p>尝试sql注入，改变工资为39999</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs mysql">&#x27;,Salary=&#x27;39999<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226103431971.png" srcset="/img/loading.gif" lazyload></p>
+</li>
+<li><p>发现NickName返回了<code>&#39;,Salary=&#39;39999</code>，工资未变</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226103437741.png" srcset="/img/loading.gif" lazyload></p>
+</li>
+</ol>
+<p><strong>sql注入攻击失败！</strong></p>
+<hr>
+<h3 id="实验总结"><a href="#实验总结" class="headerlink" title="实验总结"></a>实验总结</h3><p><del>删掉啦</del></p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/study/" class="category-chain-item">study</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/SEED-Labs/" class="print-no-link">#SEED-Labs</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Lab 8</div>
+      <div>https://r0otsu.github.io/2024/12/26/lab8/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>r0otsu</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2024年12月26日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="NC - 非商业性使用">
+                    <i class="iconfont icon-cc-nc"></i>
+                  </span>
+                </a>
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="SA - 相同方式共享">
+                    <i class="iconfont icon-cc-sa"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2024/12/26/lab9/" title="Lab 9">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Lab 9</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/12/26/lab7/" title="Lab 7">
+                        <span class="hidden-mobile">Lab 7</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>&nbsp;&nbsp;Hexo</span></a> <i class="iconfont icon-notebook"></i> <a href="https://r0otsu.github.io" target="_blank" rel="nofollow noopener"><span>r0otsu</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="umami-site-pv-container" style="display: none">
+        总访问量 
+        <span id="umami-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="umami-site-uv-container" style="display: none">
+        总访客数 
+        <span id="umami-site-uv"></span>
+         人
+      </span>
+    
+    
+  
+
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="/js/umami-view.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

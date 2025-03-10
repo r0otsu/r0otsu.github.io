@@ -1,0 +1,757 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=dark>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/OIP-C.png">
+  <link rel="icon" href="/img/OIP-C.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="r0otsu">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="子域名收集实验">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Lab 1">
+<meta property="og:url" content="https://r0otsu.github.io/2024/12/26/lab1/index.html">
+<meta property="og:site_name" content="r0otsu Blog">
+<meta property="og:description" content="子域名收集实验">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20241226090953460.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20241226091005356.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20241226091012033.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20241226091026573.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20241226091035681.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20241226091043604.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20241226091049214.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20241226091054518.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20241226091059794.png">
+<meta property="article:published_time" content="2024-12-25T19:50:10.000Z">
+<meta property="article:modified_time" content="2024-12-29T07:58:20.462Z">
+<meta property="article:author" content="r0otsu">
+<meta property="article:tag" content="SEED-Labs">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://gitee.com/r0otsu/piclist/raw/master/20241226090953460.png">
+  
+  
+  
+  <title>Lab 1 - r0otsu Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/myfont/iconfont.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"r0otsu.github.io","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":"https://cloud.umami.is/script.js","website_id":"76c804ff-36c9-4795-8275-233c7d521ebe","domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>r0otsu</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/index.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Lab 1"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-12-26 03:50" pubdate>
+          2024年12月26日 凌晨
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          9 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">Lab 1</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <meta name="referrer" content="no-referrer" />
+
+<h1 id="Lab-1-子域名收集实验"><a href="#Lab-1-子域名收集实验" class="headerlink" title="Lab 1-子域名收集实验"></a>Lab 1-子域名收集实验</h1><h3 id="实验环境"><a href="#实验环境" class="headerlink" title="实验环境"></a>实验环境</h3><ul>
+<li>Windows 11</li>
+<li>Python 3.7</li>
+</ul>
+<h3 id="实验内容"><a href="#实验内容" class="headerlink" title="实验内容"></a>实验内容</h3><p>​			本次实验主要考察大家的编程能力及子域名的信息收集方法，在文件夹 “Lab1_code” 提供了使用Bing搜索引擎的域名收集功能。请对该代码进行扩展，使其可支持百度搜索引擎的域名收集功能。需要实现如下功能：</p>
+<ol>
+<li><p>支持百度搜索引擎的域名提取，其中从百度搜索引擎提取的域名需为真实域名，而非百度的域名跳转链接；</p>
+</li>
+<li><p>可扩充其他功能，比如域名所在的标题等信息。</p>
+</li>
+</ol>
+<hr>
+<h3 id="实验步骤"><a href="#实验步骤" class="headerlink" title="实验步骤"></a>实验步骤</h3><h4 id="收集子域名"><a href="#收集子域名" class="headerlink" title="收集子域名"></a>收集子域名</h4><ol>
+<li><p>运行Sub_Domin_Search.py文件，可以在bing搜索时得到qq的子域名；</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226090953460.png" srcset="/img/loading.gif" lazyload></p>
+</li>
+<li><p>查看baidu搜索界面的源代码，发现子域名可以在带有result类的div标签下，查找mu标签找到；</p>
+</li>
+<li><p>而子域名的name可以在该div标签下的a标签中，读取a标签中的字符串即可得到子域名的名字；</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226091005356.png" srcset="/img/loading.gif" lazyload></p>
+</li>
+<li><p>修改代码中的处理方式，读取子域名link与子域名中的name；</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226091012033.png" srcset="/img/loading.gif" lazyload></p>
+</li>
+<li><p>修改accept和cookie：</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226091026573.png" srcset="/img/loading.gif" lazyload></p>
+</li>
+<li><p>修改headers中的user-agent:</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226091035681.png" srcset="/img/loading.gif" lazyload></p>
+</li>
+<li><p>将referer修改为’<a target="_blank" rel="noopener" href="https://wappass.baidu.com/'%EF%BC%9B">https://wappass.baidu.com/&#39;；</a></p>
+</li>
+<li><p>修改请求的url，图上标红的两个皆可（是一样的）：</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226091043604.png" srcset="/img/loading.gif" lazyload></p>
+</li>
+<li><p>最终修改后的结果为：</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226091049214.png" srcset="/img/loading.gif" lazyload></p>
+</li>
+</ol>
+<hr>
+<h4 id="扩展内容（添加网址名、状态码和真实子域名）"><a href="#扩展内容（添加网址名、状态码和真实子域名）" class="headerlink" title="扩展内容（添加网址名、状态码和真实子域名）"></a>扩展内容（添加网址名、状态码和真实子域名）</h4><ol>
+<li><p>如果返回的状态码是302，则说明重定向了，就使用requests库，读取该网址headers中的真实网址；</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226091054518.png" srcset="/img/loading.gif" lazyload></p>
+</li>
+</ol>
+<hr>
+<h4 id="结果"><a href="#结果" class="headerlink" title="结果"></a>结果</h4><ol>
+<li><p>返回结果中有网址名、子域名url（可能重定向）、状态码和真实子域名；</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226091059794.png" srcset="/img/loading.gif" lazyload></p>
+</li>
+</ol>
+<hr>
+<h4 id="源码"><a href="#源码" class="headerlink" title="源码"></a>源码</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 本次实验内容主要为：收集qq.com域名下的子域名，</span><br><span class="hljs-comment"># 收集方法为使用baidu搜索引擎，采用爬手段，爬取搜索到的域名</span><br><span class="hljs-comment"># baidu搜索引擎搜索子域名的语法为：domain:qq.com</span><br><span class="hljs-keyword">import</span> requests  <span class="hljs-comment"># 用于请求网页</span><br><span class="hljs-keyword">from</span> bs4 <span class="hljs-keyword">import</span> BeautifulSoup  <span class="hljs-comment"># 用于处理获取的到的网页源码数据</span><br><span class="hljs-keyword">from</span> urllib.parse <span class="hljs-keyword">import</span> urlparse  <span class="hljs-comment"># 用于处理url</span><br><span class="hljs-keyword">import</span> re<br><br><br><span class="hljs-comment"># 定义一个采用baidu搜索的方法</span><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">baidu_search</span>():<br>    Subdomain = []  <span class="hljs-comment"># 定义一个空列表用于存储收集到的子域名</span><br>    <span class="hljs-comment"># 定义请求头，绕过反爬机制</span><br>    headers = &#123;<br>        <span class="hljs-string">&#x27;User-Agent&#x27;</span>: <span class="hljs-string">&#x27;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.131 Safari/537.36 SLBrowser/8.0.1.4031 SLBChan/103&#x27;</span>,<br>        <span class="hljs-string">&#x27;Accept&#x27;</span>: <span class="hljs-string">&#x27;text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9&#x27;</span>,<br>        <span class="hljs-string">&#x27;referer&#x27;</span>: <span class="hljs-string">&#x27;https://wappass.baidu.com/&#x27;</span>,<br>        <span class="hljs-string">&#x27;Cookie&#x27;</span>: <span class="hljs-string">&#x27; 更改为cookie &#x27;</span><br>    &#125;<br>    <span class="hljs-comment"># 定义请求url</span><br>    <span class="hljs-comment"># 搜索domain:qq.com后，得到的url</span><br>    url = <span class="hljs-string">&#x27;https://www.baidu.com/s?ie=utf-8&amp;f=3&amp;rsv_bp=1&amp;rsv_idx=2&amp;tn=48021271_74_hao_pg&amp;wd=domain%3Aqq.com&amp;rsv_spt=1&amp;oq=site%2526lt%253B%2526lt%253BAqq.com&amp;rsv_pq=d10645db019102b5&amp;rsv_t=7550XiQnu5rij1O%2Bj%2F07K20DTPK9MBXAaBDNF621tU1uSsI73hDN7jIoGlNCYVQCw6uadikYZaU7&amp;rqlang=cn&amp;rsv_enter=1&amp;rsv_dl=th_1&amp;rsv_sug3=2&amp;rsv_sug1=1&amp;rsv_sug7=001&amp;rsv_sug2=0&amp;rsv_btype=t&amp;rsp=1&amp;rsv_sug9=es_0_1&amp;inputT=2967&amp;rsv_sug4=3014&amp;rsv_sug=4&#x27;</span><br>    <span class="hljs-comment"># 访问url，获取网页源码</span><br>    <span class="hljs-comment"># 找到隐藏的真实域名</span><br>    <span class="hljs-comment"># 不允许重定向</span><br><br>    resp = requests.get(url, headers=headers)<br>    soup = BeautifulSoup(resp.content,<br>                         <span class="hljs-string">&#x27;html.parser&#x27;</span>)  <span class="hljs-comment"># 创建一个BeautifulSoup对象，第一个参数是网页源码，第二个参数是Beautiful Soup 使用的 HTML 解析器，</span><br>    job_bt = soup.find_all(<span class="hljs-string">&#x27;div&#x27;</span>, class_=<span class="hljs-string">&quot;result&quot;</span>)  <span class="hljs-comment"># find_all()查找源码中所有&lt;h2&gt;标签的内容</span><br>    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> job_bt:<br>        <span class="hljs-comment"># print(div)</span><br>        link = i.get(<span class="hljs-string">&#x27;mu&#x27;</span>)<br>        name = i.a.string<br><br>        <span class="hljs-comment"># 循环获取‘href’的内容</span><br>        <span class="hljs-comment"># urlparse是一个解析url的工具，scheme获取url的协议名，netloc获取url的网络位置</span><br>        domain = <span class="hljs-built_in">str</span>(urlparse(link).scheme + <span class="hljs-string">&quot;://&quot;</span> + urlparse(link).netloc)<br>        <span class="hljs-keyword">if</span> domain <span class="hljs-keyword">in</span> Subdomain:  <span class="hljs-comment"># 如果解析后的domain存在于Subdomain中则跳过，否则将domain存入子域名表中</span><br>            <span class="hljs-keyword">pass</span><br>        <span class="hljs-keyword">else</span>:<br>            <span class="hljs-built_in">print</span>(name)<br>            Subdomain.append(domain)<br>            <span class="hljs-built_in">print</span>(domain)<br>            r = requests.get(domain, headers=headers, allow_redirects=<span class="hljs-literal">False</span>)<br>            <span class="hljs-built_in">print</span>(r.status_code)<br>            <span class="hljs-comment"># real = r.content.replace(&#x27;\r&#x27;, &#x27;&#x27;).replace(&#x27;In&#x27;,&#x27;&#x27;).replace(&#x27;\t&#x27;, &#x27;&#x27;)</span><br>            <span class="hljs-keyword">if</span> r.status_code == <span class="hljs-number">302</span>:  <span class="hljs-comment"># 如果返回302，就从响应头获取真实地址</span><br>                real_url = r.headers.get(<span class="hljs-string">&#x27;Location&#x27;</span>)<br>            <span class="hljs-keyword">else</span>:  <span class="hljs-comment"># 否则从返回内容中用正则表达式提取出来真实地址</span><br>                <span class="hljs-comment"># real_url = re.findall(&quot;href=&#x27;(.*?)&#x27;&quot;, r.text)[0]</span><br>                <span class="hljs-keyword">try</span>:<br>                    real_url = re.findall(<span class="hljs-string">&quot;URL=&#x27;(.*?)&#x27;&quot;</span>, r.text)[<span class="hljs-number">0</span>]<br>                <span class="hljs-keyword">except</span> IndexError:<br>                    real_url = <span class="hljs-string">&#x27;同上&#x27;</span><br>            <span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;real_url is:&#x27;</span>, real_url)<br>        <span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;&#x27;</span>)<br><br>baidu_search()<br></code></pre></td></tr></table></figure>
+
+<h3 id="实验总结"><a href="#实验总结" class="headerlink" title="实验总结"></a>实验总结</h3><p><del>删掉啦</del></p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/study/" class="category-chain-item">study</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/SEED-Labs/" class="print-no-link">#SEED-Labs</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Lab 1</div>
+      <div>https://r0otsu.github.io/2024/12/26/lab1/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>r0otsu</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2024年12月26日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="NC - 非商业性使用">
+                    <i class="iconfont icon-cc-nc"></i>
+                  </span>
+                </a>
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="SA - 相同方式共享">
+                    <i class="iconfont icon-cc-sa"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2024/12/26/lab2/" title="Lab 2">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Lab 2</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/12/25/why/" title="why">
+                        <span class="hidden-mobile">why</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>&nbsp;&nbsp;Hexo</span></a> <i class="iconfont icon-notebook"></i> <a href="https://r0otsu.github.io" target="_blank" rel="nofollow noopener"><span>r0otsu</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="umami-site-pv-container" style="display: none">
+        总访问量 
+        <span id="umami-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="umami-site-uv-container" style="display: none">
+        总访客数 
+        <span id="umami-site-uv"></span>
+         人
+      </span>
+    
+    
+  
+
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="/js/umami-view.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

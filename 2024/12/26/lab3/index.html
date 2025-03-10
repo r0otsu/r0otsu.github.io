@@ -1,0 +1,914 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=dark>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/OIP-C.png">
+  <link rel="icon" href="/img/OIP-C.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="r0otsu">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="MD5碰撞实验">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Lab 3">
+<meta property="og:url" content="https://r0otsu.github.io/2024/12/26/lab3/index.html">
+<meta property="og:site_name" content="r0otsu Blog">
+<meta property="og:description" content="MD5碰撞实验">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20241226091910948.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20241226091916673.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20241226091921715.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20241226091927747.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20241226091933543.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20241226091940808.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20241226091945697.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20241226091952664.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20241226092000392.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20241226092006186.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20241226092012196.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20241226092016724.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20241226092022126.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20241226092028842.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20241226092038880.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20241226092043831.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20241226092049784.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20241226092057138.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20241226092103348.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20241226092111033.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20241226092119470.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20241226092126536.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20241226092132589.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20241226092139835.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20241226092146151.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20241226092151719.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20241226092157109.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20241226092203107.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20241226092210239.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20241226092218185.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20241226092226298.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20241226092233575.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20241226092239456.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20241226092247265.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20241226092254486.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20241226092304420.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20241226092313772.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20241226092321230.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20241226092344069.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20241226092355507.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20241226092404194.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20241226092409856.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20241226092419049.png">
+<meta property="article:published_time" content="2024-12-25T20:17:21.000Z">
+<meta property="article:modified_time" content="2024-12-29T07:58:34.912Z">
+<meta property="article:author" content="r0otsu">
+<meta property="article:tag" content="SEED-Labs">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://gitee.com/r0otsu/piclist/raw/master/20241226091910948.png">
+  
+  
+  
+  <title>Lab 3 - r0otsu Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/myfont/iconfont.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"r0otsu.github.io","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":"https://cloud.umami.is/script.js","website_id":"76c804ff-36c9-4795-8275-233c7d521ebe","domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>r0otsu</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/index.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Lab 3"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-12-26 04:17" pubdate>
+          2024年12月26日 凌晨
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1.4k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          12 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">Lab 3</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <meta name="referrer" content="no-referrer" />
+
+<h1 id="Lab-3-MD5碰撞实验"><a href="#Lab-3-MD5碰撞实验" class="headerlink" title="Lab 3-MD5碰撞实验"></a>Lab 3-MD5碰撞实验</h1><h3 id="实验内容"><a href="#实验内容" class="headerlink" title="实验内容"></a>实验内容</h3><p>本次实验主要是加深大家对MD5碰撞及其原理的理解，使用SEED实验环境中的工具及编程语言，完成以下任务：</p>
+<p>a) 使用md5collgen生成两个MD5值相同的文件，并利用bless十六进制编辑器查看输出的两个文件，描述你观察到的情况；</p>
+<p>b) 参考Lab3_task2.c的代码，生成两个MD5值相同但输出不同的两个可执行文件。</p>
+<p>c) 参考Lab3_task3.c的代码，生成两个MD5值相同但代码行为不相同的可执行文件。</p>
+<p>d) 回答问题：通过上面的实验，请解释为什么可以做到不同行为的两个可执行文件具有相同的MD5值？</p>
+<hr>
+<h3 id="实验步骤"><a href="#实验步骤" class="headerlink" title="实验步骤"></a>实验步骤</h3><h4 id="环境部署"><a href="#环境部署" class="headerlink" title="环境部署"></a>环境部署</h4><ol>
+<li><h6 id="gcc-11配置"><a href="#gcc-11配置" class="headerlink" title="gcc-11配置"></a>gcc-11配置</h6><p>添加<code>gcc-11</code> <code>g++-11</code>的源：</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226091910948.png" srcset="/img/loading.gif" lazyload></p>
+<p>更新一下：</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226091916673.png" srcset="/img/loading.gif" lazyload></p>
+<p>安装<code>gcc-11</code>和<code>g++-11</code>：</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226091921715.png" srcset="/img/loading.gif" lazyload></p>
+<p>进入<code>/usr/bin/gcc*</code>文件，发现已经有<code>gcc-11</code>的配置文件了：</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226091927747.png" srcset="/img/loading.gif" lazyload></p>
+<p>但是此时<code>gcc-11</code>并不是候选项，所以要添加<code>gcc-11</code>的候选项，并设置<code>gcc-11</code>为<code>50</code>优先级：</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226091933543.png" srcset="/img/loading.gif" lazyload></p>
+<p>查看一下系统中<code>gcc</code>的候选项优先级：</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226091940808.png" srcset="/img/loading.gif" lazyload></p>
+<p>修改<code>gcc-11</code>的优先级后，系统将默认以<code>gcc-11</code>进行编译：</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226091945697.png" srcset="/img/loading.gif" lazyload></p>
+</li>
+</ol>
+<hr>
+<ol start="2">
+<li><h6 id="g-11配置"><a href="#g-11配置" class="headerlink" title="g++ 11配置"></a>g++ 11配置</h6><p>一开始的时候系统里<code>g++</code>显示没有候选项，但是输入<code>g++ -V</code>是可以找到文件的：</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226091952664.png" srcset="/img/loading.gif" lazyload></p>
+<p><code>g++ -v</code>可以找到，但是是9.4版本，需要升级：</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226092000392.png" srcset="/img/loading.gif" lazyload></p>
+<p>增加<code>g++-11</code>为候选项，并设置<code>g++-11</code>的优先级为<code>50</code>：</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226092006186.png" srcset="/img/loading.gif" lazyload></p>
+</li>
+</ol>
+<hr>
+<ol start="3">
+<li><h6 id="在-usr-bin目录下克隆md5collgen："><a href="#在-usr-bin目录下克隆md5collgen：" class="headerlink" title="在/usr/bin目录下克隆md5collgen："></a>在<code>/usr/bin</code>目录下克隆<code>md5collgen</code>：</h6><h6 id=""><a href="#" class="headerlink" title=""></a><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226092012196.png" srcset="/img/loading.gif" lazyload></h6></li>
+</ol>
+<hr>
+<ol start="4">
+<li><h6 id="进行makefile"><a href="#进行makefile" class="headerlink" title="进行makefile"></a>进行makefile</h6><p>进入<code>md5collgen</code>文件夹，发现有<code>makefile</code>文件：</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226092016724.png" srcset="/img/loading.gif" lazyload></p>
+<p>如果<code>g++-11</code>和<code>gcc-11</code>都已经设置为默认，<code>make</code>就会成功了：</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226092022126.png" srcset="/img/loading.gif" lazyload></p>
+<p><code>ls</code> 一下，发现有<code>md5collgen</code>文件，即<strong>成功安装</strong>！</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226092028842.png" srcset="/img/loading.gif" lazyload></p>
+</li>
+</ol>
+<hr>
+<h4 id="a-task-1：两个不同的文件，但md5码相同："><a href="#a-task-1：两个不同的文件，但md5码相同：" class="headerlink" title="a) task 1：两个不同的文件，但md5码相同："></a>a) task 1：两个不同的文件，但md5码相同：</h4><ol>
+<li><p>创建一个<code>prefix.txt</code>文件，其中的内容为<code>Message prefix</code>：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">echo &quot;Message prefix&quot; &gt; prefix.txt<br></code></pre></td></tr></table></figure>
+</li>
+<li><p>使用<code>md5collgen</code>工具，生成<code>prefix.txt</code>的两个子文件<code>prefix_msg1.txt</code> <code>prefix_msg2.txt</code>，并且这两个文件的<strong>md5码</strong>相同：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">./md5collgen -p prefix.txt -o prefix_msg1.txt prefix_msg2.txt<br></code></pre></td></tr></table></figure>
+</li>
+<li><p>查看<code>prefix_msg1.txt</code> <code>prefix_msg2.txt</code>两个文件的md5码，发现一致：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">md5sum prefix_msg1.txt<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">md5sum prefix_msg2.txt<br></code></pre></td></tr></table></figure>
+</li>
+<li><p>相关截图</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226092038880.png" srcset="/img/loading.gif" lazyload></p>
+</li>
+</ol>
+<hr>
+<h4 id="task-2-文件后添加后缀"><a href="#task-2-文件后添加后缀" class="headerlink" title="task 2: 文件后添加后缀"></a>task 2: 文件后添加后缀</h4><ol>
+<li><p>将<code>prefix_msg1.txt</code>和<code>prefix.txt</code>连接为<code>out1_long.bin</code>；</p>
+<p><code>prefix_msg2.txt</code>和<code>prefix.txt</code>连接为<code>out2_long.bin</code>；</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">cat prefix_msg1.txt prefix.txt &gt; out1_long.bin<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">cat prefix_msg2.txt prefix.txt &gt; out2_long.bin<br></code></pre></td></tr></table></figure>
+</li>
+<li><p>连接后两文件的<code>md5</code>值仍然相同：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">md5sum prefix_msg1.txt<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">md5sum prefix_msg2.txt<br></code></pre></td></tr></table></figure>
+</li>
+<li><p>相关截图</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226092043831.png" srcset="/img/loading.gif" lazyload></p>
+</li>
+</ol>
+<hr>
+<h4 id="b-task-3-生成两个MD5值相同但输出不同的两个可执行文件"><a href="#b-task-3-生成两个MD5值相同但输出不同的两个可执行文件" class="headerlink" title="b) task 3: 生成两个MD5值相同但输出不同的两个可执行文件"></a>b) task 3: 生成两个MD5值相同但输出不同的两个可执行文件</h4><ol>
+<li><p>编辑文件<code>print_array.c</code>： </p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226092049784.png" srcset="/img/loading.gif" lazyload></p>
+</li>
+<li><p>gcc编译<code>print_array.c</code> 文件，生成<code>a.out</code>：</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226092057138.png" srcset="/img/loading.gif" lazyload></p>
+</li>
+<li><p>使用<code>bless</code>查看输出数组文件的二进制代码，发现输出时的二进制<code>offset 0x3020</code>不是64的倍数：</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226092103348.png" srcset="/img/loading.gif" lazyload></p>
+<p>确认prefix取<code>0x3040</code>即为64的倍数，即十进制<code>12352</code>：</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226092111033.png" srcset="/img/loading.gif" lazyload></p>
+</li>
+<li><p>取suffix为正好在A数组输出完毕的<code>offset 0x30e8</code>，十进制为<code>12520</code>：<img src="https://gitee.com/r0otsu/piclist/raw/master/20241226092119470.png" srcset="/img/loading.gif" lazyload></p>
+</li>
+<li><p>保存<code>a.out</code>的前<code>12352</code>个字节为前缀<code>prefix</code>：</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226092126536.png" srcset="/img/loading.gif" lazyload></p>
+</li>
+<li><p>保存<code>a.out</code>从第<code>12520</code>个字节开始之后的字节为后缀<code>suffix</code>：</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226092132589.png" srcset="/img/loading.gif" lazyload></p>
+</li>
+<li><p>使用<code>md5collgen</code>工具，将<code>prefix</code> 文件作为前缀，生成两个输出文件 <code>out1.bin</code> 和 <code>out2.bin</code></p>
+<p>输出中显示了文件初始的 MD5 值</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226092139835.png" srcset="/img/loading.gif" lazyload></p>
+</li>
+<li><p>将<code>out1.bin</code>的后<code>128</code>个字节存为<code>P</code>；</p>
+<p>并将<code>out2.bin</code>的后<code>128</code>个字节存为<code>Q</code>；</p>
+<p>将前缀文件<code>prefix</code>、中间文件<code>P</code>&#x2F;<code>Q</code>、后缀文件<code>suffix</code>连接起来，分别存为<code>a1.out</code>&#x2F;<code>a2.out</code></p>
+<p>并赋予<code>a1.out</code> 和<code> a2.out</code>文件可执行权限</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226092146151.png" srcset="/img/loading.gif" lazyload></p>
+</li>
+<li><p>可以看到两个文件的内容是有细微差别的：</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226092151719.png" srcset="/img/loading.gif" lazyload></p>
+<p>对比发现确实有细微差别：</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226092157109.png" srcset="/img/loading.gif" lazyload></p>
+</li>
+<li><p>但输出两个文件的md5码，发现虽然文件执行后内容不同，但md5码一致</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226092203107.png" srcset="/img/loading.gif" lazyload></p>
+</li>
+</ol>
+<hr>
+<h4 id="c-task-3-生成两个MD5值相同但代码行为不相同的可执行文件"><a href="#c-task-3-生成两个MD5值相同但代码行为不相同的可执行文件" class="headerlink" title="c) task 3: 生成两个MD5值相同但代码行为不相同的可执行文件"></a>c) task 3: 生成两个MD5值相同但代码行为不相同的可执行文件</h4><ol>
+<li><p>复制Lab3_task3.c进入虚拟机中；</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226092210239.png" srcset="/img/loading.gif" lazyload></p>
+</li>
+<li><p>编译Lab3_task3.c为task4，输出为 <code>这是一个良性程序</code> ；</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">gcc Lab3_task3.c -o task4<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226092218185.png" srcset="/img/loading.gif" lazyload></p>
+</li>
+<li><p>bless查看task4的二进制文件，发现输出x数组时，开始是在<code>0x3020</code>，十进制<code>12320</code>，为了向上取64的倍数，应该取前缀为<code>12352</code>；</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">bless task4<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226092226298.png" srcset="/img/loading.gif" lazyload></p>
+</li>
+<li><p>把前<code>12352</code>个字节的数组取出来作为prefix前缀文件；</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226092233575.png" srcset="/img/loading.gif" lazyload></p>
+</li>
+<li><p>根据前缀文件进行md5碰撞，得到<code>out1.bin</code> 和 <code>out2.bin</code> 两个md5码相同的文件；</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226092239456.png" srcset="/img/loading.gif" lazyload></p>
+</li>
+<li><p>复制<code>task4</code>为<code>task4-1</code>和<code>task4-2</code>两个文件；</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226092247265.png" srcset="/img/loading.gif" lazyload></p>
+</li>
+<li><p>对<code>task4-1</code>文件进行操作，得到x和y数组相同的文件；</p>
+<p>查看<code>out1.bin</code>文件的后<code>128</code>个字节：</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226092254486.png" srcset="/img/loading.gif" lazyload></p>
+<p>将<code>task4-1</code>文件中的x和y数组的后<code>128</code>字节都复制为<code>out1.bin</code>文件的后<code>128</code>字节：</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226092304420.png" srcset="/img/loading.gif" lazyload></p>
+<p>这样就得到了<code>task4-1</code>文件，xy数组相同。</p>
+</li>
+<li><p>对<code>task4-2</code>文件进行操作，得到x和y数组不同的文件；</p>
+<p>查看<code>out1.bin</code>文件的后<code>128</code>个字节：</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226092313772.png" srcset="/img/loading.gif" lazyload></p>
+<p>查看<code>out2.bin</code>文件的后<code>128</code>个字节：</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226092321230.png" srcset="/img/loading.gif" lazyload></p>
+<p>将<code>task4-2</code>文件中的 <strong>y数组</strong> 的后<code>128</code>字节都复制为<code>out1.bin</code>文件的后<code>128</code>字节：</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226092344069.png" srcset="/img/loading.gif" lazyload>将<code>task4-2</code>文件中的 <strong>x数组</strong> 的后<code>128</code>字节都复制为<code>out2.bin</code>文件的后<code>128</code>字节：</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226092355507.png" srcset="/img/loading.gif" lazyload></p>
+<p>这样就得到了<code>task4-2</code>文件，xy数组不相同</p>
+</li>
+<li><p>设置<code>task4-1</code>和<code>task4-2</code>文件的权限；</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226092404194.png" srcset="/img/loading.gif" lazyload></p>
+</li>
+<li><p>输出<code>task4-1</code>和<code>task4-2</code>文件的输出不同；</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226092409856.png" srcset="/img/loading.gif" lazyload></p>
+<p>计算md5码相同：</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226092419049.png" srcset="/img/loading.gif" lazyload></p>
+<p>实验成功！</p>
+</li>
+</ol>
+<hr>
+<h4 id="d-回答问题"><a href="#d-回答问题" class="headerlink" title="d) 回答问题"></a>d) 回答问题</h4><p>通过上面的实验，请解释为什么可以做到不同行为的两个可执行文件具有相同的MD5值？</p>
+<p>答：md5算法是一个典型的<strong>散列函数</strong>，其将任意长度的数据映射为固定长度的128位的散列值；而且md5作为哈希函数，其<strong>只关注输入数据的位模式</strong>，而非数据的语义或功能。</p>
+<p>由于这两个特性，导致md5在计算时，存在<strong>碰撞</strong>的可能性，即通过不同的输入可能可以生成相同的哈希值；并且通过修改部分代码，两个文件可以在执行不同功能的情况下，二进制表示不同，但由于碰撞的前缀prefix相同，则md5码相同。</p>
+<hr>
+<h3 id="实验总结"><a href="#实验总结" class="headerlink" title="实验总结"></a>实验总结</h3><p><del>删掉啦</del></p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/study/" class="category-chain-item">study</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/SEED-Labs/" class="print-no-link">#SEED-Labs</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Lab 3</div>
+      <div>https://r0otsu.github.io/2024/12/26/lab3/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>r0otsu</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2024年12月26日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="NC - 非商业性使用">
+                    <i class="iconfont icon-cc-nc"></i>
+                  </span>
+                </a>
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="SA - 相同方式共享">
+                    <i class="iconfont icon-cc-sa"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2024/12/26/lab4/" title="Lab 4">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Lab 4</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/12/26/lab2/" title="Lab 2">
+                        <span class="hidden-mobile">Lab 2</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>&nbsp;&nbsp;Hexo</span></a> <i class="iconfont icon-notebook"></i> <a href="https://r0otsu.github.io" target="_blank" rel="nofollow noopener"><span>r0otsu</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="umami-site-pv-container" style="display: none">
+        总访问量 
+        <span id="umami-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="umami-site-uv-container" style="display: none">
+        总访客数 
+        <span id="umami-site-uv"></span>
+         人
+      </span>
+    
+    
+  
+
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="/js/umami-view.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

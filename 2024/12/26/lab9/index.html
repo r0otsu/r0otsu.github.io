@@ -1,0 +1,1121 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=dark>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/OIP-C.png">
+  <link rel="icon" href="/img/OIP-C.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="r0otsu">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="嗅探与欺骗实验">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Lab 9">
+<meta property="og:url" content="https://r0otsu.github.io/2024/12/26/lab9/index.html">
+<meta property="og:site_name" content="r0otsu Blog">
+<meta property="og:description" content="嗅探与欺骗实验">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20241226103605356.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20241226103611589.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20241226103617277.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20241226103623041.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20241226103628287.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20241226103633444.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20241226103639224.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20241226103644729.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20241226103649727.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20241226103658497.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20241226103704808.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20241226103710315.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20241226103715846.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20241226103720576.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20241226103725539.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20241226103732978.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20241226103737864.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20241226103741964.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20241226103746513.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20241226103752872.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20241226104152333.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20241226104158785.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20241226104204249.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20241226104209747.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20241226104215203.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20241226104220549.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20241226104226921.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20241226104232213.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20241226104237528.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20241226104243515.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20241226104249466.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20241226104254708.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20241226104301137.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20241226104306133.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20241226104311495.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20241226104317867.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20241226104323510.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20241226104330213.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20241226104336884.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20241226104342578.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20241226104347883.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20241226104353568.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20241226104359222.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20241226104408053.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20241226104414379.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20241226104419505.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20241226104424562.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20241226104429530.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20241226104435274.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20241226104440742.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20241226104447041.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20241226104455142.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20241226104500223.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20241226104505722.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20241226104511430.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20241226104516695.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20241226104522702.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20241226104532177.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20241226104539001.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20241226104545597.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20241226104551364.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20241226104557148.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20241226104605071.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20241226104610965.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20241226104616760.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20241226104622218.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20241226104628184.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20241226104634434.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20241226104640409.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20241226104645978.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20241226104651567.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20241226104657245.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20241226104702736.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20241226104708790.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20241226104714536.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20241226104721086.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20241226104726691.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20241226104732025.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20241226104738555.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20241226104747635.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20241226104756551.png">
+<meta property="article:published_time" content="2024-12-25T20:35:37.000Z">
+<meta property="article:modified_time" content="2024-12-29T07:59:12.067Z">
+<meta property="article:author" content="r0otsu">
+<meta property="article:tag" content="SEED-Labs">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://gitee.com/r0otsu/piclist/raw/master/20241226103605356.png">
+  
+  
+  
+  <title>Lab 9 - r0otsu Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/myfont/iconfont.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"r0otsu.github.io","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":"https://cloud.umami.is/script.js","website_id":"76c804ff-36c9-4795-8275-233c7d521ebe","domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>r0otsu</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/index.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Lab 9"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-12-26 04:35" pubdate>
+          2024年12月26日 凌晨
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          2.4k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          21 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">Lab 9</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <meta name="referrer" content="no-referrer" />
+
+<h1 id="Lab-9-嗅探与欺骗实验"><a href="#Lab-9-嗅探与欺骗实验" class="headerlink" title="Lab 9-嗅探与欺骗实验"></a>Lab 9-嗅探与欺骗实验</h1><h3 id="实验内容"><a href="#实验内容" class="headerlink" title="实验内容"></a>实验内容</h3><p>包嗅探和欺骗是网络安全中的两个重要概念；它们是网络通信中的两大威胁。能够理解这两种威胁对于理解网络中的安全措施至关重要。有许多包嗅探和欺骗工具，如Wireshark、Tcpdump、Netwox等。其中一些工具被安全专家以及攻击者广泛使用。能够使用这些工具对学生来说很重要，但对于网络安全课程的学生来说，更重要的是了解这些工具是如何工作的，即包嗅探和欺骗是如何在软件中实现的。</p>
+<p>本实验的目标是让学生掌握大多数嗅探和欺骗工具的基本技术。学生们将使用一些简单的嗅探和欺骗程序，阅读它们的源代码，修改它们，并最终对这些程序的技术方面有深入的了解。在本实验结束时，学生应该能够编写自己的嗅探和欺骗程序。</p>
+<hr>
+<h3 id="实验步骤"><a href="#实验步骤" class="headerlink" title="实验步骤"></a>实验步骤</h3><h4 id="环境准备"><a href="#环境准备" class="headerlink" title="环境准备"></a>环境准备</h4><ol>
+<li><p>加载<code>handsonsecurity/seed-ubuntu:large</code>的镜像：</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226103605356.png" srcset="/img/loading.gif" lazyload></p>
+<p>查看一下</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226103611589.png" srcset="/img/loading.gif" lazyload></p>
+</li>
+<li><p>使用以下命令创建并开启docker作为服务器；</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs shell">docker-compose build<br>docker-compose up<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226103617277.png" srcset="/img/loading.gif" lazyload></p>
+</li>
+</ol>
+<hr>
+<h4 id="Lab-Task-Set-1-Using-Scapy-to-Sniff-and-Spoof-Packets"><a href="#Lab-Task-Set-1-Using-Scapy-to-Sniff-and-Spoof-Packets" class="headerlink" title="Lab Task Set 1: Using Scapy to Sniff and Spoof Packets"></a>Lab Task Set 1: Using Scapy to Sniff and Spoof Packets</h4><h5 id="Task-1-1-Sniffing-Packets"><a href="#Task-1-1-Sniffing-Packets" class="headerlink" title="Task 1.1: Sniffing Packets"></a>Task 1.1: Sniffing Packets</h5><h6 id="Task-1-1A"><a href="#Task-1-1A" class="headerlink" title="Task 1.1A."></a>Task 1.1A.</h6><ol>
+<li><p>打开另一终端，创建<code>sniffer.py</code>文件；</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226103623041.png" srcset="/img/loading.gif" lazyload></p>
+</li>
+<li><p>安装<code>scapy</code>，这里看到已经安装了；</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226103628287.png" srcset="/img/loading.gif" lazyload></p>
+</li>
+<li><p>先把<code>sniffer.py</code>的权限设置一下</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226103633444.png" srcset="/img/loading.gif" lazyload></p>
+</li>
+<li><p>非root下运行<code>sniffer.py</code></p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226103639224.png" srcset="/img/loading.gif" lazyload></p>
+</li>
+<li><p>root下运行<code>sniffer.py</code></p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226103644729.png" srcset="/img/loading.gif" lazyload></p>
+<p><strong>可以看到这个终端开始嗅探了</strong></p>
+</li>
+<li><p>另一终端 ping 10.0.2.4</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226103649727.png" srcset="/img/loading.gif" lazyload></p>
+</li>
+<li><p>发现有返回，且都是ICMP协议的包</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226103658497.png" srcset="/img/loading.gif" lazyload></p>
+<p><strong>说明返回了嗅探的结果</strong></p>
+</li>
+</ol>
+<p><strong>嗅探成功！</strong></p>
+<hr>
+<h6 id="Task-1-1B"><a href="#Task-1-1B" class="headerlink" title="Task 1.1B."></a>Task 1.1B.</h6><ol>
+<li><p>创建<code>sniffer-1.py</code>，使用summary()函数返回pkt</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226103704808.png" srcset="/img/loading.gif" lazyload></p>
+</li>
+<li><p>运行<code>sniffer-1.py</code>开始嗅探</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226103710315.png" srcset="/img/loading.gif" lazyload></p>
+</li>
+<li><p>另一终端ping 10.2.0.4</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226103715846.png" srcset="/img/loading.gif" lazyload></p>
+</li>
+<li><p>嗅探结果返回如下，只捕获了ICMP包</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226103720576.png" srcset="/img/loading.gif" lazyload></p>
+</li>
+</ol>
+<p><strong>嗅探成功！</strong></p>
+<hr>
+<ol>
+<li><p>创建<code>datapak.py</code>，用于从10.0.2.2向10.0.2.1的端口23发送包</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226103725539.png" srcset="/img/loading.gif" lazyload></p>
+<p>修改<code>sniffer-1.py</code>，将ip.src, tcp.dport加进过滤器中</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226103732978.png" srcset="/img/loading.gif" lazyload></p>
+</li>
+<li><p>先开<code>sniffer-1.py</code>进行嗅探</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226103737864.png" srcset="/img/loading.gif" lazyload></p>
+</li>
+<li><p>运行<code>datapak.py</code>发包</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226103741964.png" srcset="/img/loading.gif" lazyload></p>
+</li>
+<li><p>得到嗅探结果</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226103746513.png" srcset="/img/loading.gif" lazyload></p>
+</li>
+</ol>
+<p><strong>嗅探成功！</strong></p>
+<hr>
+<ol>
+<li><p>查看一下自己本机的ip和子网掩码：</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226103752872.png" srcset="/img/loading.gif" lazyload></p>
+<p>（除了这些ip不能设置外，其他的都可以）</p>
+</li>
+<li><p>修改<code>datapak.py</code>，改成除了自己所连子网下的ip，比如题目举例的<code>128.230.0.0/16</code>下的ip<code>128.230.0.1</code>，端口仍然设置为23</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226104152333.png" srcset="/img/loading.gif" lazyload></p>
+</li>
+<li><p>修改<code>sniffer-1.py</code>，将过滤器修改为<code>128.230.0.0/16</code>下的子网</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226104158785.png" srcset="/img/loading.gif" lazyload></p>
+</li>
+<li><p>先开启嗅探，运行<code>sniffer-1.py</code></p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226104204249.png" srcset="/img/loading.gif" lazyload></p>
+</li>
+<li><p>运行<code>datapak.py</code></p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226104209747.png" srcset="/img/loading.gif" lazyload></p>
+</li>
+<li><p>得到嗅探结果：</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226104215203.png" srcset="/img/loading.gif" lazyload></p>
+</li>
+</ol>
+<p><strong>嗅探成功！</strong></p>
+<hr>
+<h5 id="Task-1-2-Spoofing-ICMP-Packets"><a href="#Task-1-2-Spoofing-ICMP-Packets" class="headerlink" title="Task 1.2: Spoofing ICMP Packets"></a>Task 1.2: Spoofing ICMP Packets</h5><ol>
+<li><p>wireshark已经安装好了，输入<code>wireshark</code>直接启动</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226104220549.png" srcset="/img/loading.gif" lazyload></p>
+</li>
+<li><p>因为scrapy可以将发出的包的任意字段进行隐藏，所以修改<code>datapak.py</code>中的ip.src，修改为<code>233.233.233.233</code></p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226104226921.png" srcset="/img/loading.gif" lazyload></p>
+</li>
+<li><p>在wireshark中选择any，监听所有网卡</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226104232213.png" srcset="/img/loading.gif" lazyload></p>
+</li>
+<li><p>运行<code>datapak.py</code>，发送隐藏了ip的数据包</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226104237528.png" srcset="/img/loading.gif" lazyload></p>
+</li>
+<li><p>wireshark中抓到包</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226104243515.png" srcset="/img/loading.gif" lazyload></p>
+<p>可以看到src.ip, dst.ip, tcp.port都是设定的值，src.ip成功隐藏为<code>233.233.233.233</code></p>
+</li>
+</ol>
+<p><strong>欺骗成功！</strong></p>
+<hr>
+<h5 id="Task-1-3-Traceroute"><a href="#Task-1-3-Traceroute" class="headerlink" title="Task 1.3: Traceroute"></a>Task 1.3: Traceroute</h5><ol>
+<li><p>创建<code>trace.py</code>，探究从本机到’baidu.com’需要经过哪些路由</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226104249466.png" srcset="/img/loading.gif" lazyload></p>
+</li>
+<li><p>运行得到结果</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226104254708.png" srcset="/img/loading.gif" lazyload></p>
+<p>说明’baidu.com’的ip是<code>110.242.68.66</code>，只需要一跳就到了。</p>
+</li>
+</ol>
+<hr>
+<h5 id="Task-1-4-Sniffing-and-then-Spoofing"><a href="#Task-1-4-Sniffing-and-then-Spoofing" class="headerlink" title="Task 1.4: Sniffing and-then Spoofing"></a>Task 1.4: Sniffing and-then Spoofing</h5><ol>
+<li><p>创建<code>sniffer-task14.py</code>，使得嗅探器不仅要抓取当前子网内的所有ICMP数据包，还要针对每一个数据包都去构造<strong>伪响应</strong></p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226104301137.png" srcset="/img/loading.gif" lazyload></p>
+</li>
+<li><p>运行<code>sniffer-task14.py</code>进行嗅探</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226104306133.png" srcset="/img/loading.gif" lazyload></p>
+</li>
+<li><p>另一终端ping 1.2.3.4，这是互联网中并不存在的ip</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226104311495.png" srcset="/img/loading.gif" lazyload></p>
+<p>发现不仅嗅探器里显示发送数据包，而且确实能ping通，能收到伪造的回应数据包</p>
+</li>
+<li><p>另一终端ping 10.9.0.99，这是子网中不存在的ip</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226104317867.png" srcset="/img/loading.gif" lazyload></p>
+<p>发现显示不可达，嗅探器并不返回。</p>
+<p>这是因为在同一子网内，数据包不会经过主机提供的NAT映射服务以转发到外网，而是会顺着局域网内路由直接发送到对方主机，而<code>10.9.0.99</code>又并不存在，因此显示不可达</p>
+</li>
+<li><p>另一终端ping 10.9.0.99，这是互联网中存在的ip</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226104323510.png" srcset="/img/loading.gif" lazyload></p>
+<p>由于真实的服务器也会返回一个报文，所以容器中会接收到两份返回报文，显示冗余了！</p>
+</li>
+</ol>
+<hr>
+<h4 id="Lab-Task-Set-2-Writing-Programs-to-Sniff-and-Spoof-Packets"><a href="#Lab-Task-Set-2-Writing-Programs-to-Sniff-and-Spoof-Packets" class="headerlink" title="Lab Task Set 2: Writing Programs to Sniff and Spoof Packets"></a>Lab Task Set 2: Writing Programs to Sniff and Spoof Packets</h4><h5 id="Task-2-1-Writing-Packet-Sniffing-Program"><a href="#Task-2-1-Writing-Packet-Sniffing-Program" class="headerlink" title="Task 2.1: Writing Packet Sniffing Program"></a>Task 2.1: Writing Packet Sniffing Program</h5><ol>
+<li><p>创建<code>sniff.c</code>文件，使用c++进行嗅探，并打印出数据包的src.ip和dst.ip</p>
+<p><font color='orange'>*将main函数中的网卡名称改成自己本地ubuntu的</font><font color='red'>（箭头所指）</font></p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226104330213.png" srcset="/img/loading.gif" lazyload></p>
+</li>
+<li><p>编译时链接pcap库，得到可执行的嗅探器<code>sniff</code></p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226104336884.png" srcset="/img/loading.gif" lazyload></p>
+</li>
+<li><p>查看容器，将<code>sniff</code>复制到seed-attacker的tmp文件夹下，并进入到攻击容器中</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226104342578.png" srcset="/img/loading.gif" lazyload></p>
+</li>
+<li><p>attacker主机等待嗅探</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226104347883.png" srcset="/img/loading.gif" lazyload></p>
+</li>
+<li><p>进入hostA主机，并尝试ping baidu.com</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226104353568.png" srcset="/img/loading.gif" lazyload></p>
+</li>
+<li><p>attacker容器中嗅探到hostA发出的数据包，嗅探器中返回数据包的src.ip和dst.ip</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226104359222.png" srcset="/img/loading.gif" lazyload></p>
+</li>
+</ol>
+<p><strong>嗅探成功！</strong></p>
+<hr>
+<h6 id="Task-2-1A-Understanding-How-a-Sniffer-Works"><a href="#Task-2-1A-Understanding-How-a-Sniffer-Works" class="headerlink" title="Task 2.1A: Understanding How a Sniffer Works"></a>Task 2.1A: Understanding How a Sniffer Works</h6><p>根据实验手册回答三个问题</p>
+<p><strong>Question 1.</strong> Please use your own words to describe the sequence of the library calls that are essential for sniffer programs. This is meant to be a summary, not detailed explanation like the one in the tutorial or book.</p>
+<p><strong>答：</strong>使用pcap库编写嗅探程序时：</p>
+<ul>
+<li>首先<code>pcap_open_live()</code>打开指定网络接口的实时捕获会话；</li>
+<li>然后<code>pcap_compile()</code>将过滤表达式编译成BPF；</li>
+<li><code>pcap_setfilter()</code>应用之前编译好的过滤器，匹配过滤条件的数据包才会被捕获；</li>
+<li><code>pcap_loop()</code>函数会循环捕获数据包，将每个捕获的数据包传递给回调函数；</li>
+<li>最后调用<code>pcap_close()</code>函数关闭pcap句柄，结束数据包捕获。</li>
+</ul>
+<hr>
+<p><strong>Question 2.</strong> Why do you need the root privilege to run a sniffer program? Where does the program fail if it is executed without the root privilege?</p>
+<p><strong>答：需要root权限。</strong>因为嗅探器直接访问网络接口，捕获经过的所有数据包，这个行为需要root权限才能执行。</p>
+<p>调用<code>pcap_open_live()</code>函数时，若为非root权限，函数会返回NULL，errbuf中填充错误信息，程序将无法继续执行。</p>
+<hr>
+<p><strong>Question 3.</strong> Please turn on and turn off the promiscuous mode in your sniffer program. The value 1 of the third parameter in pcap open live() turns on the promiscuous mode (use 0 to turn it off). Can you demonstrate the difference when this mode is on and off? Please describe how you can demonstrate this. You can use the following command to check whether an interface’s promiscuous mode is on or off (look at the promiscuity’s value).</p>
+<p><strong>答：</strong>使用混杂模式可以监听所在网段下其他机器的数据包，关闭则不能。</p>
+<p><strong>关闭混杂模式</strong></p>
+<ol>
+<li><p>修改<code>pcap open live()</code>函数的第三个参数为<strong>0</strong>，关闭混杂模式</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226104408053.png" srcset="/img/loading.gif" lazyload></p>
+</li>
+<li><p>可以看到默认的混杂模式是关闭的</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226104414379.png" srcset="/img/loading.gif" lazyload></p>
+</li>
+<li><p>编译时链接pcap库，重新得到可执行的嗅探器<code>sniff</code></p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226104419505.png" srcset="/img/loading.gif" lazyload></p>
+</li>
+<li><p>查看容器，将<code>sniff</code>复制到seed-attacker的tmp文件夹下，并进入到攻击容器中</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226104424562.png" srcset="/img/loading.gif" lazyload></p>
+</li>
+<li><p>attacker主机等待嗅探</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226104429530.png" srcset="/img/loading.gif" lazyload></p>
+</li>
+<li><p>进入hostA主机，并尝试ping主机B ping 10.9.0.6</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226104435274.png" srcset="/img/loading.gif" lazyload></p>
+</li>
+<li><p>attacker容器中不能嗅探到hostA发出的数据包，嗅探器中不返回</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226104440742.png" srcset="/img/loading.gif" lazyload></p>
+</li>
+</ol>
+<p><strong>嗅探失败！</strong></p>
+<hr>
+<p><strong>开启混杂模式</strong></p>
+<ol>
+<li><p>修改<code>pcap open live()</code>函数的第三个参数为<strong>1</strong>，使用混杂模式</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226104447041.png" srcset="/img/loading.gif" lazyload></p>
+</li>
+<li><p>使用命令开启容器的混杂模式</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226104455142.png" srcset="/img/loading.gif" lazyload></p>
+</li>
+<li><p>编译时链接pcap库，重新得到可执行的嗅探器<code>sniff</code></p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226104500223.png" srcset="/img/loading.gif" lazyload></p>
+</li>
+<li><p>将<code>sniff</code>复制到seed-attacker的tmp文件夹下</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226104505722.png" srcset="/img/loading.gif" lazyload></p>
+</li>
+<li><p>attacker主机等待嗅探</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226104511430.png" srcset="/img/loading.gif" lazyload></p>
+</li>
+<li><p>进入hostA主机，并尝试ping主机B ping 10.9.0.6</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226104516695.png" srcset="/img/loading.gif" lazyload></p>
+</li>
+<li><p>attacker容器中仍然不能嗅探到hostA ping hostB发出的数据包，ping baidu.com 返回数据包</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226104522702.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226104532177.png" srcset="/img/loading.gif" lazyload></p>
+</li>
+</ol>
+<hr>
+<h6 id="Task-2-1B-Writing-Filters"><a href="#Task-2-1B-Writing-Filters" class="headerlink" title="Task 2.1B: Writing Filters."></a>Task 2.1B: Writing Filters.</h6><ol>
+<li><p>修改过滤器，只获得从百度-&gt;本地的数据包</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226104539001.png" srcset="/img/loading.gif" lazyload></p>
+</li>
+<li><p>重复上述过程，发现attacker中的嗅探器只显示了返回的数据包，说明过滤起效了</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226104545597.png" srcset="/img/loading.gif" lazyload></p>
+</li>
+</ol>
+<hr>
+<ol>
+<li><p>修改过滤器，只捕捉目的端口在10到100之间的TCP包</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226104551364.png" srcset="/img/loading.gif" lazyload></p>
+</li>
+<li><p>ping baidu.com 不返回了，说明过滤器起效了</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226104557148.png" srcset="/img/loading.gif" lazyload></p>
+</li>
+</ol>
+<hr>
+<h6 id="Task-2-1C-Sniffing-Passwords"><a href="#Task-2-1C-Sniffing-Passwords" class="headerlink" title="Task 2.1C: Sniffing Passwords."></a>Task 2.1C: Sniffing Passwords.</h6><ol>
+<li><p>创建<code>sniff-2.c</code>文件，尝试嗅探telnet密码，将过滤条件改为tcp，并且将嗅探的网卡改为虚拟网卡</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226104605071.png" srcset="/img/loading.gif" lazyload></p>
+</li>
+<li><p>将编译后的<code>sniff-2</code>文件复制到attacker主机中</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226104610965.png" srcset="/img/loading.gif" lazyload></p>
+</li>
+<li><p>在hostA中尝试使用telnet连接10.9.0.1，可以看到attacker嗅探器中返回有数据</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226104616760.png" srcset="/img/loading.gif" lazyload></p>
+</li>
+<li><p>hostA继续输入，直到输入password</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226104622218.png" srcset="/img/loading.gif" lazyload></p>
+<p>attacker嗅探器中仍然可以返回，拿到密码了</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226104628184.png" srcset="/img/loading.gif" lazyload></p>
+<p>可以看到登录的用户为seed，嗅探到的密码为dees</p>
+</li>
+</ol>
+<p><strong>嗅探成功！</strong></p>
+<hr>
+<h5 id="Task-2-2-Spoofing"><a href="#Task-2-2-Spoofing" class="headerlink" title="Task 2.2: Spoofing"></a>Task 2.2: Spoofing</h5><h6 id="Task-2-2A-Write-a-spoofing-program"><a href="#Task-2-2A-Write-a-spoofing-program" class="headerlink" title="Task 2.2A: Write a spoofing program."></a>Task 2.2A: Write a spoofing program.</h6><ol>
+<li><p>创建<code>myheader.h</code>，完整见源代码</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226104634434.png" srcset="/img/loading.gif" lazyload></p>
+</li>
+<li><p>创建<code>checksum.c</code>，完整见源代码</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226104640409.png" srcset="/img/loading.gif" lazyload></p>
+</li>
+<li><p>创建<code>spoof.c</code>，构造欺骗的包</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226104645978.png" srcset="/img/loading.gif" lazyload></p>
+</li>
+<li><p>创建<code>task22A.c</code>，用于发送欺骗的数据包，完整见源代码</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226104651567.png" srcset="/img/loading.gif" lazyload></p>
+</li>
+<li><p>编译<code>task22A.c</code>和<code>spoof.c</code></p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226104657245.png" srcset="/img/loading.gif" lazyload></p>
+</li>
+<li><p>打开wireshark进行抓包，运行<code>task22A</code></p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226104702736.png" srcset="/img/loading.gif" lazyload></p>
+<p>可以看到伪造的UDP包，其中有虚假的ip等</p>
+</li>
+</ol>
+<p><strong>欺骗成功！</strong></p>
+<hr>
+<h6 id="Task-2-2B-Spoof-an-ICMP-Echo-Request"><a href="#Task-2-2B-Spoof-an-ICMP-Echo-Request" class="headerlink" title="Task 2.2B: Spoof an ICMP Echo Request."></a>Task 2.2B: Spoof an ICMP Echo Request.</h6><ol>
+<li><p>创建<code>task22B.c</code>文件，用于伪造ICMP的响应包</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226104708790.png" srcset="/img/loading.gif" lazyload></p>
+</li>
+<li><p>编译得到<code>task22B</code>的可执行文件</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226104714536.png" srcset="/img/loading.gif" lazyload></p>
+</li>
+<li><p>打开wireshark进行监听，运行task22B，得到伪造的ICMP响应包</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226104721086.png" srcset="/img/loading.gif" lazyload></p>
+<p>得到从8.8.8.8的响应包，说明伪造成功！</p>
+</li>
+</ol>
+<p><strong>伪造成功！</strong></p>
+<hr>
+<p>回答实验手册中的问题</p>
+<p><strong>Question 4.</strong> Can you set the IP packet length field to an arbitrary value, regardless of how big the actual packet is?</p>
+<p><strong>答：不可以。</strong>IP数据包的length field为数据包的总长度。如果length field小于实际长度，会导致数据丢失；length field大于实际长度，会造成接收方处理错误。所以必须确保length field准确反映数据包的实际大小。</p>
+<p><strong>Question 5.</strong> Using the raw socket programming, do you have to calculate the checksum for the IP header?</p>
+<p><strong>答：在使用原始套接字发送IP数据包时，需要计算IP头部的checksum。</strong>因为操作系统不会计算原始套接字的数据包校验和，需要自己手动实现checksum的计算，用于检测header在传输过程中是否出现错误，保证数据完整性。</p>
+<p><strong>Question 6.</strong> Why do you need the root privilege to run the programs that use raw sockets? Where does the program fail if executed without the root privilege?</p>
+<p><strong>答：需要root权限。</strong>因为原始套接字允许直接访问较低层次的协议，可能会被用于发送恶意数据包或进行网络攻击，所以操作系统限制只有root权限才能创建与使用原始套接字。</p>
+<p>当调用<code>socket()</code>函数并指定<code>SOCK_RAW</code>时，如果没有root权限，系统会返回一个错误<code>EACCES</code>，则程序无法继续对数据包进行发送或接收。</p>
+<p>如下图：</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226104726691.png" srcset="/img/loading.gif" lazyload></p>
+<hr>
+<h5 id="Task-2-3-Sniff-and-then-Spoof"><a href="#Task-2-3-Sniff-and-then-Spoof" class="headerlink" title="Task 2.3: Sniff and then Spoof"></a>Task 2.3: Sniff and then Spoof</h5><ol>
+<li><p>创建<code>task23.c</code>，用于嗅探局域网内发送的ICMP包，并伪造响应，使得目标主机认为该局域网内存在实际不存在的主机</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226104732025.png" srcset="/img/loading.gif" lazyload></p>
+</li>
+<li><p>编译得到<code>task23</code></p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226104738555.png" srcset="/img/loading.gif" lazyload></p>
+</li>
+<li><p>运行<code>task23</code></p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226104747635.png" srcset="/img/loading.gif" lazyload></p>
+</li>
+<li><p>使用hostA ping一个明显不存在的主机，比如1.1.1.1，但是有返回的ICMP响应包</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226104756551.png" srcset="/img/loading.gif" lazyload></p>
+<p>可以看到hostA中得到了响应的ICMP包，attacker也嗅探到了hostA</p>
+</li>
+</ol>
+<p><strong>伪造成功！</strong></p>
+<hr>
+<h3 id="实验总结"><a href="#实验总结" class="headerlink" title="实验总结"></a>实验总结</h3><p><del>删掉啦</del></p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/study/" class="category-chain-item">study</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/SEED-Labs/" class="print-no-link">#SEED-Labs</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Lab 9</div>
+      <div>https://r0otsu.github.io/2024/12/26/lab9/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>r0otsu</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2024年12月26日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="NC - 非商业性使用">
+                    <i class="iconfont icon-cc-nc"></i>
+                  </span>
+                </a>
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="SA - 相同方式共享">
+                    <i class="iconfont icon-cc-sa"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2024/12/26/lab10/" title="Lab 10">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Lab 10</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/12/26/lab8/" title="Lab 8">
+                        <span class="hidden-mobile">Lab 8</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>&nbsp;&nbsp;Hexo</span></a> <i class="iconfont icon-notebook"></i> <a href="https://r0otsu.github.io" target="_blank" rel="nofollow noopener"><span>r0otsu</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="umami-site-pv-container" style="display: none">
+        总访问量 
+        <span id="umami-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="umami-site-uv-container" style="display: none">
+        总访客数 
+        <span id="umami-site-uv"></span>
+         人
+      </span>
+    
+    
+  
+
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="/js/umami-view.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
