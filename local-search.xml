@@ -4,6 +4,31 @@
   
   
   <entry>
+    <title>测试</title>
+    <link href="/2025/04/15/test/"/>
+    <url>/2025/04/15/test/</url>
+    
+    <content type="html"><![CDATA[<p>Hello World! </p>]]></content>
+    
+    
+    <categories>
+      
+      <category>测试</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>test</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>FeelSecure</title>
     <link href="/2025/04/11/feelsecure/"/>
     <url>/2025/04/11/feelsecure/</url>
