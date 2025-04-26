@@ -103,7 +103,7 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"r0otsu.github.io","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":false,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":"https://cloud.umami.is/script.js","website_id":"76c804ff-36c9-4795-8275-233c7d521ebe","domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+    var CONFIG = {"hostname":"r0otsu.github.io","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":"https://cloud.umami.is/script.js","website_id":"76c804ff-36c9-4795-8275-233c7d521ebe","domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
@@ -338,34 +338,34 @@
 <hr>
 <h3 id="实验步骤"><a href="#实验步骤" class="headerlink" title="实验步骤"></a>实验步骤</h3><h4 id="Task-1-Writing-Shellcode"><a href="#Task-1-Writing-Shellcode" class="headerlink" title="Task 1: Writing Shellcode"></a>Task 1: Writing Shellcode</h4><h5 id="Task-1-a-The-Entire-Process"><a href="#Task-1-a-The-Entire-Process" class="headerlink" title="Task 1.a: The Entire Process"></a>Task 1.a: <strong>The Entire Process</strong></h5><ol>
 <li><p>首先，安装 nasm，用于对汇编语言文件进行反汇编：</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226100036222.png"></p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226100036222.png" srcset="/img/loading.gif" lazyload></p>
 </li>
 <li><p>使用nasm反汇编<code>mysh.s</code>文件，得到<code>mysh.o</code>：</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226100043592.png"></p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226100043592.png" srcset="/img/loading.gif" lazyload></p>
 </li>
 <li><p>使用<code>ld</code>命令编译，得到可执行代码<code>mysh</code>：</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226100048782.png"></p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226100048782.png" srcset="/img/loading.gif" lazyload></p>
 </li>
 <li><p>运行<code>mysh</code>，可以得到一个shell：</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226100054804.png"></p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226100054804.png" srcset="/img/loading.gif" lazyload></p>
 </li>
 <li><p>输出这个shell的进程ID为<code>11300</code>：</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226100059997.png"></p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226100059997.png" srcset="/img/loading.gif" lazyload></p>
 </li>
 <li><p>若新开一个终端，可以发现进程ID是不同的，输出为<code>11303</code>：</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226100107665.png"></p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226100107665.png" srcset="/img/loading.gif" lazyload></p>
 </li>
 <li><p>使用<code>objdump</code>命令以英特尔模式生成<code>mysh.o</code>的汇编代码：</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226100112896.png"></p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226100112896.png" srcset="/img/loading.gif" lazyload></p>
 </li>
 <li><p>使用xxd命令打印出二进制文件，即可得到shellcode的机器码，以<code>31c0</code>开头，<code>cd80</code>结尾：</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226100119536.png"></p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226100119536.png" srcset="/img/loading.gif" lazyload></p>
 </li>
 <li><p>修改<code>convert.py</code>文件，将<code>ori_sh</code>变量中的值替换为上图中的机器码：</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226100126653.png"></p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226100126653.png" srcset="/img/loading.gif" lazyload></p>
 </li>
 <li><p>运行<code>convert.py</code>，得到shellcode中包含的16进制形式的机器码：</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226100133646.png"></p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226100133646.png" srcset="/img/loading.gif" lazyload></p>
 </li>
 </ol>
 <hr>
@@ -373,10 +373,10 @@
 <ol>
 <li><p>修改<code>mysh.s</code>如下，按照倒序对<code>/bin/bash</code>和4 bytes对齐进行入栈，入栈顺序为<code>h</code>, <code>/bas</code>, <code>/bin</code>；</p>
 <p>入栈为<code>h</code>时不够4 bytes，则对高位进行补0，但要求不能出现0，所以直接对<code>al</code>赋值：</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226100142133.png"></p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226100142133.png" srcset="/img/loading.gif" lazyload></p>
 </li>
 <li><p>得到SHELL环境变量为<code>/bin/bash</code>：</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226100148638.png"></p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226100148638.png" srcset="/img/loading.gif" lazyload></p>
 </li>
 </ol>
 <hr>
@@ -387,13 +387,13 @@
 <p>在栈中压入<code>-c</code>后，将栈顶指针地址移动到edx寄存器，即将该参数其地址存储在edx；</p>
 <p>在栈中压入<code>ls -la</code>后，将栈顶指针地址移动到ecx寄存器，即将该参数其地址存储在ecx；</p>
 <p>然后，再将<code>args</code>列表压入栈中，将栈顶指针esp移动到ecx寄存器作为系统调用参数二，完成args的传递；同时args[0]，即path的地址已经在ebx寄存器中，也已放在了ebx寄存器中，因此path的传递也完成了。</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226100156586.png"></p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226100156586.png" srcset="/img/loading.gif" lazyload></p>
 </li>
 <li><p>编译<code>mysh.s</code>，得到<code>mysh.o</code> 和<code>mysh</code>：</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226100204309.png"></p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226100204309.png" srcset="/img/loading.gif" lazyload></p>
 </li>
 <li><p>执行<code>./mysh</code>，得到溢出结果：</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226100210004.png"></p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226100210004.png" srcset="/img/loading.gif" lazyload></p>
 </li>
 </ol>
 <hr>
@@ -402,41 +402,41 @@
 <p>将execve系统调用的path设置为<code>/usr/bin/env</code>；</p>
 <p>args设置为<code>&#123; &quot;/usr/bin/env&quot;, NULL &#125;</code>；</p>
 <p>envs设置为<code>&#123; &quot;aaa=1234&quot;, &quot;bbb=5678&quot;, &quot;cccc=1234&quot;, NULL &#125;</code>：</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226100216855.png"></p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226100216855.png" srcset="/img/loading.gif" lazyload></p>
 </li>
 <li><p>编译<code>mysh.s</code>，得到<code>mysh.o</code> 和<code>mysh</code>：</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226100224003.png"></p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226100224003.png" srcset="/img/loading.gif" lazyload></p>
 </li>
 <li><p>执行<code>./mysh</code>，得到执行结果：</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226100232397.png"></p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226100232397.png" srcset="/img/loading.gif" lazyload></p>
 </li>
 </ol>
 <hr>
 <h4 id="Task-2-Using-Code-Segment"><a href="#Task-2-Using-Code-Segment" class="headerlink" title="Task 2: Using Code Segment"></a>Task 2: <strong>Using Code Segment</strong></h4><ol>
 <li><p>修改<code>mysh2.s</code>，通过获取所有必要数据结构的地址来完成汇编语言的编程：</p>
 <p>类似执行<code>/usr/bin/env*AAAABBBBa=11*b=22*CCCCDDDDEEEE</code></p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226100239826.png"></p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226100239826.png" srcset="/img/loading.gif" lazyload></p>
 </li>
 <li><p>编译得到<code>mysh2.o</code>文件，并使用 –omagic 选项得到<code>mysh2</code>可执行文件，这样代码段才是可写的：</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226100247447.png"></p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226100247447.png" srcset="/img/loading.gif" lazyload></p>
 </li>
 <li><p>执行<code>mysh2</code>文件：</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226100255372.png"></p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226100255372.png" srcset="/img/loading.gif" lazyload></p>
 </li>
 </ol>
 <hr>
 <h4 id="Task-3-Writing-64-bit-Shellcode"><a href="#Task-3-Writing-64-bit-Shellcode" class="headerlink" title="Task 3: Writing 64-bit Shellcode"></a>Task 3: <strong>Writing 64-bit Shellcode</strong></h4><ol>
 <li><p>查看<code>mysh_64.s</code>文件，与编写 32 位 shellcode 相似，但在64位架构中，调用系统调用通过<code>syscall</code>指令完成，系统调用的前三个参数分别存储在 rdx、rsi 和 rdi 寄存器中：</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226100302124.png"></p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226100302124.png" srcset="/img/loading.gif" lazyload></p>
 </li>
 <li><p>修改编译命令，得到<code>mysh_64.o</code>文件，以及<code>mysh_64</code>可执行文件：</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226100308721.png"></p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226100308721.png" srcset="/img/loading.gif" lazyload></p>
 </li>
 <li><p>运行<code>mysh_64</code>文件：</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226100315468.png"></p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226100315468.png" srcset="/img/loading.gif" lazyload></p>
 </li>
 <li><p>查看SHELL环境变量：</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226100320964.png"></p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226100320964.png" srcset="/img/loading.gif" lazyload></p>
 </li>
 </ol>
 <hr>
@@ -704,6 +704,10 @@
 
 
 
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
 
 
 
