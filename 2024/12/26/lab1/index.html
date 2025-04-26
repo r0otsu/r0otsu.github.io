@@ -87,7 +87,7 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"r0otsu.github.io","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":"https://cloud.umami.is/script.js","website_id":"76c804ff-36c9-4795-8275-233c7d521ebe","domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+    var CONFIG = {"hostname":"r0otsu.github.io","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":false,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":"https://cloud.umami.is/script.js","website_id":"76c804ff-36c9-4795-8275-233c7d521ebe","domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
@@ -331,41 +331,41 @@
 <hr>
 <h3 id="实验步骤"><a href="#实验步骤" class="headerlink" title="实验步骤"></a>实验步骤</h3><h4 id="收集子域名"><a href="#收集子域名" class="headerlink" title="收集子域名"></a>收集子域名</h4><ol>
 <li><p>运行Sub_Domin_Search.py文件，可以在bing搜索时得到qq的子域名；</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226090953460.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226090953460.png"></p>
 </li>
 <li><p>查看baidu搜索界面的源代码，发现子域名可以在带有result类的div标签下，查找mu标签找到；</p>
 </li>
 <li><p>而子域名的name可以在该div标签下的a标签中，读取a标签中的字符串即可得到子域名的名字；</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226091005356.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226091005356.png"></p>
 </li>
 <li><p>修改代码中的处理方式，读取子域名link与子域名中的name；</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226091012033.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226091012033.png"></p>
 </li>
 <li><p>修改accept和cookie：</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226091026573.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226091026573.png"></p>
 </li>
 <li><p>修改headers中的user-agent:</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226091035681.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226091035681.png"></p>
 </li>
 <li><p>将referer修改为’<a target="_blank" rel="noopener" href="https://wappass.baidu.com/'%EF%BC%9B">https://wappass.baidu.com/&#39;；</a></p>
 </li>
 <li><p>修改请求的url，图上标红的两个皆可（是一样的）：</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226091043604.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226091043604.png"></p>
 </li>
 <li><p>最终修改后的结果为：</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226091049214.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226091049214.png"></p>
 </li>
 </ol>
 <hr>
 <h4 id="扩展内容（添加网址名、状态码和真实子域名）"><a href="#扩展内容（添加网址名、状态码和真实子域名）" class="headerlink" title="扩展内容（添加网址名、状态码和真实子域名）"></a>扩展内容（添加网址名、状态码和真实子域名）</h4><ol>
 <li><p>如果返回的状态码是302，则说明重定向了，就使用requests库，读取该网址headers中的真实网址；</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226091054518.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226091054518.png"></p>
 </li>
 </ol>
 <hr>
 <h4 id="结果"><a href="#结果" class="headerlink" title="结果"></a>结果</h4><ol>
 <li><p>返回结果中有网址名、子域名url（可能重定向）、状态码和真实子域名；</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226091059794.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226091059794.png"></p>
 </li>
 </ol>
 <hr>
@@ -635,10 +635,6 @@
 
 
 
-
-  
-    <script  src="/js/img-lazyload.js" ></script>
-  
 
 
 

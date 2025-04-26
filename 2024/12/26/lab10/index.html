@@ -114,7 +114,7 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"r0otsu.github.io","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":"https://cloud.umami.is/script.js","website_id":"76c804ff-36c9-4795-8275-233c7d521ebe","domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+    var CONFIG = {"hostname":"r0otsu.github.io","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":false,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":"https://cloud.umami.is/script.js","website_id":"76c804ff-36c9-4795-8275-233c7d521ebe","domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
@@ -356,137 +356,137 @@
 <hr>
 <h3 id="实验步骤"><a href="#实验步骤" class="headerlink" title="实验步骤"></a>实验步骤</h3><h4 id="环境部署"><a href="#环境部署" class="headerlink" title="环境部署"></a>环境部署</h4><ol>
 <li><p>启动容器</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226104935934.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226104935934.png"></p>
 </li>
 <li><p>为了方便分辨容器，进入四个容器，并对主机名进行更改</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226104942394.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226104942394.png"></p>
 </li>
 </ol>
 <hr>
 <h4 id="Task-1-SYN-Flooding-Attack"><a href="#Task-1-SYN-Flooding-Attack" class="headerlink" title="Task 1: SYN Flooding Attack"></a>Task 1: SYN Flooding Attack</h4><h5 id="Task-1-1-Launching-the-Attack-Using-Python"><a href="#Task-1-1-Launching-the-Attack-Using-Python" class="headerlink" title="Task 1.1: Launching the Attack Using Python"></a>Task 1.1: Launching the Attack Using Python</h5><ol>
 <li><p>创建<code>synflood.py</code>，用于执行synflood攻击</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226104947690.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226104947690.png"></p>
 </li>
 <li><p>将<code>synflood.py</code>复制到attacker主机中</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226104952916.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226104952916.png"></p>
 </li>
 <li><p>此时victim主机的tcp连接为</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226104957855.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226104957855.png"></p>
 </li>
 <li><p>attacker主机运行<code>synflood.py</code>，此时查看victim主机的tcp连接</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226105003130.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226105003130.png"></p>
 <p><strong>被泛洪攻击了</strong></p>
 </li>
 <li><p>查看一下victim主机中处于<code>SYN_RECV</code>状态的TCP连接的数量，可以看出连接数量非常多</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226105008427.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226105008427.png"></p>
 </li>
 <li><p>此时 user1主机telnet 连接victim主机</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226105014008.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226105014008.png"></p>
 </li>
 </ol>
 <p><strong>完全不影响连接，很快就连接上了</strong></p>
 <hr>
 <h5 id="Task-1-2-Launch-the-Attack-Using-C"><a href="#Task-1-2-Launch-the-Attack-Using-C" class="headerlink" title="Task 1.2: Launch the Attack Using C"></a>Task 1.2: Launch the Attack Using C</h5><ol>
 <li><p>先清空一下</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226105021389.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226105021389.png"></p>
 </li>
 <li><p>进入<code>volumes</code>文件夹，编译<code>synflood.c</code>文件，将可执行文件<code>synflood</code>复制到攻击主机中</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226105026684.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226105026684.png"></p>
 </li>
 <li><p>在attacker主机中运行，victim主机中又出现了大量的tcp连接</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226105340481.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226105340481.png"></p>
 </li>
 <li><p>查看tcp连接的数量</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226105347222.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226105347222.png"></p>
 <p><strong>可以看到数量非常的多，泛洪攻击成功了！</strong></p>
 </li>
 <li><p>使用user1主机telnet连接victim主机</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226105353562.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226105353562.png"></p>
 </li>
 </ol>
 <p><strong>telnet连接失败！</strong></p>
 <hr>
 <h5 id="Task-1-3-Enable-the-SYN-Cookie-Countermeasure"><a href="#Task-1-3-Enable-the-SYN-Cookie-Countermeasure" class="headerlink" title="Task 1.3: Enable the SYN Cookie Countermeasure"></a>Task 1.3: Enable the SYN Cookie Countermeasure</h5><ol>
 <li><p>先清空一下</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226105401417.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226105401417.png"></p>
 </li>
 <li><p>在victim主机启动syncookies</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226105406094.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226105406094.png"></p>
 </li>
 <li><p>继续在attacker主机执行程序进行泛洪攻击，victim主机出现大量tcp连接</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226105412089.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226105412089.png"></p>
 </li>
 <li><p>但此时user1主机却可以telnet连接victim主机</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226105417467.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226105417467.png"></p>
 </li>
 </ol>
 <p><strong>telnet连接成功！</strong></p>
 <hr>
 <h4 id="Task-2-TCP-RST-Attacks-on-telnet-Connections"><a href="#Task-2-TCP-RST-Attacks-on-telnet-Connections" class="headerlink" title="Task 2: TCP RST Attacks on telnet Connections"></a>Task 2: TCP RST Attacks on telnet Connections</h4><ol>
 <li><p>先得到虚拟网卡的名称</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226105422595.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226105422595.png"></p>
 </li>
 <li><p>创建<code>tcprst.py</code>，用于执行TCP RST攻击</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226105427208.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226105427208.png"></p>
 </li>
 <li><p>复制到attacker主机中去</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226105432357.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226105432357.png"></p>
 </li>
 <li><p>attacker主机中执行程序</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226105437457.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226105437457.png"></p>
 </li>
 <li><p>user1尝试telnet连接attacker主机</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226105442260.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226105442260.png"></p>
 </li>
 </ol>
 <p><strong>连接被切断了，无法连接！</strong></p>
 <hr>
 <h4 id="Task-3-TCP-Session-Hijacking"><a href="#Task-3-TCP-Session-Hijacking" class="headerlink" title="Task 3: TCP Session Hijacking"></a>Task 3: TCP Session Hijacking</h4><ol>
 <li><p>创建<code>tcphijacking.py</code>，用于在客户机进行telnet连接时，执行tcp会话劫持，并向主机中写入一个文件</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226105447026.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226105447026.png"></p>
 </li>
 <li><p>复制到attacker主机中</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226105451742.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226105451742.png"></p>
 </li>
 <li><p>user1先进行telnet连接</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226105456607.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226105456607.png"></p>
 </li>
 <li><p>attacker主机执行<code>tcphijacking.py</code></p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226105501597.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226105501597.png"></p>
 </li>
 <li><p>attacker主机中返回了劫持的信息</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226105506498.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226105506498.png"></p>
 <p>此时user1主机卡住不动了</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226105512537.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226105512537.png"></p>
 </li>
 <li><p>victim主机中确实被写入了一个文件</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226105520338.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226105520338.png"></p>
 </li>
 </ol>
 <p><strong>TCP会话劫持成功！</strong></p>
 <hr>
 <h4 id="Task-4-Creating-Reverse-Shell-using-TCP-Session-Hijacking"><a href="#Task-4-Creating-Reverse-Shell-using-TCP-Session-Hijacking" class="headerlink" title="Task 4: Creating Reverse Shell using TCP Session Hijacking"></a>Task 4: Creating Reverse Shell using TCP Session Hijacking</h4><ol>
 <li><p>创建<code>reverseshell.py</code>文件，用于执行TCP会话劫持，并实现反弹shell</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226105526850.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226105526850.png"></p>
 </li>
 <li><p>将<code>reverseshell.py</code>文件复制到attacker主机中</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226105532097.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226105532097.png"></p>
 </li>
 <li><p>再新开一个终端，用于在attacker主机中进行监听</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226105537484.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226105537484.png"></p>
 </li>
 <li><p>user1主机telnet连接victim主机</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226105542839.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226105542839.png"></p>
 </li>
 <li><p>attacker主机执行<code>reverseshell.py</code>文件</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226105548545.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226105548545.png"></p>
 </li>
 <li><p>attacker主机的监听有所返回</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226105553436.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226105553436.png"></p>
 <p><strong>反弹shell成功了！</strong></p>
 </li>
 <li><p>测试一下</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226105558334.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226105558334.png"></p>
 </li>
 </ol>
 <p><strong>劫持TCP会话，并反弹shell成功！</strong></p>
@@ -755,10 +755,6 @@
 
 
 
-
-  
-    <script  src="/js/img-lazyload.js" ></script>
-  
 
 
 
