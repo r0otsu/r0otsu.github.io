@@ -107,7 +107,7 @@
 <meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20250418205145615.png">
 <meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20250418205555067.png">
 <meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20250418210023908.png">
-<meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20250418210555264.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/piclist/blob/master/20250425162906586.png">
 <meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20250418210806884.png">
 <meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20250418212118162.png">
 <meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20250418212608115.png">
@@ -138,7 +138,7 @@
 <meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20250418224138619.png">
 <meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20250418224340064.png">
 <meta property="article:published_time" content="2025-04-22T06:27:00.000Z">
-<meta property="article:modified_time" content="2025-04-26T16:47:54.790Z">
+<meta property="article:modified_time" content="2025-04-26T17:20:40.602Z">
 <meta property="article:author" content="r0otsu">
 <meta property="article:tag" content="Hexo-Setup">
 <meta name="twitter:card" content="summary_large_image">
@@ -363,7 +363,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          4.1k 字
+          4.3k 字
         
       </span>
     
@@ -374,7 +374,7 @@
         
         
         
-          35 分钟
+          37 分钟
         
       </span>
     
@@ -772,7 +772,7 @@
 
 <p><img src="https://gitee.com/r0otsu/piclist/raw/master/20250418210023908.png" srcset="/img/loading.gif" lazyload alt="image-20250418210023781"></p>
 <p>其中的<code>title</code> <code>subtitle</code> <code>language</code>能够体现在：</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20250418210555264.png" srcset="/img/loading.gif" lazyload alt="image-20250418210554962"></p>
+<p><img src="https://gitee.com/r0otsu/piclist/blob/master/20250425162906586.png" srcset="/img/loading.gif" lazyload></p>
 <p><code>author</code>能够体现在，页脚部分</p>
 <p><img src="https://gitee.com/r0otsu/piclist/raw/master/20250418210806884.png" srcset="/img/loading.gif" lazyload alt="image-20250418210806728"></p>
 <p><code>timezone</code>就是时区</p>
@@ -888,7 +888,7 @@
 <li><p>终端中启动服务器，输入</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">hexo s<br></code></pre></td></tr></table></figure>
 </li>
-<li><p>进入<a target="_blank" rel="noopener" href="http://localhost:4000/admin%EF%BC%8C%E5%88%99%E8%BF%9B%E5%85%A5%E4%BA%86%E7%AE%A1%E7%90%86%E5%91%98%E7%95%8C%E9%9D%A2%EF%BC%8C%E8%83%BD%E5%A4%9F%E7%9C%8B%E5%88%B0%E6%89%80%E6%9C%89%E7%9A%84%E5%8D%9A%E6%96%87">http://localhost:4000/admin，则进入了管理员界面，能够看到所有的博文</a></p>
+<li><p>进入<code>http://localhost:4000/admin</code>，则进入了管理员界面，能够看到所有的博文</p>
 <p><img src="https://gitee.com/r0otsu/piclist/raw/master/20250418221551956.png" srcset="/img/loading.gif" lazyload alt="image-20250418221551763"></p>
 </li>
 <li><p>点击<code>settings</code>-&gt;<code>setup authentification here</code></p>
@@ -906,7 +906,7 @@
 </li>
 </ol>
 <h4 id="测试hexo-admin"><a href="#测试hexo-admin" class="headerlink" title="测试hexo-admin"></a>测试hexo-admin</h4><ol>
-<li><p>重启一遍服务器：在终端<code>Ctrl+C</code>关闭后，重新输入<code>hexo s</code>启动服务器，再进入<a target="_blank" rel="noopener" href="http://localhost:4000/admin%EF%BC%8C%E9%9C%80%E8%A6%81%E8%BE%93%E5%85%A5%E7%94%A8%E6%88%B7%E5%90%8D%E5%92%8C%E5%AF%86%E7%A0%81%E4%BA%86">http://localhost:4000/admin，需要输入用户名和密码了</a></p>
+<li><p>重启一遍服务器：在终端<code>Ctrl+C</code>关闭后，重新输入<code>hexo s</code>启动服务器，再进入<code>http://localhost:4000/admin</code>，需要输入用户名和密码了</p>
 <p><img src="https://gitee.com/r0otsu/piclist/raw/master/20250418223143831.png" srcset="/img/loading.gif" lazyload alt="image-20250418223143652"></p>
 </li>
 <li><p>输入刚才设置的用户名和密码，点击<code>submit</code>，重新进入admin界面</p>
@@ -933,9 +933,25 @@
 <h3>写在最后</h3>
 
 <p>hexo中还有其他的一些插件，如<code>hexo-encrypt</code>可以对单篇博文进行加密；<code>gitalk</code>可以为博客添加评论或留言板功能等，在配置时，可能要考虑与自身主题是否适配的问题。</p>
-<p>还有一点，hexo在后期如果加入太多图片等静态资源，可能会导致加载速度过慢的问题，这时候可以将博文中的图片放入图床中进行加载，我用的是(<code>piclist</code>+<code>gitee</code>+<code>typora</code>)或者在源代码中就对图片进行压缩。</p>
+<p>还有一点，hexo在后期如果加入太多图片等静态资源，可能会导致加载速度过慢的问题，这时候可以将博文中的图片放入图床中进行加载，我用的是(<code>piclist</code> + <code>gitee</code> + <code>typora</code>)或者在源代码中就对图片进行压缩。</p>
 <p>最近朋友尝试配图床时，发现使用piclist不能成功，换回picgo就能够成功了（但是使用piclist一键导入picgo之后，piclist和picgo就都不能成功了），至今不知道为什么会这样。。只能老实配picgo了</p>
-<p>我之前从picgo换成piclist是因为我想要给图片加上水印，piclist的功能会更多<br>还是推荐先配置piclist，如果piclist不行再使用picgo，兼容性可能更好一些</p>
+<p>我之前从picgo换成piclist是因为我想要给图片加上水印，piclist的功能更多更全面。</p>
+<p>还是推荐先配置piclist，如果piclist不行再使用picgo，兼容更好。</p>
+<hr>
+<h4 id="发现了新-其实是旧的-的bug"><a href="#发现了新-其实是旧的-的bug" class="headerlink" title="发现了新(其实是旧的)的bug"></a>发现了新(其实是旧的)的bug</h4><p>由于gitee图床的防盗链问题，配置图床后引用图片可能无法再hexo中显示，具体体现在：</p>
+<blockquote>
+<p>通过引用的链接能够找到gitee库中的图片</p>
+<p>但在网络选项卡下，图片的状态码是<code>302</code>，并且<code>referer</code>显示为本地localhost或自身hexo博客的url</p>
+</blockquote>
+<p>这个情况下，就说明gitee发现了这个页面不是可行的页面，启用了防盗链。</p>
+<p>fluid主题下（别的主题可能也可以），可以直接在单篇博客的md文件中，在标头下方加上：</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs markdown"><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;referrer&quot;</span> <span class="hljs-attr">content</span>=<span class="hljs-string">&quot;no-referrer&quot;</span> /&gt;</span></span><br></code></pre></td></tr></table></figure>
+
+<p>更通用的，搜索<code>head.ejs</code>文件，适当的位置加上：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ejs">&lt;meta name=&quot;referrer&quot; content=&quot;no-referrer&quot; /&gt;<br></code></pre></td></tr></table></figure>
+
+<p>也有可能是<code>head.pug</code>文件，适当的位置加上：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs pug">meta(name=&quot;referrer&quot; content=&quot;no-referrer&quot;)<br></code></pre></td></tr></table></figure>
 
                 
               </div>
