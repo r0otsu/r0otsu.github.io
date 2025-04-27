@@ -117,7 +117,7 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"r0otsu.github.io","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":"https://cloud.umami.is/script.js","website_id":"76c804ff-36c9-4795-8275-233c7d521ebe","domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+    var CONFIG = {"hostname":"r0otsu.github.io","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":false,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":"https://cloud.umami.is/script.js","website_id":"76c804ff-36c9-4795-8275-233c7d521ebe","domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
@@ -365,156 +365,156 @@
 <hr>
 <h3 id="实验步骤"><a href="#实验步骤" class="headerlink" title="实验步骤"></a>实验步骤</h3><h4 id="相关库安装"><a href="#相关库安装" class="headerlink" title="相关库安装"></a>相关库安装</h4><ol>
 <li><p>一开始的时候没有IPy和scapy的库：</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226091350397.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226091350397.png"></p>
 </li>
 <li><p>安装ipy</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226091356379.png" srcset="/img/loading.gif" lazyload alt="image-20240929171343944"></p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226091356379.png" alt="image-20240929171343944"></p>
 </li>
 <li><p>运行后报错没有scapy的库</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226091402421.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226091402421.png"></p>
 </li>
 <li><p>安装scapy</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226091406580.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226091406580.png"></p>
 </li>
 <li><p><strong>安装nmap</strong></p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226091415966.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226091415966.png"></p>
 </li>
 </ol>
 <hr>
 <h4 id="使用ICMP协议进行主机扫描"><a href="#使用ICMP协议进行主机扫描" class="headerlink" title="使用ICMP协议进行主机扫描"></a>使用ICMP协议进行主机扫描</h4><ol>
 <li><p>在本机中查看虚拟机第一张网卡的广播地址：</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226091422513.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226091422513.png"></p>
 </li>
 <li><p>修改脚本中的dest变量：</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226091429939.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226091429939.png"></p>
 </li>
 <li><p>运行脚本，<strong>主机扫描成功</strong>！</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226091434988.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226091434988.png"></p>
 </li>
 </ol>
 <hr>
 <h4 id="对本机（关闭防火墙）的开放端口和非开放端口完成半连接（SYN、ACK、FIN、Null、Xmas）扫描，并与nmap扫描结果进行比较"><a href="#对本机（关闭防火墙）的开放端口和非开放端口完成半连接（SYN、ACK、FIN、Null、Xmas）扫描，并与nmap扫描结果进行比较" class="headerlink" title="对本机（关闭防火墙）的开放端口和非开放端口完成半连接（SYN、ACK、FIN、Null、Xmas）扫描，并与nmap扫描结果进行比较"></a>对本机（关闭防火墙）的开放端口和非开放端口完成半连接（SYN、ACK、FIN、Null、Xmas）扫描，并与nmap扫描结果进行比较</h4><ol>
 <li><p>首先使用nmap对本机进行扫描，可知本机开放的端口：</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226091443392.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226091443392.png"></p>
 </li>
 <li><p>查看本机的防火墙状态，可以发现已经是关闭的了：</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226091449083.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226091449083.png"></p>
 </li>
 </ol>
 <hr>
 <h5 id="开始实验！"><a href="#开始实验！" class="headerlink" title="开始实验！"></a>开始实验！</h5><h5 id="半连接SYN扫描"><a href="#半连接SYN扫描" class="headerlink" title="半连接SYN扫描"></a>半连接SYN扫描</h5><ol>
 <li><p>修改脚本如下，发送SYN包，若未接到任何应答包，则说明端口被关闭；若收到SYN-ACK包，则说明端口开放。</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226091454283.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226091454283.png"></p>
 </li>
 <li><p>对开放端口 <strong>80端口</strong> 扫描结果：</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226091500475.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226091500475.png"></p>
 </li>
 <li><p>对不开放端口 <strong>79端口</strong> 扫描结果：</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226091509397.png" srcset="/img/loading.gif" lazyload></p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226091514966.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226091509397.png"></p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226091514966.png"></p>
 </li>
 </ol>
 <hr>
 <h5 id="ACK扫描"><a href="#ACK扫描" class="headerlink" title="ACK扫描"></a>ACK扫描</h5><ol>
 <li><p><strong>ACK扫描并不能返回端口是否开放。</strong>修改脚本如下，发送ACK包，若未接到任何应答包，则说明端口被关闭；若收到RST包，则说明端口开放。</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226091521363.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226091521363.png"></p>
 </li>
 <li><p>对开放端口 <strong>80端口</strong> 进行扫描：</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226091527225.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226091527225.png"></p>
 </li>
 <li><p>对非开放端口 <strong>79端口</strong> 进行扫描：</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226091535131.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226091535131.png"></p>
 </li>
 </ol>
 <h5 id="FIN扫描"><a href="#FIN扫描" class="headerlink" title="FIN扫描"></a>FIN扫描</h5><ol>
 <li><p>修改脚本如下，发送FIN包，若未接到任何应答包，则说明端口开放；若收到RST-ACK包，则说明端口关闭。</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226091544212.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226091544212.png"></p>
 </li>
 <li><p>对开放端口 <strong>80端口</strong> 进行扫描：</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226091550374.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226091550374.png"></p>
 </li>
 <li><p>对非开放端口 <strong>79端口</strong> 进行扫描：</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226091555848.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226091555848.png"></p>
 </li>
 </ol>
 <hr>
 <h5 id="Null扫描"><a href="#Null扫描" class="headerlink" title="Null扫描"></a>Null扫描</h5><ol>
 <li><p>修改脚本如下，发送空包，若未接到任何应答包，则说明端口开放；若收到RST-ACK包，则说明端口关闭。</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226091602598.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226091602598.png"></p>
 </li>
 <li><p>对开放端口 <strong>80端口</strong> 进行扫描：</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226091608932.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226091608932.png"></p>
 </li>
 <li><p>对关闭端口 <strong>3000端口</strong> 进行扫描：</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226091614165.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226091614165.png"></p>
 </li>
 </ol>
 <hr>
 <h5 id="Xmas扫描"><a href="#Xmas扫描" class="headerlink" title="Xmas扫描"></a>Xmas扫描</h5><ol>
 <li><p>修改脚本如下，发送FIN PSH URG包，若未接到任何应答包，则说明端口开放；若收到RST-ACK包，则说明端口关闭。</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226091621015.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226091621015.png"></p>
 </li>
 <li><p>对开放端口 <strong>80端口</strong> 进行扫描：</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226091626515.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226091626515.png"></p>
 </li>
 <li><p>对关闭端口 3000端口 进行扫描：</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226091632686.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226091632686.png"></p>
 </li>
 </ol>
 <hr>
 <h4 id="对远程（有防火墙）主机的开放端口和非开放端口完成半连接（SYN、ACK、FIN、Null、Xmas）扫描"><a href="#对远程（有防火墙）主机的开放端口和非开放端口完成半连接（SYN、ACK、FIN、Null、Xmas）扫描" class="headerlink" title="对远程（有防火墙）主机的开放端口和非开放端口完成半连接（SYN、ACK、FIN、Null、Xmas）扫描"></a>对远程（有防火墙）主机的开放端口和非开放端口完成半连接（SYN、ACK、FIN、Null、Xmas）扫描</h4><ol>
 <li><p>开启物理机的防火墙：</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226091639696.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226091639696.png"></p>
 </li>
 <li><p>物理机的以太网ip：</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226091646396.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226091646396.png"></p>
 </li>
 <li><p>修改脚本中的dest变量：</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226091653032.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226091653032.png"></p>
 </li>
 </ol>
 <hr>
 <h5 id="半连接SYN扫描-1"><a href="#半连接SYN扫描-1" class="headerlink" title="半连接SYN扫描"></a>半连接SYN扫描</h5><ol>
-<li><p>对开放端口 <strong>80端口</strong> 进行扫描，能够扫描到主机，但是端口是不开放的：<img src="https://gitee.com/r0otsu/piclist/raw/master/20241226091659494.png" srcset="/img/loading.gif" lazyload></p>
+<li><p>对开放端口 <strong>80端口</strong> 进行扫描，能够扫描到主机，但是端口是不开放的：<img src="https://gitee.com/r0otsu/piclist/raw/master/20241226091659494.png"></p>
 </li>
 <li><p>对非开放端口 <strong>79端口</strong> 进行扫描：</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226091704902.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226091704902.png"></p>
 </li>
 </ol>
 <hr>
 <h5 id="ACK扫描-1"><a href="#ACK扫描-1" class="headerlink" title="ACK扫描"></a>ACK扫描</h5><ol>
 <li><p>对开放端口 <strong>80端口</strong> 进行扫描：</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226091711408.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226091711408.png"></p>
 </li>
 <li><p>对非开放端口 <strong>79端口</strong> 进行扫描：</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226091717405.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226091717405.png"></p>
 </li>
 </ol>
 <hr>
 <h5 id="FIN扫描-1"><a href="#FIN扫描-1" class="headerlink" title="FIN扫描"></a>FIN扫描</h5><ol>
 <li><p>对开放端口 <strong>80端口</strong> 进行扫描：</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226091724189.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226091724189.png"></p>
 </li>
 <li><p>对非开放端口 <strong>79端口</strong> 进行扫描：</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226091730871.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226091730871.png"></p>
 </li>
 </ol>
 <hr>
 <h5 id="Null扫描-1"><a href="#Null扫描-1" class="headerlink" title="Null扫描"></a>Null扫描</h5><ol>
 <li><p>对开放端口 <strong>80端口</strong> 进行扫描：</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226091737262.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226091737262.png"></p>
 </li>
 <li><p>对非开放端口 <strong>79端口</strong> 进行扫描：</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226091743022.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226091743022.png"></p>
 </li>
 </ol>
 <hr>
 <h5 id="Xmas扫描-1"><a href="#Xmas扫描-1" class="headerlink" title="Xmas扫描"></a>Xmas扫描</h5><ol>
 <li><p>对开放端口 <strong>80端口</strong> 进行扫描：</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226091749726.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226091749726.png"></p>
 </li>
 <li><p>对非开放端口 <strong>79端口</strong> 进行扫描：</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226091755490.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226091755490.png"></p>
 </li>
 </ol>
 <hr>
@@ -785,10 +785,6 @@
 
 
 
-
-  
-    <script  src="/js/img-lazyload.js" ></script>
-  
 
 
 

