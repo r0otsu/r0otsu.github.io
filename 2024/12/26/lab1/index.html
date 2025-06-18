@@ -262,7 +262,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          896 字
+          895 字
         
       </span>
     
@@ -316,62 +316,79 @@
               <div class="markdown-body">
                 
                 <meta name="referrer" content="no-referrer" />
-
-<h1 id="Lab-1-子域名收集实验"><a href="#Lab-1-子域名收集实验" class="headerlink" title="Lab 1-子域名收集实验"></a>Lab 1-子域名收集实验</h1><h3 id="实验环境"><a href="#实验环境" class="headerlink" title="实验环境"></a>实验环境</h3><ul>
+<h1>Lab 1-子域名收集实验</h1>
+<h3 id="实验环境">实验环境</h3>
+<ul>
 <li>Windows 11</li>
 <li>Python 3.7</li>
 </ul>
-<h3 id="实验内容"><a href="#实验内容" class="headerlink" title="实验内容"></a>实验内容</h3><!-- ​			本次实验主要考察大家的编程能力及子域名的信息收集方法，在文件夹 “Lab1_code” 提供了使用Bing搜索引擎的域名收集功能。请对该代码进行扩展，使其可支持百度搜索引擎的域名收集功能。需要实现如下功能：
+<h3 id="实验内容">实验内容</h3>
+<!-- ​			本次实验主要考察大家的编程能力及子域名的信息收集方法，在文件夹 “Lab1_code” 提供了使用Bing搜索引擎的域名收集功能。请对该代码进行扩展，使其可支持百度搜索引擎的域名收集功能。需要实现如下功能：
 
 1. 支持百度搜索引擎的域名提取，其中从百度搜索引擎提取的域名需为真实域名，而非百度的域名跳转链接；
 
 2. 可扩充其他功能，比如域名所在的标题等信息。 -->
-
-<p><del>删掉啦</del></p>
+<p><s>删掉啦</s></p>
 <hr>
-<h3 id="实验步骤"><a href="#实验步骤" class="headerlink" title="实验步骤"></a>实验步骤</h3><h4 id="收集子域名"><a href="#收集子域名" class="headerlink" title="收集子域名"></a>收集子域名</h4><ol>
-<li><p>运行Sub_Domin_Search.py文件，可以在bing搜索时得到qq的子域名；</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226090953460.png" srcset="/img/loading.gif" lazyload></p>
+<h3 id="实验步骤">实验步骤</h3>
+<h4 id="收集子域名">收集子域名</h4>
+<ol>
+<li>
+<p>运行Sub_Domin_Search.py文件，可以在bing搜索时得到qq的子域名；</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226090953460.png" srcset="/img/loading.gif" lazyload alt=""></p>
 </li>
-<li><p>查看baidu搜索界面的源代码，发现子域名可以在带有result类的div标签下，查找mu标签找到；</p>
+<li>
+<p>查看baidu搜索界面的源代码，发现子域名可以在带有result类的div标签下，查找mu标签找到；</p>
 </li>
-<li><p>而子域名的name可以在该div标签下的a标签中，读取a标签中的字符串即可得到子域名的名字；</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226091005356.png" srcset="/img/loading.gif" lazyload></p>
+<li>
+<p>而子域名的name可以在该div标签下的a标签中，读取a标签中的字符串即可得到子域名的名字；</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226091005356.png" srcset="/img/loading.gif" lazyload alt=""></p>
 </li>
-<li><p>修改代码中的处理方式，读取子域名link与子域名中的name；</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226091012033.png" srcset="/img/loading.gif" lazyload></p>
+<li>
+<p>修改代码中的处理方式，读取子域名link与子域名中的name；</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226091012033.png" srcset="/img/loading.gif" lazyload alt=""></p>
 </li>
-<li><p>修改accept和cookie：</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226091026573.png" srcset="/img/loading.gif" lazyload></p>
+<li>
+<p>修改accept和cookie：</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226091026573.png" srcset="/img/loading.gif" lazyload alt=""></p>
 </li>
-<li><p>修改headers中的user-agent:</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226091035681.png" srcset="/img/loading.gif" lazyload></p>
+<li>
+<p>修改headers中的user-agent:</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226091035681.png" srcset="/img/loading.gif" lazyload alt=""></p>
 </li>
-<li><p>将referer修改为’<a target="_blank" rel="noopener" href="https://wappass.baidu.com/'%EF%BC%9B">https://wappass.baidu.com/&#39;；</a></p>
+<li>
+<p>将referer修改为’<a target="_blank" rel="noopener" href="https://wappass.baidu.com/">https://wappass.baidu.com/</a>'；</p>
 </li>
-<li><p>修改请求的url，图上标红的两个皆可（是一样的）：</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226091043604.png" srcset="/img/loading.gif" lazyload></p>
+<li>
+<p>修改请求的url，图上标红的两个皆可（是一样的）：</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226091043604.png" srcset="/img/loading.gif" lazyload alt=""></p>
 </li>
-<li><p>最终修改后的结果为：</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226091049214.png" srcset="/img/loading.gif" lazyload></p>
+<li>
+<p>最终修改后的结果为：</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226091049214.png" srcset="/img/loading.gif" lazyload alt=""></p>
 </li>
 </ol>
 <hr>
-<h4 id="扩展内容（添加网址名、状态码和真实子域名）"><a href="#扩展内容（添加网址名、状态码和真实子域名）" class="headerlink" title="扩展内容（添加网址名、状态码和真实子域名）"></a>扩展内容（添加网址名、状态码和真实子域名）</h4><ol>
-<li><p>如果返回的状态码是302，则说明重定向了，就使用requests库，读取该网址headers中的真实网址；</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226091054518.png" srcset="/img/loading.gif" lazyload></p>
+<h4 id="扩展内容（添加网址名、状态码和真实子域名）">扩展内容（添加网址名、状态码和真实子域名）</h4>
+<ol>
+<li>
+<p>如果返回的状态码是302，则说明重定向了，就使用requests库，读取该网址headers中的真实网址；</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226091054518.png" srcset="/img/loading.gif" lazyload alt=""></p>
 </li>
 </ol>
 <hr>
-<h4 id="结果"><a href="#结果" class="headerlink" title="结果"></a>结果</h4><ol>
-<li><p>返回结果中有网址名、子域名url（可能重定向）、状态码和真实子域名；</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226091059794.png" srcset="/img/loading.gif" lazyload></p>
+<h4 id="结果">结果</h4>
+<ol>
+<li>
+<p>返回结果中有网址名、子域名url（可能重定向）、状态码和真实子域名；</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226091059794.png" srcset="/img/loading.gif" lazyload alt=""></p>
 </li>
 </ol>
 <hr>
-<h4 id="源码"><a href="#源码" class="headerlink" title="源码"></a>源码</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 本次实验内容主要为：收集qq.com域名下的子域名，</span><br><span class="hljs-comment"># 收集方法为使用baidu搜索引擎，采用爬手段，爬取搜索到的域名</span><br><span class="hljs-comment"># baidu搜索引擎搜索子域名的语法为：domain:qq.com</span><br><span class="hljs-keyword">import</span> requests  <span class="hljs-comment"># 用于请求网页</span><br><span class="hljs-keyword">from</span> bs4 <span class="hljs-keyword">import</span> BeautifulSoup  <span class="hljs-comment"># 用于处理获取的到的网页源码数据</span><br><span class="hljs-keyword">from</span> urllib.parse <span class="hljs-keyword">import</span> urlparse  <span class="hljs-comment"># 用于处理url</span><br><span class="hljs-keyword">import</span> re<br><br><br><span class="hljs-comment"># 定义一个采用baidu搜索的方法</span><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">baidu_search</span>():<br>    Subdomain = []  <span class="hljs-comment"># 定义一个空列表用于存储收集到的子域名</span><br>    <span class="hljs-comment"># 定义请求头，绕过反爬机制</span><br>    headers = &#123;<br>        <span class="hljs-string">&#x27;User-Agent&#x27;</span>: <span class="hljs-string">&#x27;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.131 Safari/537.36 SLBrowser/8.0.1.4031 SLBChan/103&#x27;</span>,<br>        <span class="hljs-string">&#x27;Accept&#x27;</span>: <span class="hljs-string">&#x27;text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9&#x27;</span>,<br>        <span class="hljs-string">&#x27;referer&#x27;</span>: <span class="hljs-string">&#x27;https://wappass.baidu.com/&#x27;</span>,<br>        <span class="hljs-string">&#x27;Cookie&#x27;</span>: <span class="hljs-string">&#x27; 更改为cookie &#x27;</span><br>    &#125;<br>    <span class="hljs-comment"># 定义请求url</span><br>    <span class="hljs-comment"># 搜索domain:qq.com后，得到的url</span><br>    url = <span class="hljs-string">&#x27;https://www.baidu.com/s?ie=utf-8&amp;f=3&amp;rsv_bp=1&amp;rsv_idx=2&amp;tn=48021271_74_hao_pg&amp;wd=domain%3Aqq.com&amp;rsv_spt=1&amp;oq=site%2526lt%253B%2526lt%253BAqq.com&amp;rsv_pq=d10645db019102b5&amp;rsv_t=7550XiQnu5rij1O%2Bj%2F07K20DTPK9MBXAaBDNF621tU1uSsI73hDN7jIoGlNCYVQCw6uadikYZaU7&amp;rqlang=cn&amp;rsv_enter=1&amp;rsv_dl=th_1&amp;rsv_sug3=2&amp;rsv_sug1=1&amp;rsv_sug7=001&amp;rsv_sug2=0&amp;rsv_btype=t&amp;rsp=1&amp;rsv_sug9=es_0_1&amp;inputT=2967&amp;rsv_sug4=3014&amp;rsv_sug=4&#x27;</span><br>    <span class="hljs-comment"># 访问url，获取网页源码</span><br>    <span class="hljs-comment"># 找到隐藏的真实域名</span><br>    <span class="hljs-comment"># 不允许重定向</span><br><br>    resp = requests.get(url, headers=headers)<br>    soup = BeautifulSoup(resp.content,<br>                         <span class="hljs-string">&#x27;html.parser&#x27;</span>)  <span class="hljs-comment"># 创建一个BeautifulSoup对象，第一个参数是网页源码，第二个参数是Beautiful Soup 使用的 HTML 解析器，</span><br>    job_bt = soup.find_all(<span class="hljs-string">&#x27;div&#x27;</span>, class_=<span class="hljs-string">&quot;result&quot;</span>)  <span class="hljs-comment"># find_all()查找源码中所有&lt;h2&gt;标签的内容</span><br>    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> job_bt:<br>        <span class="hljs-comment"># print(div)</span><br>        link = i.get(<span class="hljs-string">&#x27;mu&#x27;</span>)<br>        name = i.a.string<br><br>        <span class="hljs-comment"># 循环获取‘href’的内容</span><br>        <span class="hljs-comment"># urlparse是一个解析url的工具，scheme获取url的协议名，netloc获取url的网络位置</span><br>        domain = <span class="hljs-built_in">str</span>(urlparse(link).scheme + <span class="hljs-string">&quot;://&quot;</span> + urlparse(link).netloc)<br>        <span class="hljs-keyword">if</span> domain <span class="hljs-keyword">in</span> Subdomain:  <span class="hljs-comment"># 如果解析后的domain存在于Subdomain中则跳过，否则将domain存入子域名表中</span><br>            <span class="hljs-keyword">pass</span><br>        <span class="hljs-keyword">else</span>:<br>            <span class="hljs-built_in">print</span>(name)<br>            Subdomain.append(domain)<br>            <span class="hljs-built_in">print</span>(domain)<br>            r = requests.get(domain, headers=headers, allow_redirects=<span class="hljs-literal">False</span>)<br>            <span class="hljs-built_in">print</span>(r.status_code)<br>            <span class="hljs-comment"># real = r.content.replace(&#x27;\r&#x27;, &#x27;&#x27;).replace(&#x27;In&#x27;,&#x27;&#x27;).replace(&#x27;\t&#x27;, &#x27;&#x27;)</span><br>            <span class="hljs-keyword">if</span> r.status_code == <span class="hljs-number">302</span>:  <span class="hljs-comment"># 如果返回302，就从响应头获取真实地址</span><br>                real_url = r.headers.get(<span class="hljs-string">&#x27;Location&#x27;</span>)<br>            <span class="hljs-keyword">else</span>:  <span class="hljs-comment"># 否则从返回内容中用正则表达式提取出来真实地址</span><br>                <span class="hljs-comment"># real_url = re.findall(&quot;href=&#x27;(.*?)&#x27;&quot;, r.text)[0]</span><br>                <span class="hljs-keyword">try</span>:<br>                    real_url = re.findall(<span class="hljs-string">&quot;URL=&#x27;(.*?)&#x27;&quot;</span>, r.text)[<span class="hljs-number">0</span>]<br>                <span class="hljs-keyword">except</span> IndexError:<br>                    real_url = <span class="hljs-string">&#x27;同上&#x27;</span><br>            <span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;real_url is:&#x27;</span>, real_url)<br>        <span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;&#x27;</span>)<br><br>baidu_search()<br></code></pre></td></tr></table></figure>
-
-<h3 id="实验总结"><a href="#实验总结" class="headerlink" title="实验总结"></a>实验总结</h3><p><del>删掉啦</del></p>
+<h4 id="源码">源码</h4>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 本次实验内容主要为：收集qq.com域名下的子域名，</span><br><span class="hljs-comment"># 收集方法为使用baidu搜索引擎，采用爬手段，爬取搜索到的域名</span><br><span class="hljs-comment"># baidu搜索引擎搜索子域名的语法为：domain:qq.com</span><br><span class="hljs-keyword">import</span> requests  <span class="hljs-comment"># 用于请求网页</span><br><span class="hljs-keyword">from</span> bs4 <span class="hljs-keyword">import</span> BeautifulSoup  <span class="hljs-comment"># 用于处理获取的到的网页源码数据</span><br><span class="hljs-keyword">from</span> urllib.parse <span class="hljs-keyword">import</span> urlparse  <span class="hljs-comment"># 用于处理url</span><br><span class="hljs-keyword">import</span> re<br><br><br><span class="hljs-comment"># 定义一个采用baidu搜索的方法</span><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">baidu_search</span>():<br>    Subdomain = []  <span class="hljs-comment"># 定义一个空列表用于存储收集到的子域名</span><br>    <span class="hljs-comment"># 定义请求头，绕过反爬机制</span><br>    headers = &#123;<br>        <span class="hljs-string">&#x27;User-Agent&#x27;</span>: <span class="hljs-string">&#x27;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.131 Safari/537.36 SLBrowser/8.0.1.4031 SLBChan/103&#x27;</span>,<br>        <span class="hljs-string">&#x27;Accept&#x27;</span>: <span class="hljs-string">&#x27;text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9&#x27;</span>,<br>        <span class="hljs-string">&#x27;referer&#x27;</span>: <span class="hljs-string">&#x27;https://wappass.baidu.com/&#x27;</span>,<br>        <span class="hljs-string">&#x27;Cookie&#x27;</span>: <span class="hljs-string">&#x27; 更改为cookie &#x27;</span><br>    &#125;<br>    <span class="hljs-comment"># 定义请求url</span><br>    <span class="hljs-comment"># 搜索domain:qq.com后，得到的url</span><br>    url = <span class="hljs-string">&#x27;https://www.baidu.com/s?ie=utf-8&amp;f=3&amp;rsv_bp=1&amp;rsv_idx=2&amp;tn=48021271_74_hao_pg&amp;wd=domain%3Aqq.com&amp;rsv_spt=1&amp;oq=site%2526lt%253B%2526lt%253BAqq.com&amp;rsv_pq=d10645db019102b5&amp;rsv_t=7550XiQnu5rij1O%2Bj%2F07K20DTPK9MBXAaBDNF621tU1uSsI73hDN7jIoGlNCYVQCw6uadikYZaU7&amp;rqlang=cn&amp;rsv_enter=1&amp;rsv_dl=th_1&amp;rsv_sug3=2&amp;rsv_sug1=1&amp;rsv_sug7=001&amp;rsv_sug2=0&amp;rsv_btype=t&amp;rsp=1&amp;rsv_sug9=es_0_1&amp;inputT=2967&amp;rsv_sug4=3014&amp;rsv_sug=4&#x27;</span><br>    <span class="hljs-comment"># 访问url，获取网页源码</span><br>    <span class="hljs-comment"># 找到隐藏的真实域名</span><br>    <span class="hljs-comment"># 不允许重定向</span><br><br>    resp = requests.get(url, headers=headers)<br>    soup = BeautifulSoup(resp.content,<br>                         <span class="hljs-string">&#x27;html.parser&#x27;</span>)  <span class="hljs-comment"># 创建一个BeautifulSoup对象，第一个参数是网页源码，第二个参数是Beautiful Soup 使用的 HTML 解析器，</span><br>    job_bt = soup.find_all(<span class="hljs-string">&#x27;div&#x27;</span>, class_=<span class="hljs-string">&quot;result&quot;</span>)  <span class="hljs-comment"># find_all()查找源码中所有&lt;h2&gt;标签的内容</span><br>    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> job_bt:<br>        <span class="hljs-comment"># print(div)</span><br>        link = i.get(<span class="hljs-string">&#x27;mu&#x27;</span>)<br>        name = i.a.string<br><br>        <span class="hljs-comment"># 循环获取‘href’的内容</span><br>        <span class="hljs-comment"># urlparse是一个解析url的工具，scheme获取url的协议名，netloc获取url的网络位置</span><br>        domain = <span class="hljs-built_in">str</span>(urlparse(link).scheme + <span class="hljs-string">&quot;://&quot;</span> + urlparse(link).netloc)<br>        <span class="hljs-keyword">if</span> domain <span class="hljs-keyword">in</span> Subdomain:  <span class="hljs-comment"># 如果解析后的domain存在于Subdomain中则跳过，否则将domain存入子域名表中</span><br>            <span class="hljs-keyword">pass</span><br>        <span class="hljs-keyword">else</span>:<br>            <span class="hljs-built_in">print</span>(name)<br>            Subdomain.append(domain)<br>            <span class="hljs-built_in">print</span>(domain)<br>            r = requests.get(domain, headers=headers, allow_redirects=<span class="hljs-literal">False</span>)<br>            <span class="hljs-built_in">print</span>(r.status_code)<br>            <span class="hljs-comment"># real = r.content.replace(&#x27;\r&#x27;, &#x27;&#x27;).replace(&#x27;In&#x27;,&#x27;&#x27;).replace(&#x27;\t&#x27;, &#x27;&#x27;)</span><br>            <span class="hljs-keyword">if</span> r.status_code == <span class="hljs-number">302</span>:  <span class="hljs-comment"># 如果返回302，就从响应头获取真实地址</span><br>                real_url = r.headers.get(<span class="hljs-string">&#x27;Location&#x27;</span>)<br>            <span class="hljs-keyword">else</span>:  <span class="hljs-comment"># 否则从返回内容中用正则表达式提取出来真实地址</span><br>                <span class="hljs-comment"># real_url = re.findall(&quot;href=&#x27;(.*?)&#x27;&quot;, r.text)[0]</span><br>                <span class="hljs-keyword">try</span>:<br>                    real_url = re.findall(<span class="hljs-string">&quot;URL=&#x27;(.*?)&#x27;&quot;</span>, r.text)[<span class="hljs-number">0</span>]<br>                <span class="hljs-keyword">except</span> IndexError:<br>                    real_url = <span class="hljs-string">&#x27;同上&#x27;</span><br>            <span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;real_url is:&#x27;</span>, real_url)<br>        <span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;&#x27;</span>)<br><br>baidu_search()<br></code></pre></td></tr></table></figure>
+<h3 id="实验总结">实验总结</h3>
+<p><s>删掉啦</s></p>
 
                 
               </div>
