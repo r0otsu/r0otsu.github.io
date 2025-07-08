@@ -20,15 +20,15 @@
   <meta name="author" content="r0otsu">
   <meta name="keywords" content="">
   
-    <meta name="description" content="Day0">
+    <meta name="description" content=".">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Day0">
 <meta property="og:url" content="https://r0otsu.github.io/2025/07/07/Day0/index.html">
 <meta property="og:site_name" content="r0otsu&#39;s blog">
-<meta property="og:description" content="Day0">
+<meta property="og:description" content=".">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2025-07-07T13:19:00.000Z">
-<meta property="article:modified_time" content="2025-07-07T14:49:53.144Z">
+<meta property="article:modified_time" content="2025-07-08T12:06:44.347Z">
 <meta property="article:author" content="r0otsu">
 <meta property="article:tag" content="LeetCode">
 <meta name="twitter:card" content="summary_large_image">
@@ -338,9 +338,7 @@
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">mySqrt</span><span class="hljs-params">(<span class="hljs-type">int</span> x)</span> </span>&#123;<br>        <span class="hljs-type">int</span> left = <span class="hljs-number">2</span>;<br>        <span class="hljs-type">int</span> right = x / <span class="hljs-number">2</span>;<br>        <span class="hljs-type">int</span> res = <span class="hljs-number">0</span>;<br>        <span class="hljs-keyword">if</span>(x==<span class="hljs-number">0</span>)<br>        &#123;<br>            <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>        &#125;<br>        <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(x&lt;<span class="hljs-number">4</span>)<br>        &#123;<br>            <span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;<br>        &#125;<br><br>        <span class="hljs-keyword">while</span> (left &lt;= right)<br>        &#123;<br>            <span class="hljs-type">int</span> middle = (left + right) / <span class="hljs-number">2</span>;<br>            <span class="hljs-keyword">if</span> ((<span class="hljs-type">long</span> <span class="hljs-type">long</span>)middle * middle &lt;= x)<br>            &#123;<br>                res = middle;<br>                left = middle + <span class="hljs-number">1</span>;<br>            &#125;<br>            <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> ((<span class="hljs-type">long</span> <span class="hljs-type">long</span>)middle * middle &gt; x)<br>            &#123;<br>                right = middle<span class="hljs-number">-1</span>;<br>            &#125;<br>        &#125;<br>        <span class="hljs-keyword">return</span> res;<br>    &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
 <p>有一个简单的方法，看到被震惊了，有点投机取巧的意思。</p>
 <p>根据这个公式：</p>
-<p>$$<br>
-\sqrt{x}=e^{\frac{1}{2}\ln x}<br>
-$$</p>
+<p>$$\sqrt{x}=e^{\frac{1}{2}\ln x}$$</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">mySqrt</span><span class="hljs-params">(<span class="hljs-type">int</span> x)</span> </span>&#123;<br>        <span class="hljs-keyword">if</span>(x==<span class="hljs-number">0</span>)<br>        &#123;<br>            <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>        &#125;<br>        <span class="hljs-keyword">else</span><br>        &#123;<br>            <span class="hljs-type">int</span> xx = <span class="hljs-built_in">exp</span>(<span class="hljs-number">0.5</span>*<span class="hljs-built_in">log</span>(x));<br>            <span class="hljs-type">long</span> <span class="hljs-type">long</span> res = (<span class="hljs-type">long</span> <span class="hljs-type">long</span>)(xx<span class="hljs-number">+1</span>)*(xx<span class="hljs-number">+1</span>);<br>            <span class="hljs-keyword">if</span>(res &lt;= x)<br>            &#123;<br>                <span class="hljs-keyword">return</span> xx<span class="hljs-number">+1</span>;<br>            &#125;<br>            <span class="hljs-keyword">else</span><br>                <span class="hljs-keyword">return</span> xx;<br>        &#125;<br>        <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>    &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
 <hr>
 <h4 id="367-有效的完全平方数"><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/valid-perfect-square/">367. 有效的完全平方数</a></h4>
@@ -478,6 +476,12 @@ $$</p>
                 <div class="post-prevnext my-3">
                   <article class="post-prev col-6">
                     
+                    
+                      <a href="/2025/07/08/Day1/" title="Day1">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Day1</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
                     
                   </article>
                   <article class="post-next col-6">
