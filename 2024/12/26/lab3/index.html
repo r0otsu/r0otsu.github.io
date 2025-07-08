@@ -350,13 +350,11 @@
               <div class="markdown-body">
                 
                 <meta name="referrer" content="no-referrer" />
-<h1>Lab 3-MD5碰撞实验</h1>
-<h3 id="实验环境">实验环境</h3>
-<ul>
+
+<h1 id="Lab-3-MD5碰撞实验"><a href="#Lab-3-MD5碰撞实验" class="headerlink" title="Lab 3-MD5碰撞实验"></a>Lab 3-MD5碰撞实验</h1><h3 id="实验环境"><a href="#实验环境" class="headerlink" title="实验环境"></a>实验环境</h3><ul>
 <li>Ubuntu 20.04</li>
 </ul>
-<h3 id="实验内容">实验内容</h3>
-<p><s>删掉啦</s></p>
+<h3 id="实验内容"><a href="#实验内容" class="headerlink" title="实验内容"></a>实验内容</h3><p><del>删掉啦</del></p>
 <!-- 本次实验主要是加深大家对MD5碰撞及其原理的理解，使用SEED实验环境中的工具及编程语言，完成以下任务：
 
 a) 使用md5collgen生成两个MD5值相同的文件，并利用bless十六进制编辑器查看输出的两个文件，描述你观察到的情况；
@@ -366,218 +364,180 @@ b) 参考Lab3_task2.c的代码，生成两个MD5值相同但输出不同的两�
 c) 参考Lab3_task3.c的代码，生成两个MD5值相同但代码行为不相同的可执行文件。
 
 d) 回答问题：通过上面的实验，请解释为什么可以做到不同行为的两个可执行文件具有相同的MD5值？ -->
+
 <hr>
-<h3 id="实验步骤">实验步骤</h3>
-<h4 id="环境部署">环境部署</h4>
-<ol>
-<li>
-<h6 id="gcc-11配置">gcc-11配置</h6>
-<p>添加<code>gcc-11</code> <code>g++-11</code>的源：</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226091910948.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<h3 id="实验步骤"><a href="#实验步骤" class="headerlink" title="实验步骤"></a>实验步骤</h3><h4 id="环境部署"><a href="#环境部署" class="headerlink" title="环境部署"></a>环境部署</h4><ol>
+<li><h6 id="gcc-11配置"><a href="#gcc-11配置" class="headerlink" title="gcc-11配置"></a>gcc-11配置</h6><p>添加<code>gcc-11</code> <code>g++-11</code>的源：</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226091910948.png" srcset="/img/loading.gif" lazyload></p>
 <p>更新一下：</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226091916673.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226091916673.png" srcset="/img/loading.gif" lazyload></p>
 <p>安装<code>gcc-11</code>和<code>g++-11</code>：</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226091921715.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226091921715.png" srcset="/img/loading.gif" lazyload></p>
 <p>进入<code>/usr/bin/gcc*</code>文件，发现已经有<code>gcc-11</code>的配置文件了：</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226091927747.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226091927747.png" srcset="/img/loading.gif" lazyload></p>
 <p>但是此时<code>gcc-11</code>并不是候选项，所以要添加<code>gcc-11</code>的候选项，并设置<code>gcc-11</code>为<code>50</code>优先级：</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226091933543.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226091933543.png" srcset="/img/loading.gif" lazyload></p>
 <p>查看一下系统中<code>gcc</code>的候选项优先级：</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226091940808.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226091940808.png" srcset="/img/loading.gif" lazyload></p>
 <p>修改<code>gcc-11</code>的优先级后，系统将默认以<code>gcc-11</code>进行编译：</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226091945697.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226091945697.png" srcset="/img/loading.gif" lazyload></p>
 </li>
 </ol>
 <hr>
 <ol start="2">
-<li>
-<h6 id="g-11配置">g++ 11配置</h6>
-<p>一开始的时候系统里<code>g++</code>显示没有候选项，但是输入<code>g++ -V</code>是可以找到文件的：</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226091952664.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<li><h6 id="g-11配置"><a href="#g-11配置" class="headerlink" title="g++ 11配置"></a>g++ 11配置</h6><p>一开始的时候系统里<code>g++</code>显示没有候选项，但是输入<code>g++ -V</code>是可以找到文件的：</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226091952664.png" srcset="/img/loading.gif" lazyload></p>
 <p><code>g++ -v</code>可以找到，但是是9.4版本，需要升级：</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226092000392.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226092000392.png" srcset="/img/loading.gif" lazyload></p>
 <p>增加<code>g++-11</code>为候选项，并设置<code>g++-11</code>的优先级为<code>50</code>：</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226092006186.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226092006186.png" srcset="/img/loading.gif" lazyload></p>
 </li>
 </ol>
 <hr>
 <ol start="3">
-<li>
-<h6 id="在-usr-bin目录下克隆md5collgen：">在<code>/usr/bin</code>目录下克隆<code>md5collgen</code>：</h6>
-<h6 id=""><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226092012196.png" srcset="/img/loading.gif" lazyload alt=""></h6>
-</li>
+<li><h6 id="在-usr-bin目录下克隆md5collgen："><a href="#在-usr-bin目录下克隆md5collgen：" class="headerlink" title="在/usr/bin目录下克隆md5collgen："></a>在<code>/usr/bin</code>目录下克隆<code>md5collgen</code>：</h6><h6 id=""><a href="#" class="headerlink" title=""></a><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226092012196.png" srcset="/img/loading.gif" lazyload></h6></li>
 </ol>
 <hr>
 <ol start="4">
-<li>
-<h6 id="进行makefile">进行makefile</h6>
-<p>进入<code>md5collgen</code>文件夹，发现有<code>makefile</code>文件：</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226092016724.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<li><h6 id="进行makefile"><a href="#进行makefile" class="headerlink" title="进行makefile"></a>进行makefile</h6><p>进入<code>md5collgen</code>文件夹，发现有<code>makefile</code>文件：</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226092016724.png" srcset="/img/loading.gif" lazyload></p>
 <p>如果<code>g++-11</code>和<code>gcc-11</code>都已经设置为默认，<code>make</code>就会成功了：</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226092022126.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226092022126.png" srcset="/img/loading.gif" lazyload></p>
 <p><code>ls</code> 一下，发现有<code>md5collgen</code>文件，即<strong>成功安装</strong>！</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226092028842.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226092028842.png" srcset="/img/loading.gif" lazyload></p>
 </li>
 </ol>
 <hr>
-<h4 id="a-task-1：两个不同的文件，但md5码相同：">a) task 1：两个不同的文件，但md5码相同：</h4>
-<ol>
-<li>
-<p>创建一个<code>prefix.txt</code>文件，其中的内容为<code>Message prefix</code>：</p>
+<h4 id="a-task-1：两个不同的文件，但md5码相同："><a href="#a-task-1：两个不同的文件，但md5码相同：" class="headerlink" title="a) task 1：两个不同的文件，但md5码相同："></a>a) task 1：两个不同的文件，但md5码相同：</h4><ol>
+<li><p>创建一个<code>prefix.txt</code>文件，其中的内容为<code>Message prefix</code>：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">echo &quot;Message prefix&quot; &gt; prefix.txt<br></code></pre></td></tr></table></figure>
 </li>
-<li>
-<p>使用<code>md5collgen</code>工具，生成<code>prefix.txt</code>的两个子文件<code>prefix_msg1.txt</code> <code>prefix_msg2.txt</code>，并且这两个文件的<strong>md5码</strong>相同：</p>
+<li><p>使用<code>md5collgen</code>工具，生成<code>prefix.txt</code>的两个子文件<code>prefix_msg1.txt</code> <code>prefix_msg2.txt</code>，并且这两个文件的<strong>md5码</strong>相同：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">./md5collgen -p prefix.txt -o prefix_msg1.txt prefix_msg2.txt<br></code></pre></td></tr></table></figure>
 </li>
-<li>
-<p>查看<code>prefix_msg1.txt</code> <code>prefix_msg2.txt</code>两个文件的md5码，发现一致：</p>
+<li><p>查看<code>prefix_msg1.txt</code> <code>prefix_msg2.txt</code>两个文件的md5码，发现一致：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">md5sum prefix_msg1.txt<br></code></pre></td></tr></table></figure>
+
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">md5sum prefix_msg2.txt<br></code></pre></td></tr></table></figure>
 </li>
-<li>
-<p>相关截图</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226092038880.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<li><p>相关截图</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226092038880.png" srcset="/img/loading.gif" lazyload></p>
 </li>
 </ol>
 <hr>
-<h4 id="task-2-文件后添加后缀">task 2: 文件后添加后缀</h4>
-<ol>
-<li>
-<p>将<code>prefix_msg1.txt</code>和<code>prefix.txt</code>连接为<code>out1_long.bin</code>；</p>
+<h4 id="task-2-文件后添加后缀"><a href="#task-2-文件后添加后缀" class="headerlink" title="task 2: 文件后添加后缀"></a>task 2: 文件后添加后缀</h4><ol>
+<li><p>将<code>prefix_msg1.txt</code>和<code>prefix.txt</code>连接为<code>out1_long.bin</code>；</p>
 <p><code>prefix_msg2.txt</code>和<code>prefix.txt</code>连接为<code>out2_long.bin</code>；</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">cat prefix_msg1.txt prefix.txt &gt; out1_long.bin<br></code></pre></td></tr></table></figure>
+
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">cat prefix_msg2.txt prefix.txt &gt; out2_long.bin<br></code></pre></td></tr></table></figure>
 </li>
-<li>
-<p>连接后两文件的<code>md5</code>值仍然相同：</p>
+<li><p>连接后两文件的<code>md5</code>值仍然相同：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">md5sum prefix_msg1.txt<br></code></pre></td></tr></table></figure>
+
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">md5sum prefix_msg2.txt<br></code></pre></td></tr></table></figure>
 </li>
-<li>
-<p>相关截图</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226092043831.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<li><p>相关截图</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226092043831.png" srcset="/img/loading.gif" lazyload></p>
 </li>
 </ol>
 <hr>
-<h4 id="b-task-3-生成两个MD5值相同但输出不同的两个可执行文件">b) task 3: 生成两个MD5值相同但输出不同的两个可执行文件</h4>
-<ol>
-<li>
-<p>编辑文件<code>print_array.c</code>：</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226092049784.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<h4 id="b-task-3-生成两个MD5值相同但输出不同的两个可执行文件"><a href="#b-task-3-生成两个MD5值相同但输出不同的两个可执行文件" class="headerlink" title="b) task 3: 生成两个MD5值相同但输出不同的两个可执行文件"></a>b) task 3: 生成两个MD5值相同但输出不同的两个可执行文件</h4><ol>
+<li><p>编辑文件<code>print_array.c</code>： </p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226092049784.png" srcset="/img/loading.gif" lazyload></p>
 </li>
-<li>
-<p>gcc编译<code>print_array.c</code> 文件，生成<code>a.out</code>：</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226092057138.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<li><p>gcc编译<code>print_array.c</code> 文件，生成<code>a.out</code>：</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226092057138.png" srcset="/img/loading.gif" lazyload></p>
 </li>
-<li>
-<p>使用<code>bless</code>查看输出数组文件的二进制代码，发现输出时的二进制<code>offset 0x3020</code>不是64的倍数：</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226092103348.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<li><p>使用<code>bless</code>查看输出数组文件的二进制代码，发现输出时的二进制<code>offset 0x3020</code>不是64的倍数：</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226092103348.png" srcset="/img/loading.gif" lazyload></p>
 <p>确认prefix取<code>0x3040</code>即为64的倍数，即十进制<code>12352</code>：</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226092111033.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226092111033.png" srcset="/img/loading.gif" lazyload></p>
 </li>
-<li>
-<p>取suffix为正好在A数组输出完毕的<code>offset 0x30e8</code>，十进制为<code>12520</code>：<img src="https://gitee.com/r0otsu/piclist/raw/master/20241226092119470.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<li><p>取suffix为正好在A数组输出完毕的<code>offset 0x30e8</code>，十进制为<code>12520</code>：<img src="https://gitee.com/r0otsu/piclist/raw/master/20241226092119470.png" srcset="/img/loading.gif" lazyload></p>
 </li>
-<li>
-<p>保存<code>a.out</code>的前<code>12352</code>个字节为前缀<code>prefix</code>：</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226092126536.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<li><p>保存<code>a.out</code>的前<code>12352</code>个字节为前缀<code>prefix</code>：</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226092126536.png" srcset="/img/loading.gif" lazyload></p>
 </li>
-<li>
-<p>保存<code>a.out</code>从第<code>12520</code>个字节开始之后的字节为后缀<code>suffix</code>：</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226092132589.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<li><p>保存<code>a.out</code>从第<code>12520</code>个字节开始之后的字节为后缀<code>suffix</code>：</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226092132589.png" srcset="/img/loading.gif" lazyload></p>
 </li>
-<li>
-<p>使用<code>md5collgen</code>工具，将<code>prefix</code> 文件作为前缀，生成两个输出文件 <code>out1.bin</code> 和 <code>out2.bin</code></p>
+<li><p>使用<code>md5collgen</code>工具，将<code>prefix</code> 文件作为前缀，生成两个输出文件 <code>out1.bin</code> 和 <code>out2.bin</code></p>
 <p>输出中显示了文件初始的 MD5 值</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226092139835.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226092139835.png" srcset="/img/loading.gif" lazyload></p>
 </li>
-<li>
-<p>将<code>out1.bin</code>的后<code>128</code>个字节存为<code>P</code>；</p>
+<li><p>将<code>out1.bin</code>的后<code>128</code>个字节存为<code>P</code>；</p>
 <p>并将<code>out2.bin</code>的后<code>128</code>个字节存为<code>Q</code>；</p>
-<p>将前缀文件<code>prefix</code>、中间文件<code>P</code>/<code>Q</code>、后缀文件<code>suffix</code>连接起来，分别存为<code>a1.out</code>/<code>a2.out</code></p>
+<p>将前缀文件<code>prefix</code>、中间文件<code>P</code>&#x2F;<code>Q</code>、后缀文件<code>suffix</code>连接起来，分别存为<code>a1.out</code>&#x2F;<code>a2.out</code></p>
 <p>并赋予<code>a1.out</code> 和<code> a2.out</code>文件可执行权限</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226092146151.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226092146151.png" srcset="/img/loading.gif" lazyload></p>
 </li>
-<li>
-<p>可以看到两个文件的内容是有细微差别的：</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226092151719.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<li><p>可以看到两个文件的内容是有细微差别的：</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226092151719.png" srcset="/img/loading.gif" lazyload></p>
 <p>对比发现确实有细微差别：</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226092157109.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226092157109.png" srcset="/img/loading.gif" lazyload></p>
 </li>
-<li>
-<p>但输出两个文件的md5码，发现虽然文件执行后内容不同，但md5码一致</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226092203107.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<li><p>但输出两个文件的md5码，发现虽然文件执行后内容不同，但md5码一致</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226092203107.png" srcset="/img/loading.gif" lazyload></p>
 </li>
 </ol>
 <hr>
-<h4 id="c-task-3-生成两个MD5值相同但代码行为不相同的可执行文件">c) task 3: 生成两个MD5值相同但代码行为不相同的可执行文件</h4>
-<ol>
-<li>
-<p>复制Lab3_task3.c进入虚拟机中；</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226092210239.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<h4 id="c-task-3-生成两个MD5值相同但代码行为不相同的可执行文件"><a href="#c-task-3-生成两个MD5值相同但代码行为不相同的可执行文件" class="headerlink" title="c) task 3: 生成两个MD5值相同但代码行为不相同的可执行文件"></a>c) task 3: 生成两个MD5值相同但代码行为不相同的可执行文件</h4><ol>
+<li><p>复制Lab3_task3.c进入虚拟机中；</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226092210239.png" srcset="/img/loading.gif" lazyload></p>
 </li>
-<li>
-<p>编译Lab3_task3.c为task4，输出为 <code>这是一个良性程序</code> ；</p>
+<li><p>编译Lab3_task3.c为task4，输出为 <code>这是一个良性程序</code> ；</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">gcc Lab3_task3.c -o task4<br></code></pre></td></tr></table></figure>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226092218185.png" srcset="/img/loading.gif" lazyload alt=""></p>
+
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226092218185.png" srcset="/img/loading.gif" lazyload></p>
 </li>
-<li>
-<p>bless查看task4的二进制文件，发现输出x数组时，开始是在<code>0x3020</code>，十进制<code>12320</code>，为了向上取64的倍数，应该取前缀为<code>12352</code>；</p>
+<li><p>bless查看task4的二进制文件，发现输出x数组时，开始是在<code>0x3020</code>，十进制<code>12320</code>，为了向上取64的倍数，应该取前缀为<code>12352</code>；</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">bless task4<br></code></pre></td></tr></table></figure>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226092226298.png" srcset="/img/loading.gif" lazyload alt=""></p>
+
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226092226298.png" srcset="/img/loading.gif" lazyload></p>
 </li>
-<li>
-<p>把前<code>12352</code>个字节的数组取出来作为prefix前缀文件；</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226092233575.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<li><p>把前<code>12352</code>个字节的数组取出来作为prefix前缀文件；</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226092233575.png" srcset="/img/loading.gif" lazyload></p>
 </li>
-<li>
-<p>根据前缀文件进行md5碰撞，得到<code>out1.bin</code> 和 <code>out2.bin</code> 两个md5码相同的文件；</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226092239456.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<li><p>根据前缀文件进行md5碰撞，得到<code>out1.bin</code> 和 <code>out2.bin</code> 两个md5码相同的文件；</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226092239456.png" srcset="/img/loading.gif" lazyload></p>
 </li>
-<li>
-<p>复制<code>task4</code>为<code>task4-1</code>和<code>task4-2</code>两个文件；</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226092247265.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<li><p>复制<code>task4</code>为<code>task4-1</code>和<code>task4-2</code>两个文件；</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226092247265.png" srcset="/img/loading.gif" lazyload></p>
 </li>
-<li>
-<p>对<code>task4-1</code>文件进行操作，得到x和y数组相同的文件；</p>
+<li><p>对<code>task4-1</code>文件进行操作，得到x和y数组相同的文件；</p>
 <p>查看<code>out1.bin</code>文件的后<code>128</code>个字节：</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226092254486.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226092254486.png" srcset="/img/loading.gif" lazyload></p>
 <p>将<code>task4-1</code>文件中的x和y数组的后<code>128</code>字节都复制为<code>out1.bin</code>文件的后<code>128</code>字节：</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226092304420.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226092304420.png" srcset="/img/loading.gif" lazyload></p>
 <p>这样就得到了<code>task4-1</code>文件，xy数组相同。</p>
 </li>
-<li>
-<p>对<code>task4-2</code>文件进行操作，得到x和y数组不同的文件；</p>
+<li><p>对<code>task4-2</code>文件进行操作，得到x和y数组不同的文件；</p>
 <p>查看<code>out1.bin</code>文件的后<code>128</code>个字节：</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226092313772.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226092313772.png" srcset="/img/loading.gif" lazyload></p>
 <p>查看<code>out2.bin</code>文件的后<code>128</code>个字节：</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226092321230.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226092321230.png" srcset="/img/loading.gif" lazyload></p>
 <p>将<code>task4-2</code>文件中的 <strong>y数组</strong> 的后<code>128</code>字节都复制为<code>out1.bin</code>文件的后<code>128</code>字节：</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226092344069.png" srcset="/img/loading.gif" lazyload alt="">将<code>task4-2</code>文件中的 <strong>x数组</strong> 的后<code>128</code>字节都复制为<code>out2.bin</code>文件的后<code>128</code>字节：</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226092355507.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226092344069.png" srcset="/img/loading.gif" lazyload>将<code>task4-2</code>文件中的 <strong>x数组</strong> 的后<code>128</code>字节都复制为<code>out2.bin</code>文件的后<code>128</code>字节：</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226092355507.png" srcset="/img/loading.gif" lazyload></p>
 <p>这样就得到了<code>task4-2</code>文件，xy数组不相同</p>
 </li>
-<li>
-<p>设置<code>task4-1</code>和<code>task4-2</code>文件的权限；</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226092404194.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<li><p>设置<code>task4-1</code>和<code>task4-2</code>文件的权限；</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226092404194.png" srcset="/img/loading.gif" lazyload></p>
 </li>
-<li>
-<p>输出<code>task4-1</code>和<code>task4-2</code>文件的输出不同；</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226092409856.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<li><p>输出<code>task4-1</code>和<code>task4-2</code>文件的输出不同；</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226092409856.png" srcset="/img/loading.gif" lazyload></p>
 <p>计算md5码相同：</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226092419049.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226092419049.png" srcset="/img/loading.gif" lazyload></p>
 <p>实验成功！</p>
 </li>
 </ol>
 <hr>
-<h4 id="d-回答问题">d) 回答问题</h4>
-<p>通过上面的实验，请解释为什么可以做到不同行为的两个可执行文件具有相同的MD5值？</p>
+<h4 id="d-回答问题"><a href="#d-回答问题" class="headerlink" title="d) 回答问题"></a>d) 回答问题</h4><p>通过上面的实验，请解释为什么可以做到不同行为的两个可执行文件具有相同的MD5值？</p>
 <p>答：md5算法是一个典型的<strong>散列函数</strong>，其将任意长度的数据映射为固定长度的128位的散列值；而且md5作为哈希函数，其<strong>只关注输入数据的位模式</strong>，而非数据的语义或功能。</p>
 <p>由于这两个特性，导致md5在计算时，存在<strong>碰撞</strong>的可能性，即通过不同的输入可能可以生成相同的哈希值；并且通过修改部分代码，两个文件可以在执行不同功能的情况下，二进制表示不同，但由于碰撞的前缀prefix相同，则md5码相同。</p>
 <hr>
-<h3 id="实验总结">实验总结</h3>
-<p><s>删掉啦</s></p>
+<h3 id="实验总结"><a href="#实验总结" class="headerlink" title="实验总结"></a>实验总结</h3><p><del>删掉啦</del></p>
 
                 
               </div>

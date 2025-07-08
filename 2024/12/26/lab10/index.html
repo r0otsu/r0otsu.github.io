@@ -343,13 +343,11 @@
               <div class="markdown-body">
                 
                 <meta name="referrer" content="no-referrer" />
-<h1>Lab 10-TCP攻击实验</h1>
-<h3 id="实验环境">实验环境</h3>
-<ul>
+
+<h1 id="Lab-10-TCP攻击实验"><a href="#Lab-10-TCP攻击实验" class="headerlink" title="Lab 10-TCP攻击实验"></a>Lab 10-TCP攻击实验</h1><h3 id="实验环境"><a href="#实验环境" class="headerlink" title="实验环境"></a>实验环境</h3><ul>
 <li>Ubuntu 20.04 (seed-ubuntu)</li>
 </ul>
-<h3 id="实验内容">实验内容</h3>
-<p><s>删掉啦</s></p>
+<h3 id="实验内容"><a href="#实验内容" class="headerlink" title="实验内容"></a>实验内容</h3><p><del>删掉啦</del></p>
 <!-- 本实验的学习目标是让学生获得有关漏洞以及针对这些漏洞的攻击的第一手经验。聪明人从错误中学习。在安全教育中，我们研究导致软件漏洞的错误。研究过去的错误不仅有助于学生理解为什么系统容易受到攻击，为什么“看似良性”的错误会变成灾难，以及为什么需要许多安全机制。更重要的是，它还帮助学生了解漏洞的常见模式，从而避免将来犯类似的错误。此外，使用漏洞作为案例研究，学生可以学习安全设计、安全编程和安全测试的原则。
 
 TCP/IP协议中的漏洞代表了协议设计和实现中的一种特殊类型的漏洞；它们提供了一个宝贵的教训，说明了为什么安全性应该从一开始就设计好，而不是事后才加上。此外，研究这些漏洞有助于学生了解网络安全的挑战以及为什么需要许多网络安全措施。在本实验中，学生将对TCP进行几个攻击。本实验涵盖以下主题：
@@ -359,190 +357,146 @@ TCP/IP协议中的漏洞代表了协议设计和实现中的一种特殊类型�
 - TCP重置攻击
 - TCP会话劫持攻击
 - 反向Shell -->
+
 <hr>
-<h3 id="实验步骤">实验步骤</h3>
-<h4 id="环境部署">环境部署</h4>
-<ol>
-<li>
-<p>启动容器</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226104935934.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<h3 id="实验步骤"><a href="#实验步骤" class="headerlink" title="实验步骤"></a>实验步骤</h3><h4 id="环境部署"><a href="#环境部署" class="headerlink" title="环境部署"></a>环境部署</h4><ol>
+<li><p>启动容器</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226104935934.png" srcset="/img/loading.gif" lazyload></p>
 </li>
-<li>
-<p>为了方便分辨容器，进入四个容器，并对主机名进行更改</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226104942394.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<li><p>为了方便分辨容器，进入四个容器，并对主机名进行更改</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226104942394.png" srcset="/img/loading.gif" lazyload></p>
 </li>
 </ol>
 <hr>
-<h4 id="Task-1-SYN-Flooding-Attack">Task 1: SYN Flooding Attack</h4>
-<h5 id="Task-1-1-Launching-the-Attack-Using-Python">Task 1.1: Launching the Attack Using Python</h5>
-<ol>
-<li>
-<p>创建<code>synflood.py</code>，用于执行synflood攻击</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226104947690.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<h4 id="Task-1-SYN-Flooding-Attack"><a href="#Task-1-SYN-Flooding-Attack" class="headerlink" title="Task 1: SYN Flooding Attack"></a>Task 1: SYN Flooding Attack</h4><h5 id="Task-1-1-Launching-the-Attack-Using-Python"><a href="#Task-1-1-Launching-the-Attack-Using-Python" class="headerlink" title="Task 1.1: Launching the Attack Using Python"></a>Task 1.1: Launching the Attack Using Python</h5><ol>
+<li><p>创建<code>synflood.py</code>，用于执行synflood攻击</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226104947690.png" srcset="/img/loading.gif" lazyload></p>
 </li>
-<li>
-<p>将<code>synflood.py</code>复制到attacker主机中</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226104952916.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<li><p>将<code>synflood.py</code>复制到attacker主机中</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226104952916.png" srcset="/img/loading.gif" lazyload></p>
 </li>
-<li>
-<p>此时victim主机的tcp连接为</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226104957855.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<li><p>此时victim主机的tcp连接为</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226104957855.png" srcset="/img/loading.gif" lazyload></p>
 </li>
-<li>
-<p>attacker主机运行<code>synflood.py</code>，此时查看victim主机的tcp连接</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226105003130.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<li><p>attacker主机运行<code>synflood.py</code>，此时查看victim主机的tcp连接</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226105003130.png" srcset="/img/loading.gif" lazyload></p>
 <p><strong>被泛洪攻击了</strong></p>
 </li>
-<li>
-<p>查看一下victim主机中处于<code>SYN_RECV</code>状态的TCP连接的数量，可以看出连接数量非常多</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226105008427.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<li><p>查看一下victim主机中处于<code>SYN_RECV</code>状态的TCP连接的数量，可以看出连接数量非常多</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226105008427.png" srcset="/img/loading.gif" lazyload></p>
 </li>
-<li>
-<p>此时 user1主机telnet 连接victim主机</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226105014008.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<li><p>此时 user1主机telnet 连接victim主机</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226105014008.png" srcset="/img/loading.gif" lazyload></p>
 </li>
 </ol>
 <p><strong>完全不影响连接，很快就连接上了</strong></p>
 <hr>
-<h5 id="Task-1-2-Launch-the-Attack-Using-C">Task 1.2: Launch the Attack Using C</h5>
-<ol>
-<li>
-<p>先清空一下</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226105021389.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<h5 id="Task-1-2-Launch-the-Attack-Using-C"><a href="#Task-1-2-Launch-the-Attack-Using-C" class="headerlink" title="Task 1.2: Launch the Attack Using C"></a>Task 1.2: Launch the Attack Using C</h5><ol>
+<li><p>先清空一下</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226105021389.png" srcset="/img/loading.gif" lazyload></p>
 </li>
-<li>
-<p>进入<code>volumes</code>文件夹，编译<code>synflood.c</code>文件，将可执行文件<code>synflood</code>复制到攻击主机中</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226105026684.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<li><p>进入<code>volumes</code>文件夹，编译<code>synflood.c</code>文件，将可执行文件<code>synflood</code>复制到攻击主机中</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226105026684.png" srcset="/img/loading.gif" lazyload></p>
 </li>
-<li>
-<p>在attacker主机中运行，victim主机中又出现了大量的tcp连接</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226105340481.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<li><p>在attacker主机中运行，victim主机中又出现了大量的tcp连接</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226105340481.png" srcset="/img/loading.gif" lazyload></p>
 </li>
-<li>
-<p>查看tcp连接的数量</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226105347222.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<li><p>查看tcp连接的数量</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226105347222.png" srcset="/img/loading.gif" lazyload></p>
 <p><strong>可以看到数量非常的多，泛洪攻击成功了！</strong></p>
 </li>
-<li>
-<p>使用user1主机telnet连接victim主机</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226105353562.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<li><p>使用user1主机telnet连接victim主机</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226105353562.png" srcset="/img/loading.gif" lazyload></p>
 </li>
 </ol>
 <p><strong>telnet连接失败！</strong></p>
 <hr>
-<h5 id="Task-1-3-Enable-the-SYN-Cookie-Countermeasure">Task 1.3: Enable the SYN Cookie Countermeasure</h5>
-<ol>
-<li>
-<p>先清空一下</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226105401417.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<h5 id="Task-1-3-Enable-the-SYN-Cookie-Countermeasure"><a href="#Task-1-3-Enable-the-SYN-Cookie-Countermeasure" class="headerlink" title="Task 1.3: Enable the SYN Cookie Countermeasure"></a>Task 1.3: Enable the SYN Cookie Countermeasure</h5><ol>
+<li><p>先清空一下</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226105401417.png" srcset="/img/loading.gif" lazyload></p>
 </li>
-<li>
-<p>在victim主机启动syncookies</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226105406094.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<li><p>在victim主机启动syncookies</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226105406094.png" srcset="/img/loading.gif" lazyload></p>
 </li>
-<li>
-<p>继续在attacker主机执行程序进行泛洪攻击，victim主机出现大量tcp连接</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226105412089.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<li><p>继续在attacker主机执行程序进行泛洪攻击，victim主机出现大量tcp连接</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226105412089.png" srcset="/img/loading.gif" lazyload></p>
 </li>
-<li>
-<p>但此时user1主机却可以telnet连接victim主机</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226105417467.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<li><p>但此时user1主机却可以telnet连接victim主机</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226105417467.png" srcset="/img/loading.gif" lazyload></p>
 </li>
 </ol>
 <p><strong>telnet连接成功！</strong></p>
 <hr>
-<h4 id="Task-2-TCP-RST-Attacks-on-telnet-Connections">Task 2: TCP RST Attacks on telnet Connections</h4>
-<ol>
-<li>
-<p>先得到虚拟网卡的名称</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226105422595.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<h4 id="Task-2-TCP-RST-Attacks-on-telnet-Connections"><a href="#Task-2-TCP-RST-Attacks-on-telnet-Connections" class="headerlink" title="Task 2: TCP RST Attacks on telnet Connections"></a>Task 2: TCP RST Attacks on telnet Connections</h4><ol>
+<li><p>先得到虚拟网卡的名称</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226105422595.png" srcset="/img/loading.gif" lazyload></p>
 </li>
-<li>
-<p>创建<code>tcprst.py</code>，用于执行TCP RST攻击</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226105427208.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<li><p>创建<code>tcprst.py</code>，用于执行TCP RST攻击</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226105427208.png" srcset="/img/loading.gif" lazyload></p>
 </li>
-<li>
-<p>复制到attacker主机中去</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226105432357.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<li><p>复制到attacker主机中去</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226105432357.png" srcset="/img/loading.gif" lazyload></p>
 </li>
-<li>
-<p>attacker主机中执行程序</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226105437457.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<li><p>attacker主机中执行程序</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226105437457.png" srcset="/img/loading.gif" lazyload></p>
 </li>
-<li>
-<p>user1尝试telnet连接attacker主机</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226105442260.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<li><p>user1尝试telnet连接attacker主机</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226105442260.png" srcset="/img/loading.gif" lazyload></p>
 </li>
 </ol>
 <p><strong>连接被切断了，无法连接！</strong></p>
 <hr>
-<h4 id="Task-3-TCP-Session-Hijacking">Task 3: TCP Session Hijacking</h4>
-<ol>
-<li>
-<p>创建<code>tcphijacking.py</code>，用于在客户机进行telnet连接时，执行tcp会话劫持，并向主机中写入一个文件</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226105447026.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<h4 id="Task-3-TCP-Session-Hijacking"><a href="#Task-3-TCP-Session-Hijacking" class="headerlink" title="Task 3: TCP Session Hijacking"></a>Task 3: TCP Session Hijacking</h4><ol>
+<li><p>创建<code>tcphijacking.py</code>，用于在客户机进行telnet连接时，执行tcp会话劫持，并向主机中写入一个文件</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226105447026.png" srcset="/img/loading.gif" lazyload></p>
 </li>
-<li>
-<p>复制到attacker主机中</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226105451742.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<li><p>复制到attacker主机中</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226105451742.png" srcset="/img/loading.gif" lazyload></p>
 </li>
-<li>
-<p>user1先进行telnet连接</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226105456607.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<li><p>user1先进行telnet连接</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226105456607.png" srcset="/img/loading.gif" lazyload></p>
 </li>
-<li>
-<p>attacker主机执行<code>tcphijacking.py</code></p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226105501597.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<li><p>attacker主机执行<code>tcphijacking.py</code></p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226105501597.png" srcset="/img/loading.gif" lazyload></p>
 </li>
-<li>
-<p>attacker主机中返回了劫持的信息</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226105506498.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<li><p>attacker主机中返回了劫持的信息</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226105506498.png" srcset="/img/loading.gif" lazyload></p>
 <p>此时user1主机卡住不动了</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226105512537.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226105512537.png" srcset="/img/loading.gif" lazyload></p>
 </li>
-<li>
-<p>victim主机中确实被写入了一个文件</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226105520338.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<li><p>victim主机中确实被写入了一个文件</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226105520338.png" srcset="/img/loading.gif" lazyload></p>
 </li>
 </ol>
 <p><strong>TCP会话劫持成功！</strong></p>
 <hr>
-<h4 id="Task-4-Creating-Reverse-Shell-using-TCP-Session-Hijacking">Task 4: Creating Reverse Shell using TCP Session Hijacking</h4>
-<ol>
-<li>
-<p>创建<code>reverseshell.py</code>文件，用于执行TCP会话劫持，并实现反弹shell</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226105526850.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<h4 id="Task-4-Creating-Reverse-Shell-using-TCP-Session-Hijacking"><a href="#Task-4-Creating-Reverse-Shell-using-TCP-Session-Hijacking" class="headerlink" title="Task 4: Creating Reverse Shell using TCP Session Hijacking"></a>Task 4: Creating Reverse Shell using TCP Session Hijacking</h4><ol>
+<li><p>创建<code>reverseshell.py</code>文件，用于执行TCP会话劫持，并实现反弹shell</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226105526850.png" srcset="/img/loading.gif" lazyload></p>
 </li>
-<li>
-<p>将<code>reverseshell.py</code>文件复制到attacker主机中</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226105532097.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<li><p>将<code>reverseshell.py</code>文件复制到attacker主机中</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226105532097.png" srcset="/img/loading.gif" lazyload></p>
 </li>
-<li>
-<p>再新开一个终端，用于在attacker主机中进行监听</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226105537484.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<li><p>再新开一个终端，用于在attacker主机中进行监听</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226105537484.png" srcset="/img/loading.gif" lazyload></p>
 </li>
-<li>
-<p>user1主机telnet连接victim主机</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226105542839.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<li><p>user1主机telnet连接victim主机</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226105542839.png" srcset="/img/loading.gif" lazyload></p>
 </li>
-<li>
-<p>attacker主机执行<code>reverseshell.py</code>文件</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226105548545.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<li><p>attacker主机执行<code>reverseshell.py</code>文件</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226105548545.png" srcset="/img/loading.gif" lazyload></p>
 </li>
-<li>
-<p>attacker主机的监听有所返回</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226105553436.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<li><p>attacker主机的监听有所返回</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226105553436.png" srcset="/img/loading.gif" lazyload></p>
 <p><strong>反弹shell成功了！</strong></p>
 </li>
-<li>
-<p>测试一下</p>
-<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226105558334.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<li><p>测试一下</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20241226105558334.png" srcset="/img/loading.gif" lazyload></p>
 </li>
 </ol>
 <p><strong>劫持TCP会话，并反弹shell成功！</strong></p>
 <hr>
-<h3 id="实验总结">实验总结</h3>
-<p><s>删掉啦</s></p>
+<h3 id="实验总结"><a href="#实验总结" class="headerlink" title="实验总结"></a>实验总结</h3><p><del>删掉啦</del></p>
 
                 
               </div>
@@ -645,9 +599,9 @@ TCP/IP协议中的漏洞代表了协议设计和实现中的一种特殊类型�
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2024/12/26/lab12/" title="Lab 12">
+                      <a href="/2024/12/26/lab11/" title="Lab 11">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Lab 12</span>
+                        <span class="hidden-mobile">Lab 11</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
