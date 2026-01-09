@@ -1,0 +1,1152 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=light>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="referrer" content="no-referrer" />
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/OIP-C.png">
+  <link rel="icon" href="/img/OIP-C.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta name="robots" content="noindex, nofollow">
+  
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="r0otsu">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="大模型应用入门">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Master&#39;s Lab6">
+<meta property="og:url" content="https://r0otsu.github.io/2026/01/09/master-lab6/index.html">
+<meta property="og:site_name" content="r0otsu&#39;s blog">
+<meta property="og:description" content="大模型应用入门">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20260109184909176.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20260109184921679.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20260109185636160.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20260109185001827.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20260109185007248.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20260109185753937.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20260109184750826.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20260109185015058.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20260109185021100.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20260109185026336.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20260109185031914.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20260109185037018.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20260109185907715.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20260109185045108.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20260109185050468.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20260109185056852.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20260109185103901.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20260109185110455.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20260109190050330.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20260109190154519.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20260109190250019.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20260109190332340.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20260109190339947.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20260109190345914.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20260109190440845.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20260109190446345.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20260109184805562.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20260109184812880.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20260109184820909.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20260109185134677.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20260109190634514.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20260109190718957.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20260109185143266.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20260109190819256.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20260109184830693.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20260109185153174.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20260109185158300.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20260109185203922.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20260109185209363.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20260109190833335.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20260109190839959.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20260109190846676.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20260109190852202.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20260109190941614.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20260109192749524.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20260109185223309.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20260109185229183.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20260109185235193.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20260109190950303.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20260109191049772.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20260109185242611.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20260109191142704.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20260109185249295.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20260109185255814.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20260109191231591.png">
+<meta property="og:image" content="https://gitee.com/r0otsu/piclist/raw/master/20260109191330185.png">
+<meta property="article:published_time" content="2026-01-09T11:34:09.000Z">
+<meta property="article:modified_time" content="2026-01-09T11:34:16.538Z">
+<meta property="article:author" content="r0otsu">
+<meta property="article:tag" content="Master-Labs">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://gitee.com/r0otsu/piclist/raw/master/20260109184909176.png">
+  
+  
+  
+  <title>Master&#39;s Lab6 - r0otsu&#39;s blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/myfont/iconfont.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"r0otsu.github.io","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":"https://cloud.umami.is/script.js","website_id":"76c804ff-36c9-4795-8275-233c7d521ebe","domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>r0otsu</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/guestbook/" target="_self">
+                <i class="iconfont icon-comment"></i>
+                <span>留言</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-link-fill"></i>
+                <span>友链</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/index.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Master&#39;s Lab6"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2026-01-09 19:34" pubdate>
+          2026年1月9日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          2.3k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          20 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">Master&#39;s Lab6</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <meta name="referrer" content="no-referrer" />
+<h1>Lab 6. 大模型应用入门</h1>
+<blockquote>
+<p>免责声明：对这次也是GPT</p>
+</blockquote>
+<h2 id="实验内容">实验内容</h2>
+<h3 id="Task-0-用脚本请求商用大模型">Task 0. 用脚本请求商用大模型</h3>
+<h4 id="调用参数"><s>调用参数</s></h4>
+<p><s>根据<a target="_blank" rel="noopener" href="https://docs.siliconflow.cn/cn/api-reference/chat-completions/chat-completions">官方API文档</a>，调用时可以设置这些参数：</s></p>
+<hr>
+<h4 id="实验步骤">实验步骤</h4>
+<ol>
+<li>
+<p>首先注册硅基流动的账号，有14元的免费额度，但还是先选一个免费的模型试一下</p>
+<p>选择<code>deepseek-ai/DeepSeek-R1-0528-Qwen3-8B</code>模型</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20260109184909176.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>然后新建一个api key</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20260109184921679.png" srcset="/img/loading.gif" lazyload alt=""></p>
+</li>
+<li>
+<p>编辑代码，先配置客户端，将在硅基流动中获取到的api复制进去</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20260109185636160.png" srcset="/img/loading.gif" lazyload alt=""></p>
+</li>
+<li>
+<p>chat函数</p>
+<p>设置参数如下：</p>
+<ul>
+<li>模型ID为<code>deepseek-ai/DeepSeek-R1-0528-Qwen3-8B</code></li>
+<li>message中设置了我的角色为用户，我输入为函数的输入prompt</li>
+<li>非流式输出</li>
+<li>限制模型最多回答 256 个 token</li>
+<li>没有停止词</li>
+<li>温度-创意度为0.7</li>
+<li>一个输入对应一个回答</li>
+<li>输出格式为text</li>
+</ul>
+<p>因为是非thinking模型，所以有关thinking的参数无效</p>
+<p>并且尝试使用tool工具，但该模型不可使用tool</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20260109185001827.png" srcset="/img/loading.gif" lazyload alt=""></p>
+</li>
+<li>
+<p>主函数</p>
+<p>定义了想要模型回答的问题，并打印问题和答案</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20260109185007248.png" srcset="/img/loading.gif" lazyload alt=""></p>
+</li>
+</ol>
+<h4 id="结果展示">结果展示</h4>
+<p>运行后，模型对’Hello World!'进行回答</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20260109185753937.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<hr>
+<h3 id="Task-1-大模型能力评测和上下文学习">Task 1. 大模型能力评测和上下文学习</h3>
+<h4 id="论文学习">论文学习</h4>
+<h5 id="C-Eval"><s>C-Eval</s></h5>
+<ol>
+<li>
+<p>Introduction</p>
+<p>C-EVAL是一套面向中文场景的综合评测，用来评估大模型的<strong>知识</strong>与<strong>推理</strong>能力，弥补主流评测主要面向英文、且对中国语境覆盖不足的问题。</p>
+<p>数据集主要设置如下：</p>
+<ul>
+<li>
+<p>题型为<strong>四选一单选题</strong></p>
+</li>
+<li>
+<p>覆盖<strong>52</strong>个学科，跨人文、社科、理工等多个门类</p>
+</li>
+<li>
+<p>分为<strong>4个难度层级</strong>：初中/高中/大学/职业考试</p>
+</li>
+<li>
+<p>共<strong>13,948</strong>道题，含dev/valid/test三个划分</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20260109184750826.png" srcset="/img/loading.gif" lazyload alt=""></p>
+</li>
+</ul>
+</li>
+<li>
+<p><s>Evaluation</s></p>
+<ul>
+<li><s>输入</s></li>
+<li><s>输出</s></li>
+<li><s>指标</s></li>
+</ul>
+</li>
+</ol>
+<hr>
+<h4 id="实验步骤-v2">实验步骤</h4>
+<ol>
+<li>
+<p>首先配置dataset环境，然后就能下载C-Eval了，先测试一下能不能下载，这里选择了<code>teacher_qualification</code>的数据集</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20260109185015058.png" srcset="/img/loading.gif" lazyload alt=""></p>
+</li>
+<li>
+<p>输出一下dev val test的结构，发现dev中确实只有5条，其他的val和test条数分别为44和399</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20260109185021100.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>输出dev的前五条发现确实有explanation</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20260109185026336.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>输出test的前五条发现test确实没有解释，但是有答案</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20260109185031914.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>val也没有解释，但是数量不够50，就考虑只用test就能满足随机50道题目 了</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20260109185037018.png" srcset="/img/loading.gif" lazyload alt=""></p>
+</li>
+<li>
+<p>把chat函数和api调用的客户端复制进来</p>
+<p>仍然用模型<code>deepseek-ai/DeepSeek-R1-0528-Qwen3-8B</code></p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20260109185907715.png" srcset="/img/loading.gif" lazyload alt=""></p>
+</li>
+<li>
+<p>准备数据</p>
+<p>dev的5道题作为示例，test中随机抽取50道题作为测试，这里三种方法都会用这50道题，随机抽取只抽取一次</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20260109185045108.png" srcset="/img/loading.gif" lazyload alt=""></p>
+</li>
+<li>
+<p>给AO和COT两种范式固定的格式进行输入，如果是five-shot就给示例，而COT还会给解释</p>
+<p>这里用的prompt是gemini生成的</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20260109185050468.png" srcset="/img/loading.gif" lazyload alt=""></p>
+</li>
+<li>
+<p>这里考虑了三种情况</p>
+<p>情况一：开门见山地给出答案，和AO要求的回答比较符合</p>
+<p>情况二：会有<code>答案是：...</code>的这种情况，匹配在这类关键词之后的字符</p>
+<p>情况三：如果前两种都没有匹配上，就匹配最后20个字符中的选项，可能会有<code>综上所述，选A</code>这类情况出现</p>
+<p>不过从后面的输出来看，这三种情况并不能完全概括，可能需要人工看一下。</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20260109185056852.png" srcset="/img/loading.gif" lazyload alt=""></p>
+</li>
+<li>
+<p>run_benchmark函数就是主要的测评函数了，根据AO/COT和zero-shot/five-shot，组合成三种模式进行选择，并且把每一个题目的response都进行输出</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20260109185103901.png" srcset="/img/loading.gif" lazyload alt=""></p>
+</li>
+<li>
+<p>main函数给出了流程逻辑，先预处理输出，进行评测后将结果输出</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20260109185110455.png" srcset="/img/loading.gif" lazyload alt=""></p>
+</li>
+</ol>
+<h4 id="结果展示-v2">结果展示</h4>
+<p>运行后，有各个模式选择后的结果输出</p>
+<p><strong>AO zero-shot</strong></p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20260109190050330.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><strong>AO five-shot</strong></p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20260109190154519.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>COT five-shot</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20260109190250019.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>但是有一些误差的部分，比如说AO zero-shot模式中，因为设定的最大输出比较低，所以被截断，导致预测答案提取的错误了，本来应该是正确的。</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20260109190332340.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>AO five-shot中也有类似的情况</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20260109190339947.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>由于情况考虑较少，也有COT five-shot中答案提取错误的情况，这里应该是正确的</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20260109190345914.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>模型输出的结果是</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20260109190440845.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>但校验过后，应该是</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20260109190446345.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>实验表明，即使不使用思维链，不提供少量样本，也就是使用AO zero-shot方法，模型仍然能够获得不错的效果。而COT或five-shot并不能显著提升回答的准确性。也可能是由于公开数据集后，这些测试题目已然在模型的训练数据中，或许需要更陌生的题目进行测试。</p>
+<hr>
+<h3 id="Task-2-学会使用文本Embedding">Task 2. 学会使用文本Embedding</h3>
+<h4 id="论文学习-v2">论文学习</h4>
+<h5 id="BERT"><s>BERT</s></h5>
+<ol>
+<li>
+<p><s>Method</s></p>
+<ul>
+<li>
+<p><s>Model Architecture</s></p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20260109184805562.png" srcset="/img/loading.gif" lazyload alt=""></p>
+</li>
+<li>
+<p><s>Input/Output Representations</s></p>
+</li>
+<li>
+<p><s>Pre-training BERT</s></p>
+</li>
+<li>
+<p><s>Fine-tuning BERT</s></p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20260109184812880.png" srcset="/img/loading.gif" lazyload alt=""></p>
+</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h5 id="Sentence-BERT"><s>Sentence-BERT</s></h5>
+<ol>
+<li>
+<p><s>Method</s></p>
+<p><s>分类任务时(Figure 1) - 推理任务时(Figure 2)</s></p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20260109184820909.png" srcset="/img/loading.gif" lazyload alt=""></p>
+</li>
+</ol>
+<hr>
+<h4 id="实验步骤-v3">实验步骤</h4>
+<ol>
+<li>
+<p>使用modelscope下载并加载<code>nlp_gte_sentence-embedding_english-small</code>和<code>nlp_gte_sentence-embedding_chinese-small</code>两个模型</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20260109185134677.png" srcset="/img/loading.gif" lazyload alt=""></p>
+</li>
+</ol>
+<h4 id="结果展示-v3">结果展示</h4>
+<h5 id="Embedding">Embedding</h5>
+<ol>
+<li>
+<p>测试一个英文embedding，使用<code>nlp_gte_sentence-embedding_english-small</code>模型编码<code>Hello World!</code>这句话，输出的向量化后的长度为384</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20260109190634514.png" srcset="/img/loading.gif" lazyload alt=""></p>
+</li>
+<li>
+<p>测试一个中文embedding，使用<code>nlp_gte_sentence-embedding_chinese-small</code>模型编码<code>你好，世界！</code>这句话，输出的向量化后的长度为512</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20260109190718957.png" srcset="/img/loading.gif" lazyload alt=""></p>
+</li>
+</ol>
+<p>看起来中文编码后需要的向量长度要比英文长一些。</p>
+<h5 id="Case">Case</h5>
+<p>设计一个小的<code>语义相似度匹配</code>的case，使用embedding判断和查询句最相似的语句。</p>
+<p>通过计算embedding后的向量的余弦相似度，来判断句子之间是否相似。</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20260109185143266.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>运行后输出结果，确实是第四个句子最相似：</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20260109190819256.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>embedding后，能够把句子编码成向量，从而就能通过计算的方式解决例如语义相似度这样的实际问题。</p>
+<hr>
+<h3 id="Task-3-知识库构建和向量索引">Task 3. 知识库构建和向量索引</h3>
+<h4 id="原理学习">原理学习</h4>
+<h5 id="LangChain"><s>LangChain</s></h5>
+<h6 id="TextSplitter"><s>TextSplitter</s></h6>
+<h5 id="FAISS"><s>FAISS</s></h5>
+<p><s>FAISS 解决的核心问题是：对于给定的向量集合，对查询向量能够高效执行最近邻搜索：</s></p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20260109184830693.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p><s>索引与选择</s></p>
+<p><s>使用逻辑</s></p>
+<hr>
+<h4 id="实验步骤-v4">实验步骤</h4>
+<ol>
+<li>
+<p>加载embedding模型，因为后面的文章是中文的，所以用的是中文的embedding模型<code>nlp_gte_sentence-embedding_chinese-small</code></p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20260109185153174.png" srcset="/img/loading.gif" lazyload alt=""></p>
+</li>
+<li>
+<p>使用text_splitter将文章进行切分，这里用的文章是《春》</p>
+<p>设置了切分器中，每个chunk大概100字符，上下chunk重叠20字符，并且切分时优先由分段或标点的地方进行切分</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20260109185158300.png" srcset="/img/loading.gif" lazyload alt=""></p>
+</li>
+<li>
+<p>使用FAISS将切分后的文本向量，存储成本地的知识库</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20260109185203922.png" srcset="/img/loading.gif" lazyload alt=""></p>
+</li>
+<li>
+<p>加载FAISS知识库，对用户的提问进行检索测试，用相似度进行搜索，找到最相关的两个块进行输出</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20260109185209363.png" srcset="/img/loading.gif" lazyload alt=""></p>
+</li>
+</ol>
+<h4 id="结果展示-v4">结果展示</h4>
+<ol>
+<li>
+<p>成功加载embedding模型<code>nlp_gte_sentence-embedding_chinese-small</code></p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20260109190833335.png" srcset="/img/loading.gif" lazyload alt=""></p>
+</li>
+<li>
+<p>文章成功被切分成了11块</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20260109190839959.png" srcset="/img/loading.gif" lazyload alt=""></p>
+</li>
+<li>
+<p>成功存储知识库</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20260109190846676.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>本地也有知识库文件夹</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20260109190852202.png" srcset="/img/loading.gif" lazyload alt=""></p>
+</li>
+<li>
+<p>检索测试，找到了最相似的2个块</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20260109190941614.png" srcset="/img/loading.gif" lazyload alt=""></p>
+</li>
+</ol>
+<hr>
+<h3 id="Task-4-Retrieval-Augmented-Generation">Task 4. Retrieval-Augmented Generation</h3>
+<h4 id="原理学习-v2">原理学习</h4>
+<h5 id="RAG"><s>RAG</s></h5>
+<hr>
+<h4 id="实验步骤-v5">实验步骤</h4>
+<ol>
+<li>
+<p>复制之前所写的chat函数，还包括client端调用api等</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20260109192749524.png" srcset="/img/loading.gif" lazyload alt=""></p>
+</li>
+<li>
+<p>加载embedding模型<code>nlp_gte_sentence-embedding_chinese-small</code>和task3中存储到本地的FAISS知识库</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20260109185223309.png" srcset="/img/loading.gif" lazyload alt=""></p>
+</li>
+<li>
+<p>rag的函数</p>
+<ul>
+<li>检索(Retrieve)：先检索与用户提问最相似的3个chunk</li>
+<li>增强(Augment)：将检索到的分散的chunk拼接到一个长字符串context_text中，作为参考资料</li>
+<li>生成(Generate)：将<code>参考资料context_text</code>和<code>提问user_query</code>通过prompt模板组装在一起，构成输入进大模型的prompt，让大模型进行回答</li>
+<li>如果没有找到相似的chunk，就返回不知道，不让模型编造</li>
+</ul>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20260109185229183.png" srcset="/img/loading.gif" lazyload alt=""></p>
+</li>
+<li>
+<p>测试对比，直接问大模型和有RAG后再问大模型，分别输出回答</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20260109185235193.png" srcset="/img/loading.gif" lazyload alt=""></p>
+</li>
+</ol>
+<h4 id="结果展示-v5">结果展示</h4>
+<p>运行代码后，没有rag的模型输出明显与文章中的内容无关：</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20260109190950303.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>但是有rag，模型就会输出文章中相关的内容：</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20260109191049772.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<hr>
+<h3 id="Task-5-大语言模型工具增强">Task 5. 大语言模型工具增强</h3>
+<h4 id="实验步骤-v6">实验步骤</h4>
+<ol>
+<li>
+<p>基于Python Flaskapi和Uvicorn包装成Local RESTFUL API</p>
+<p>调用<code>calculate()</code>函数的接口为<code>/calculate</code></p>
+<p>并且对接收和返回的json格式进行了规范，对输入的算式使用正则表达式进行安全过滤，只提取数字和计算符号</p>
+<p>使用uvicorn启动后台线程服务，端口为8641</p>
+<p>用eval函数能够得到结果，如果给模型输入计算请求，就调用calculate函数，使用eval函数计算出结果</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20260109185242611.png" srcset="/img/loading.gif" lazyload alt=""></p>
+</li>
+<li>
+<p>client端定义和tool参数定义</p>
+<p>client中声明了api等</p>
+<p>tool参数声明了一个工具函数 <code>call_calculator(expression: str)</code>，模型在遇到复杂计算时会调用这个工具</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20260109191142704.png" srcset="/img/loading.gif" lazyload alt=""></p>
+</li>
+<li>
+<p>api调用，使用<code>/calculate</code>接口，调用<code>calculate()</code>函数，即用这个接口使用计算器，成功会返回200</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20260109185249295.png" srcset="/img/loading.gif" lazyload alt=""></p>
+</li>
+<li>
+<p>agent逻辑的主要函数</p>
+<p>messages</p>
+<ul>
+<li>system：规定“遇到计算必须用工具”</li>
+<li>user：用户问题</li>
+</ul>
+<p>第一个<code>chat.completions.create(..., tools=tools_schema)</code>，判断是否需要工具</p>
+<ul>
+<li>模型如果判断需要工具，会返回<code>first_msg.tool_calls</code></li>
+</ul>
+<p>如果存在 <code>tool_calls</code>：</p>
+<ul>
+<li>取第一个tool call</li>
+<li>解析参数：优先 <code>json.loads</code>，失败则使用<code>ast.literal_eval</code></li>
+<li>执行工具：调用<code>/calculate</code>接口</li>
+<li>把tool输出的结果以特定格式回填到messages</li>
+</ul>
+<p>第二个<code>chat.completions.create(...)</code>，不需要tool</p>
+<ul>
+<li>让模型结合“工具输出”生成最终的答案</li>
+</ul>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20260109185255814.png" srcset="/img/loading.gif" lazyload alt=""></p>
+</li>
+</ol>
+<h4 id="结果展示-v6">结果展示</h4>
+<p>运行一个简单的算式测试一下，能够调用外部工具</p>
+<p>计算出了准确的结果，并且和计算器计算出来的是一样的</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20260109191231591.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<p>再列出一个复杂一些的算式，普通计算器已经计算不出准确结果了，但是通过大模型调用工具使用eval函数仍然可以完成复杂的大数计算，并且能够计算出准确的结果</p>
+<p><img src="https://gitee.com/r0otsu/piclist/raw/master/20260109191330185.png" srcset="/img/loading.gif" lazyload alt=""></p>
+<hr>
+<div class="note note-secondary">
+            <p>2025年12月17日</p>
+          </div>
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/study/" class="category-chain-item">study</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Master-Labs/" class="print-no-link">#Master-Labs</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Master&#39;s Lab6</div>
+      <div>https://r0otsu.github.io/2026/01/09/master-lab6/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>r0otsu</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2026年1月9日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="NC - 非商业性使用">
+                    <i class="iconfont icon-cc-nc"></i>
+                  </span>
+                </a>
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="SA - 相同方式共享">
+                    <i class="iconfont icon-cc-sa"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2026/01/09/master-lab7/" title="Master&#39;s Lab7">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Master&#39;s Lab7</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2026/01/09/master-lab5/" title="Master&#39;s Lab5">
+                        <span class="hidden-mobile">Master&#39;s Lab5</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>&nbsp;&nbsp;Hexo</span></a> <i class="iconfont icon-notebook"></i> <a href="https://r0otsu.github.io" target="_blank" rel="nofollow noopener"><span>r0otsu</span></a> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              load: ['ui/lazy']
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+
+        Fluid.events.registerRefreshCallback(function() {
+          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+            MathJax.typesetPromise();
+          }
+        });
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
